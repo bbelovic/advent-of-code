@@ -4,6 +4,7 @@ import net.bbelovic.adventofcode.InputReader;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Day5 {
 
@@ -66,5 +67,16 @@ public class Day5 {
                 .count();
         System.out.println(count);
 
+    }
+
+    public boolean isNiceStringPartTwo(String input) {
+
+        for (int i = 0; i < input.length(); i++) {
+
+        }
+
+
+
+        return false;
     }
 }

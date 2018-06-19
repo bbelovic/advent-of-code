@@ -2,9 +2,15 @@ package net.bbelovic.adventofcode.day5;
 
 import net.bbelovic.adventofcode.InputReader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Map;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public class Day5 {
 
@@ -70,13 +76,47 @@ public class Day5 {
     }
 
     public boolean isNiceStringPartTwo(String input) {
+        var result = false;
+        var letterToOccurrences = getLetters(input).stream().collect(groupingBy(identity(), counting()));
 
-        for (int i = 0; i < input.length(); i++) {
+        var moreThanOne = letterToOccurrences.entrySet().stream()
+                .filter(e-> e.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(toList());
 
+        List<String> pairs = generatePairs(moreThanOne);
+
+
+        for (var pair: pairs) {
+            int index = input.indexOf(pair);
+            if (index != -1) {
+                index = input.indexOf(pair, index);
+                if (index != -1) {
+                    result = true;
+                    break;
+                }
+
+            }
         }
+        return result;
+    }
 
+    private List<String> generatePairs(List<String> moreThanOne) {
+        var pairs = new ArrayList<String>();
+        for (var i = 0; i < moreThanOne.size(); i++) {
+            for (String aMoreThanOne : moreThanOne) {
+                var pair = moreThanOne.get(i) + aMoreThanOne;
+                pairs.add(pair);
+            }
+        }
+        return pairs;
+    }
 
-
-        return false;
+    private List<String> getLetters(String input) {
+        final var letters = new ArrayList<String>();
+        for (var i = 0; i < input.length(); i++) {
+            letters.add(input.substring(i, i+1));
+        }
+        return letters;
     }
 }

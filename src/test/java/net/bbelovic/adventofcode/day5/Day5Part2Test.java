@@ -23,8 +23,8 @@ public class Day5Part2Test {
     public void
     should_tell_whether_input_string_is_nice() {
         Day5 day5 = new Day5();
-        boolean actualResult = day5.isNiceStringPartTwo("ieodomkazucvgmuy");
-        Assert.assertFalse(actualResult);
+        boolean actualResult = day5.isNiceStringPartTwo(input);
+        Assert.assertEquals(String.format("%s expected false but was true", input), expectedResult, actualResult);
     }
     @Parameterized.Parameters
     public static Collection<Object[]> testData() {

@@ -68,7 +68,7 @@ public class Day5 {
         List<String> input = reader.readAllLines("input5.txt");
         Day5 day5 = new Day5();
         long count = input.stream()
-                .map(day5::isNiceString)
+                .map(day5::isNiceStringPartTwo)
                 .filter(b -> b)
                 .count();
         System.out.println(count);
@@ -76,6 +76,14 @@ public class Day5 {
     }
 
     public boolean isNiceStringPartTwo(String input) {
+        var result = false;
+        result = rule1(input);
+        result = result && letterRepeats(input);
+        System.out.println(String.format("%s => %s", input, result));
+        return result;
+    }
+
+    private boolean rule1(String input) {
         var result = false;
         var letterToOccurrences = getLetters(input).stream().collect(groupingBy(identity(), counting()));
 
@@ -86,19 +94,21 @@ public class Day5 {
 
         List<String> pairs = generatePairs(moreThanOne);
 
+        String candidatePair = "";
 
         for (var pair: pairs) {
             int index = input.indexOf(pair);
             if (index != -1) {
-                index = input.indexOf(pair, index);
+                index = input.indexOf(pair, index+2);
                 if (index != -1) {
                     result = true;
+                    candidatePair = pair;
                     break;
                 }
 
             }
         }
-        return result && letterRepeats(input);
+        return result;
     }
 
     private List<String> generatePairs(List<String> moreThanOne) {
@@ -121,7 +131,7 @@ public class Day5 {
     }
 
 
-    boolean letterRepeats(String input) {
+    private boolean letterRepeats(String input) {
         for (int i = 0; i <= input.length() - 3;i++) {
             var part = input.substring(i, i+3);
             if (part.charAt(0) == part.charAt(2)) {

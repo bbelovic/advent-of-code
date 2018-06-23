@@ -32,7 +32,8 @@ public class Day5Part2Test {
                 {"qjhvhtzxzqqjkmpb", true},
                 {"xxyxx", true},
                 {"uurcxstgmygtbstg", false},
-                {"ieodomkazucvgmuy", false}
+                {"ieodomkazucvgmuy", false},
+                {"urrvucyrzzzooxhx", false}
         });
     }
 }

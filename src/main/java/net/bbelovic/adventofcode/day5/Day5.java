@@ -98,7 +98,7 @@ public class Day5 {
 
             }
         }
-        return result;
+        return result && letterRepeats(input);
     }
 
     private List<String> generatePairs(List<String> moreThanOne) {
@@ -118,5 +118,16 @@ public class Day5 {
             letters.add(input.substring(i, i+1));
         }
         return letters;
+    }
+
+
+    boolean letterRepeats(String input) {
+        for (int i = 0; i <= input.length() - 3;i++) {
+            var part = input.substring(i, i+3);
+            if (part.charAt(0) == part.charAt(2)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

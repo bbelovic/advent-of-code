@@ -1,5 +1,6 @@
 package net.bbelovic.adventofcode.day6;
 
+import net.bbelovic.adventofcode.InputReader;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,19 @@ public class PuzzleDay6Test {
         PuzzleDay6 puzzleDay6 = new PuzzleDay6();
         puzzleDay6.solve(instructions);
         Assert.assertEquals(expectedLightsOnCount, puzzleDay6.countLights());
+    }
+
+    @Test
+    public void test2() {
+        InputReader reader = new InputReader();
+        List<String> lines = reader.readAllLines("input6.txt");
+        InstructionsParser parser = new InstructionsParser();
+        PuzzleDay6 puzzleDay6 = new PuzzleDay6();
+        for (var eachLine: lines) {
+            Instructions instructions = parser.parseInstructions(eachLine);
+            puzzleDay6.solve(instructions);
+        }
+        System.out.println(puzzleDay6.countLights());
     }
 
     @Parameterized.Parameters

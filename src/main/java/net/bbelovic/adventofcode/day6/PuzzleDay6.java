@@ -1,19 +1,22 @@
 package net.bbelovic.adventofcode.day6;
 
-import java.util.function.Function;
-
 public class PuzzleDay6 {
     private final boolean [][] grid = new boolean[1000][1000];
-    private final Function<Boolean, Boolean> TURN_ON = (b)-> true;
-    private final Function<Boolean, Boolean> TURN_OFF = (b)-> false;
-    private final Function<Boolean, Boolean> TOOGLE = (b)-> !b;
-    public long solve(Instructions instructions) {
-
-        var cnt = 0L;
+    public void solve(Instructions instructions) {
         for (var i = instructions.getY1(); i <= instructions.getY2(); i++) {
             for (var j = instructions.getX1(); j <= instructions.getX2(); j++) {
-                TURN_ON.apply(grid [i][j]);
-                ++cnt;
+                grid [i][j] = instructions.applyOnLight(grid [i][j]);
+            }
+        }
+    }
+
+    long countLights() {
+        long cnt = 0L;
+        for (var i = 0; i < grid.length; i++) {
+            for (var j = 0; j < grid[i].length; j++) {
+                if (grid[i][j]) {
+                    ++cnt;
+                }
             }
         }
         return cnt;

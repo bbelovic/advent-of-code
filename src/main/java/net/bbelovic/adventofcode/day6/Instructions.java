@@ -1,16 +1,19 @@
 package net.bbelovic.adventofcode.day6;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 import static java.lang.String.format;
 
-public class Instructions {
+public final class Instructions {
+    private final Function<Boolean, Boolean> f;
     private final int x1;
     private final int y1;
     private final int x2;
     private final int y2;
 
-    public Instructions(int x1, int y1, int x2, int y2) {
+    Instructions(Function<Boolean, Boolean> f, int x1, int y1, int x2, int y2) {
+        this.f = f;
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -38,19 +41,23 @@ public class Instructions {
         return format("Instructions[x1=%d, y1=%d, x2=%d, y2=%d]", x1, y1, x2, y2);
     }
 
-    public int getX1() {
+    int getX1() {
         return x1;
     }
 
-    public int getY1() {
+    int getY1() {
         return y1;
     }
 
-    public int getX2() {
+    int getX2() {
         return x2;
     }
 
-    public int getY2() {
+    int getY2() {
         return y2;
+    }
+
+    boolean applyOnLight(boolean lightState) {
+        return f.apply(lightState);
     }
 }

@@ -20,17 +20,18 @@ public class PuzzleDay6Test {
 
     @Test
     public void test() {
-        long actual = new PuzzleDay6().solve(instructions);
-        Assert.assertEquals(expectedLightsOnCount, actual);
+        PuzzleDay6 puzzleDay6 = new PuzzleDay6();
+        puzzleDay6.solve(instructions);
+        Assert.assertEquals(expectedLightsOnCount, puzzleDay6.countLights());
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> testData() {
         return List.of(new Object[][] {
-                {new Instructions(0,0, 999,0), 1000},
-                {new Instructions(0,0, 999,999), 1_000_000},
-                {new Instructions(499,499,500,500), 4},
-                {new Instructions(0,0,2,2), 9},
+                {new Instructions((b)->!b, 0,0, 999,0), 1000},
+                {new Instructions((b)->true, 0,0, 999,999), 1_000_000},
+                {new Instructions((b)->false, 499,499,500,500), 0},
+                {new Instructions((b)->true, 0,0,2,2), 9},
         });
     }
 

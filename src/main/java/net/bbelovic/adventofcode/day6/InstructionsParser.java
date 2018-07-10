@@ -1,18 +1,24 @@
 package net.bbelovic.adventofcode.day6;
 
 final class InstructionsParser {
-    public Instructions parseInstructions(String line) {
+
+    private static final String COORDINATE_SEPARATOR = ",";
+
+    Instructions parseInstructions(String line) {
         String[] parts = line.split(" ");
         if (parts.length == 5) {
-            var coords1Part = parts[2];
-            var coords2Part= parts[4];
-            var coords1 = coords1Part.split(",");
-            var coords2 = coords2Part.split(",");
-            return new Instructions(
-                    Integer.parseInt(coords1[0]),
-                    Integer.parseInt(coords1[1]),
-                    Integer.parseInt(coords2[0]), Integer.parseInt(coords2[1]));
+            return getInstructions(parts[2], parts[4]);
+        } else {
+            return getInstructions(parts[1], parts[3]);
         }
-        return new Instructions(0, 0, 0, 0);
+    }
+
+    private Instructions getInstructions(String firstCoordinates, String secondCoordinates) {
+        var coords1 = firstCoordinates.split(COORDINATE_SEPARATOR);
+        var coords2 = secondCoordinates.split(COORDINATE_SEPARATOR);
+        return new Instructions(
+                Integer.parseInt(coords1[0]),
+                Integer.parseInt(coords1[1]),
+                Integer.parseInt(coords2[0]), Integer.parseInt(coords2[1]));
     }
 }

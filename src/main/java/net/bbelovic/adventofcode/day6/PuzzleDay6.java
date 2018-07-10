@@ -7,11 +7,11 @@ public class PuzzleDay6 {
     private final Function<Boolean, Boolean> TURN_ON = (b)-> true;
     private final Function<Boolean, Boolean> TURN_OFF = (b)-> false;
     private final Function<Boolean, Boolean> TOOGLE = (b)-> !b;
-    public long solve(int[] coords1, int[] coords2) {
+    public long solve(Instructions instructions) {
 
         var cnt = 0L;
-        for (var i = coords1[1]; i <= coords2[1]; i++) {
-            for (var j = coords1[0]; j <= coords2[0]; j++) {
+        for (var i = instructions.getY1(); i <= instructions.getY2(); i++) {
+            for (var j = instructions.getX1(); j <= instructions.getX2(); j++) {
                 TURN_ON.apply(grid [i][j]);
                 ++cnt;
             }

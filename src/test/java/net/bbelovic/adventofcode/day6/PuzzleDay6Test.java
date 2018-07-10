@@ -10,29 +10,27 @@ import java.util.List;
 
 @RunWith(Parameterized.class)
 public class PuzzleDay6Test {
-    private int [] coords1;
-    private int [] coords2;
+    private Instructions instructions;
     private int expectedLightsOnCount;
 
-    public PuzzleDay6Test(int[] coords1, int[] coords2, int expectedLightsOnCount) {
-        this.coords1 = coords1;
-        this.coords2 = coords2;
+    public PuzzleDay6Test(Instructions instructions, int expectedLightsOnCount) {
+        this.instructions = instructions;
         this.expectedLightsOnCount = expectedLightsOnCount;
     }
 
     @Test
     public void test() {
-        long actual = new PuzzleDay6().solve(coords1, coords2);
+        long actual = new PuzzleDay6().solve(instructions);
         Assert.assertEquals(expectedLightsOnCount, actual);
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> testData() {
         return List.of(new Object[][] {
-                {new int []{0,0}, new int [] {999,0}, 1000},
-                {new int []{0,0}, new int [] {999,999}, 1_000_000},
-                {new int []{499,499}, new int [] {500,500}, 4},
-                {new int []{0,0}, new int [] {2,2}, 9},
+                {new Instructions(0,0, 999,0), 1000},
+                {new Instructions(0,0, 999,999), 1_000_000},
+                {new Instructions(499,499,500,500), 4},
+                {new Instructions(0,0,2,2), 9},
         });
     }
 

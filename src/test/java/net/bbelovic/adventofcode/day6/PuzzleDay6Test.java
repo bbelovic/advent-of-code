@@ -29,17 +29,6 @@ public class PuzzleDay6Test {
         assertEquals(expectedLightsOnCount, puzzleDay6.countLights());
     }
 
-    @Test
-    public void test2() {
-        InputReader reader = new InputReader();
-        List<String> lines = reader.readAllLines("input6.txt");
-        PuzzleDay6 puzzleDay6 = new PuzzleDay6(INSTRUCTIONS_PARSER);
-        for (var eachLine: lines) {
-            puzzleDay6.solve(eachLine);
-        }
-        assertEquals(543903, puzzleDay6.countLights());
-    }
-
     @Parameters
     public static Collection<Object[]> testData() {
         return List.of(new Object[][] {

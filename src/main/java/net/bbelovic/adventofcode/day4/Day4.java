@@ -12,7 +12,7 @@ public class Day4 {
             String s = input + number;
             byte[] outputBytes = digest.digest(s.getBytes("UTF-8"));
             String hexString = toHexString(outputBytes);
-            while (!hexString.startsWith("000000")) {
+            while (!hexString.startsWith("00000")) {
                 s = (input + (++number));
                 outputBytes = digest.digest(s.getBytes());
                 hexString = toHexString(outputBytes);

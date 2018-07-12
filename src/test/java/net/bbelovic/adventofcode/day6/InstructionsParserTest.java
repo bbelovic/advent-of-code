@@ -3,6 +3,7 @@ package net.bbelovic.adventofcode.day6;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,7 +23,7 @@ public class InstructionsParserTest {
     private final int y2;
     private final Function<Boolean, Boolean> lightFunction;
 
-    public InstructionsParserTest(String inputLine, int x1, int y1, int x2, int y2, Function<Boolean, Boolean> lightFunction) {
+    public InstructionsParserTest(String inputLine, Function<Boolean, Boolean> lightFunction, int x1, int y1, int x2, int y2) {
         this.inputLine = inputLine;
         this.x1 = x1;
         this.y1 = y1;
@@ -40,7 +41,7 @@ public class InstructionsParserTest {
         assertEquals(expected, actual);
     }
 
-    @Parameterized.Parameters
+    @Parameters
     public static Collection<Object[]> testData() {
         return List.of(
                 new Object[][] {

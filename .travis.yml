@@ -1,0 +1,4 @@
+language: java
+jdk: oraclejdk-ea
+script:
+- mvn clean test -B

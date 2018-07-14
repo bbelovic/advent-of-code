@@ -4,15 +4,22 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Day4 {
-    public long computeNumericpart(String input) {
+class Day4 {
+
+    private final String zeroPrefix;
+
+    Day4(String zeroPrefix) {
+        this.zeroPrefix = zeroPrefix;
+    }
+
+    long solve(String input) {
         long number = 0L;
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             String s = input + number;
             byte[] outputBytes = digest.digest(s.getBytes("UTF-8"));
             String hexString = toHexString(outputBytes);
-            while (!hexString.startsWith("00000")) {
+            while (!hexString.startsWith(zeroPrefix)) {
                 s = (input + (++number));
                 outputBytes = digest.digest(s.getBytes());
                 hexString = toHexString(outputBytes);
@@ -22,13 +29,6 @@ public class Day4 {
             e.printStackTrace();
         }
         return number;
-    }
-
-    public static void main(String[] args) {
-        String input = "iwrupvqb";
-        Day4 day4 = new Day4();
-        long numericpart = day4.computeNumericpart(input);
-        System.out.println(numericpart);
     }
 
     private String toHexString(byte[] outputBytes) {

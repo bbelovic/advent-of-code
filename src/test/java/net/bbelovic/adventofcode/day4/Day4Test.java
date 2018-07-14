@@ -22,8 +22,8 @@ public class Day4Test {
     @Test
     public void
     should_compute_numeric_part_of_input() {
-        Day4 day4 = new Day4();
-        long actual = day4.computeNumericpart(input);
+        Day4 day4 = new Day4("00000");
+        long actual = day4.solve(input);
         Assert.assertEquals(expectedOutput, actual);
     }
 

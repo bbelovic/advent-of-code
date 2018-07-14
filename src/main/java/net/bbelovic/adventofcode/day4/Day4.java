@@ -1,6 +1,5 @@
 package net.bbelovic.adventofcode.day4;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,25 +12,27 @@ class Day4 {
     }
 
     long solve(String input) {
-        long number = 0L;
-        try {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            String s = input + number;
-            byte[] outputBytes = digest.digest(s.getBytes("UTF-8"));
-            String hexString = toHexString(outputBytes);
-            while (!hexString.startsWith(zeroPrefix)) {
-                s = (input + (++number));
-                outputBytes = digest.digest(s.getBytes());
-                hexString = toHexString(outputBytes);
-            }
-
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+        long result = -1L;
+        String hexString = "";
+        var md5 = getMD5();
+        while (!hexString.startsWith(zeroPrefix)) {
+            var candidate = (input + (++result));
+            var outputBytes = md5.digest(candidate.getBytes());
+            hexString = toHexString(outputBytes);
         }
-        return number;
+
+        return result;
     }
 
-    private String toHexString(byte[] outputBytes) {
+    private static MessageDigest getMD5() {
+        try {
+            return MessageDigest.getInstance("MD5");
+        } catch (final NoSuchAlgorithmException e) {
+            throw new IllegalStateException("MD5 hash function is not available.", e);
+        }
+    }
+
+    private static String toHexString(byte[] outputBytes) {
         StringBuilder sb = new StringBuilder();
         for (byte outputByte : outputBytes) {
             String substring = Integer.toString((outputByte & 0xff) + 0x100, 16).substring(1);

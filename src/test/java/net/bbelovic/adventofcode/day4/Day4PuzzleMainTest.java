@@ -25,11 +25,12 @@ public class Day4PuzzleMainTest {
     @Test
     public void
     should_solve_puzzle() {
-        final Day4 puzzle = new Day4(zeroPrefix);
+        final Day4Puzzle puzzle = new Day4Puzzle(zeroPrefix);
         final var actualCount = puzzle.solve(INPUT);
         assertEquals(expectedCount, actualCount);
 
     }
+
     @Parameters
     public static Collection<Object[]> testData() {
         return List.of(new Object[][]{

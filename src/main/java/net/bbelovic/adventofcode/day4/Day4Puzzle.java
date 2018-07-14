@@ -3,11 +3,11 @@ package net.bbelovic.adventofcode.day4;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-class Day4 {
+class Day4Puzzle {
 
     private final String zeroPrefix;
 
-    Day4(String zeroPrefix) {
+    Day4Puzzle(String zeroPrefix) {
         this.zeroPrefix = zeroPrefix;
     }
 

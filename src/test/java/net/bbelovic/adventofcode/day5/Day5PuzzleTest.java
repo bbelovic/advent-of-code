@@ -1,20 +1,22 @@
 package net.bbelovic.adventofcode.day5;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class Day5Test {
+public class Day5PuzzleTest {
 
-    private String input;
-    private boolean expectedOutput;
+    private final String input;
+    private final boolean expectedOutput;
 
-    public Day5Test(String input, boolean expectedOutput) {
+    public Day5PuzzleTest(String input, boolean expectedOutput) {
         this.input = input;
         this.expectedOutput = expectedOutput;
     }
@@ -24,12 +26,12 @@ public class Day5Test {
     should_tell_whether_input_string_is_nice_or_naughty() {
         Day5 day5 = new Day5();
         boolean actualOutput = day5.isNiceString(input);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        assertEquals(expectedOutput, actualOutput);
     }
 
-    @Parameterized.Parameters
+    @Parameters
     public static Collection<Object> testData() {
-        return Arrays.asList(new Object[][] {
+        return List.of(new Object[][]{
                 {"ugknbfddgicrmopn", true},
                 {"aaa", true},
                 {"jchzalrnumimnmhp", false},

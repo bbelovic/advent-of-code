@@ -1,15 +1,8 @@
 package net.bbelovic.adventofcode.day5;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
 
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.*;
-
-public class Day5Puzzle {
+public class Day5Puzzle implements Puzzle {
 
     private static final char[][] FORBIDDEN_COMBINATIONS = new char[][]{
             {'a', 'b'}, {'c', 'd'},

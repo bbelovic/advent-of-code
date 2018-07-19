@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.day5;
 
-public class Day5PuzzlePart2 {
+public class Day5PuzzlePart2 implements Puzzle {
     private static final Rule1 RULE_1 = new Rule1();
     private static final Rule2 RULE_2 = new Rule2();
 

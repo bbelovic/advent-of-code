@@ -24,8 +24,8 @@ public class Day5PuzzleTest {
     @Test
     public void
     should_tell_whether_input_string_is_nice_or_naughty() {
-        Day5 day5 = new Day5();
-        boolean actualOutput = day5.isNiceString(input);
+        Day5Puzzle day5 = new Day5Puzzle();
+        boolean actualOutput = day5.solve(input);
         assertEquals(expectedOutput, actualOutput);
     }
 

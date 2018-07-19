@@ -1,29 +1,20 @@
 package net.bbelovic.adventofcode.day5;
 
 import net.bbelovic.adventofcode.InputReader;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class)
-public class Day5PuzzleMainTest {
+class Day5PuzzleMainTest {
     private static final InputReader INPUT_READER = new InputReader();
-    private final Puzzle puzzle;
-    private final long expectedCount;
 
-    public Day5PuzzleMainTest(Puzzle puzzle, long expectedCount) {
-        this.puzzle = puzzle;
-        this.expectedCount = expectedCount;
-    }
-
-    @Test
-    public void should_solve_puzzle() {
+    @ParameterizedTest
+    @MethodSource("testData")
+    void should_solve_puzzle(Puzzle puzzle, long expectedCount) {
         var lines = INPUT_READER.readAllLines("input5.txt");
         var actualCount = lines.stream()
                 .filter(puzzle::solve)
@@ -31,11 +22,10 @@ public class Day5PuzzleMainTest {
         assertEquals(expectedCount, actualCount);
     }
 
-    @Parameters
-    public static Collection<Object[]> testData() {
-        return List.of(new Object[][] {
-                {new Day5Puzzle(), 238},
-                {new Day5PuzzlePart2(), 69}
-        });
+    static Iterable<Arguments> testData() {
+        return List.of(
+                Arguments.of(new Day5Puzzle(), 238),
+                Arguments.of(new Day5PuzzlePart2(), 69)
+        );
     }
 }

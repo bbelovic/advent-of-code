@@ -1,53 +1,42 @@
 package net.bbelovic.adventofcode.day5;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(Parameterized.class)
-public class Day5PuzzleTest {
+class Day5PuzzleTest {
 
-    private final String input;
-    private final boolean expectedOutput;
-
-    public Day5PuzzleTest(String input, boolean expectedOutput) {
-        this.input = input;
-        this.expectedOutput = expectedOutput;
-    }
-
-    @Test
-    public void
-    should_tell_whether_input_string_is_nice_or_naughty() {
+    @ParameterizedTest
+    @MethodSource("testData")
+    void
+    should_tell_whether_input_string_is_nice_or_naughty(String input, boolean expectedOutput) {
         Day5Puzzle day5 = new Day5Puzzle();
         boolean actualOutput = day5.solve(input);
         assertEquals(expectedOutput, actualOutput);
     }
 
-    @Parameters
-    public static Collection<Object> testData() {
-        return List.of(new Object[][]{
-                {"ugknbfddgicrmopn", true},
-                {"aaa", true},
-                {"jchzalrnumimnmhp", false},
-                {"haegwjzuvuyypxyu", false},
-                {"dvszwmarrgswjxmb", false},
-                {"aabbccdd", false},
-                {"abiikloyuebcd", false},
-                {"x", false},
-                {"", false},
-                {"aa", false},
-                {"iwnekopujjmcd", false},
-                {"aatrtacdirouu", false},
-                {"afgujikoce", false},
-                {"aatrxijodenokuwab", false},
-                {"gftrridseqalojibu", true},
-                {"pkpinberoayypqu", false}
-        });
+    static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of("ugknbfddgicrmopn", true),
+                Arguments.of("aaa", true),
+                Arguments.of("jchzalrnumimnmhp", false),
+                Arguments.of("haegwjzuvuyypxyu", false),
+                Arguments.of("dvszwmarrgswjxmb", false),
+                Arguments.of("aabbccdd", false),
+                Arguments.of("abiikloyuebcd", false),
+                Arguments.of("x", false),
+                Arguments.of("", false),
+                Arguments.of("aa", false),
+                Arguments.of("iwnekopujjmcd", false),
+                Arguments.of("aatrtacdirouu", false),
+                Arguments.of("afgujikoce", false),
+                Arguments.of("aatrxijodenokuwab", false),
+                Arguments.of("gftrridseqalojibu", true),
+                Arguments.of("pkpinberoayypqu", false)
+        );
     }
 }

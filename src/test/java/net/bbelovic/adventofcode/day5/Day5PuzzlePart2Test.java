@@ -1,42 +1,30 @@
 package net.bbelovic.adventofcode.day5;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.stream.Stream;
 
-import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
+class Day5PuzzlePart2Test {
 
-@RunWith(Parameterized.class)
-public class Day5PuzzlePart2Test {
-
-    private final String input;
-    private final boolean expectedResult;
-
-    public Day5PuzzlePart2Test(String input, boolean expectedResult) {
-        this.expectedResult = expectedResult;
-        this.input = input;
-    }
-
-    @Test
-    public void
-    should_tell_whether_input_string_is_nice() {
+    @ParameterizedTest
+    @MethodSource("testData")
+    void
+    should_tell_whether_input_string_is_nice(String input, boolean expectedResult) {
         Day5PuzzlePart2 day5 = new Day5PuzzlePart2();
         boolean actualResult = day5.solve(input);
-        assertEquals(format("%s expected false but was true", input), expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult);
     }
-    @Parameters
-    public static Collection<Object[]> testData() {
-        return List.of(new Object[][] {
-                {"qjhvhtzxzqqjkmpb", true},
-                {"xxyxx", true},
-                {"uurcxstgmygtbstg", false},
-                {"ieodomkazucvgmuy", false},
-                {"urrvucyrzzzooxhx", false}
-        });
+
+    static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of("xxyxx", true),
+                Arguments.of("qjhvhtzxzqqjkmpb", true),
+                Arguments.of("uurcxstgmygtbstg", false),
+                Arguments.of("ieodomkazucvgmuy", false),
+                Arguments.of("urrvucyrzzzooxhx", false)
+        );
     }
 }

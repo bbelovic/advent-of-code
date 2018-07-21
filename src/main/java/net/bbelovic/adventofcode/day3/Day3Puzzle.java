@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Day3 {
+public class Day3Puzzle {
 
     private static final long VISITED_LOCATION = 1L;
 
-    public long getLocationVisitedOnce(String input) {
+    long getLocationVisitedOnce(String input) {
         Map<ArrayWrapper, Long> result = new HashMap<>();
         int [] coordinates = {0, 0};
         result.put(new ArrayWrapper(coordinates), VISITED_LOCATION);
@@ -21,16 +21,8 @@ public class Day3 {
         return result.size();
     }
 
-    public static void main(String[] args) throws IOException {
-        InputReader reader = new InputReader();
-        String input = reader.readFileIntoString("input3.txt");
-        Day3 day3 = new Day3();
-        System.out.println(day3.getLocationVisitedOnce(input));
-        System.out.println(day3.getLocationVisitedOnceTwoSantas(input));
 
-    }
-
-    public long getLocationVisitedOnceTwoSantas(String input) {
+    long getLocationVisitedOnceTwoSantas(String input) {
         char[] chars = input.toCharArray();
         int [] realSantaCoords = {0, 0};
         int [] robotSantaCoords = {0, 0};

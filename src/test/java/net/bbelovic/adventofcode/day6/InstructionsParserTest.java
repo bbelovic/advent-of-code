@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.function.Function;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class InstructionsParserTest {
     private static final Function<Boolean, Boolean> TURN_ON = (b) -> true;

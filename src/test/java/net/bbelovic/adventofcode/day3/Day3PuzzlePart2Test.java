@@ -8,36 +8,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Day3PuzzleTest {
-
-    private final Day3Puzzle day3Puzzle = new Day3Puzzle();
+class Day3PuzzlePart2Test {
 
     @ParameterizedTest
     @MethodSource("testData")
     void
-    should_return_number_of_locations_visited_at_least_once(String input, int expectedLocationCount) {
-        var actualLocationCount = day3Puzzle.getLocationVisitedOnce(input);
-        assertEquals(expectedLocationCount, actualLocationCount);
-    }
-
-    @ParameterizedTest
-    @MethodSource("testData2Santas")
-    void
     should_return_number_of_location_visited_at_least_once_with_2_santas_in_action(String input, long expectedLocationCount) {
-        var actualLocationCount = day3Puzzle.getLocationVisitedOnceTwoSantas(input);
+        Day3PuzzlePart2 day3Part2 = new Day3PuzzlePart2();
+        var actualLocationCount = day3Part2.solve(input);
         assertEquals(expectedLocationCount, actualLocationCount);
     }
-
 
     static Iterable<Arguments> testData() {
-        return List.of(
-                Arguments.of("^v", 2, 3),
-                Arguments.of("^>v<", 4, 3),
-                Arguments.of("^v^v^v^v^v", 2, 11)
-        );
-    }
-
-    static Iterable<Arguments> testData2Santas() {
         return List.of(
                 Arguments.of("^v", 3),
                 Arguments.of("^>v<", 3),

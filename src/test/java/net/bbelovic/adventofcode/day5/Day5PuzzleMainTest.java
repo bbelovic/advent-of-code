@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day5PuzzleMainTest {
     private static final InputReader INPUT_READER = new InputReader();
+    private static final int DAY5_PUZZLE_PART1_SOLUTION = 238;
+    private static final int DAY5_PUZZLE_PART2_SOLUTION = 69;
 
     @ParameterizedTest
     @MethodSource("testData")
@@ -25,8 +27,8 @@ class Day5PuzzleMainTest {
 
     static Iterable<Arguments> testData() {
         return List.of(
-                Arguments.of(new Day5Puzzle(), 238),
-                Arguments.of(new Day5PuzzlePart2(), 69)
+                Arguments.of(new Day5Puzzle(), DAY5_PUZZLE_PART1_SOLUTION),
+                Arguments.of(new Day5PuzzlePart2(), DAY5_PUZZLE_PART2_SOLUTION)
         );
     }
 }

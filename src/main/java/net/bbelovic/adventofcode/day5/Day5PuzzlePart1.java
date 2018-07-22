@@ -4,7 +4,7 @@ import net.bbelovic.adventofcode.Puzzle;
 
 import java.util.Arrays;
 
-public class Day5Puzzle implements Puzzle<String, Boolean> {
+public class Day5PuzzlePart1 implements Puzzle<String, Boolean> {
 
     private static final char[][] FORBIDDEN_COMBINATIONS = new char[][]{
             {'a', 'b'}, {'c', 'd'},

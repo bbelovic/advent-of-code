@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.day5;
 
 import net.bbelovic.adventofcode.InputReader;
+import net.bbelovic.adventofcode.Puzzle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,7 +15,7 @@ class Day5PuzzleMainTest {
 
     @ParameterizedTest
     @MethodSource("testData")
-    void should_solve_puzzle(Puzzle puzzle, long expectedCount) {
+    void should_solve_puzzle(Puzzle<String, Boolean> puzzle, long expectedCount) {
         var lines = INPUT_READER.readAllLines("input5.txt");
         var actualCount = lines.stream()
                 .filter(puzzle::solve)

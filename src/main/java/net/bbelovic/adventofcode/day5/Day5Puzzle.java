@@ -1,8 +1,10 @@
 package net.bbelovic.adventofcode.day5;
 
+import net.bbelovic.adventofcode.Puzzle;
+
 import java.util.Arrays;
 
-public class Day5Puzzle implements Puzzle {
+public class Day5Puzzle implements Puzzle<String, Boolean> {
 
     private static final char[][] FORBIDDEN_COMBINATIONS = new char[][]{
             {'a', 'b'}, {'c', 'd'},
@@ -12,7 +14,7 @@ public class Day5Puzzle implements Puzzle {
     private static final int REQUIRED_FORBIDDEN_COMBINATIONS_COUNT = 0;
     private static final int REQUIRED_LETTER_IN_ROW_COUNT = 0;
 
-    public boolean solve(String input) {
+    public Boolean solve(String input) {
         int vowelCount = 0;
         char previous = '\0';
         int letterInRow = 0;

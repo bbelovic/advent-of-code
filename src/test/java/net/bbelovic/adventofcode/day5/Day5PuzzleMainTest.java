@@ -25,7 +25,7 @@ class Day5PuzzleMainTest {
         assertEquals(expectedCount, actualCount);
     }
 
-    static Iterable<Arguments> testData() {
+    private static Iterable<Arguments> testData() {
         return List.of(
                 Arguments.of(new Day5PuzzlePart1(), DAY5_PUZZLE_PART1_SOLUTION),
                 Arguments.of(new Day5PuzzlePart2(), DAY5_PUZZLE_PART2_SOLUTION)

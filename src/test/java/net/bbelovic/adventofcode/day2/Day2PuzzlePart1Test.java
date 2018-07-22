@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day2PuzzlePart1Test {
+class Day2PuzzlePart1Test {
 
     @ParameterizedTest
     @MethodSource("testData")
@@ -19,7 +19,7 @@ public class Day2PuzzlePart1Test {
         assertEquals(expectedWrapperPaper, actualWrapperPaper);
     }
 
-    public static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("1x1x10", 43L),
                 Arguments.of("2x3x4", 58)

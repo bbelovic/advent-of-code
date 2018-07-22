@@ -18,7 +18,7 @@ class Day1PuzzlePart1Test {
         assertEquals(expectedResult, actualResult);
     }
 
-    static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("(((", 3L),
                 Arguments.of("(())", 0L),

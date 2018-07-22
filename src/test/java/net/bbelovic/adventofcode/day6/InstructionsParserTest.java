@@ -25,7 +25,7 @@ class InstructionsParserTest {
         assertEquals(expected, actual);
     }
 
-    static Iterable<Arguments> testData() {
+    private static Iterable<Arguments> testData() {
         return List.of(
                         Arguments.of("turn on 606,361 through 892,600", TURN_ON, 606, 361, 892, 600),
                         Arguments.of("turn off 448,208 through 645,684", TURN_OFF, 448, 208, 645, 684),

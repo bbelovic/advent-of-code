@@ -19,7 +19,7 @@ class Day5PuzzlePart1Test {
         assertEquals(expectedOutput, actualOutput);
     }
 
-    static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("ugknbfddgicrmopn", true),
                 Arguments.of("aaa", true),

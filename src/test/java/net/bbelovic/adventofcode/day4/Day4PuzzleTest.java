@@ -19,7 +19,7 @@ class Day4PuzzleTest {
         assertEquals(expectedResult, actual);
     }
 
-    static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("abcdef", 609043),
                 Arguments.of("pqrstuv", 1048970)

@@ -19,7 +19,7 @@ class PuzzleDay6Test {
         assertEquals(expectedLightsOnCount, puzzleDay6.countLights());
     }
 
-    static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("turn on 0,0 through 999,999", 1_000_000),
                 Arguments.of("toggle 0,0 through 999,0", 1000),

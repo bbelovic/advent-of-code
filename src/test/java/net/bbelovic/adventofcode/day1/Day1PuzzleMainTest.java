@@ -23,7 +23,7 @@ class Day1PuzzleMainTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    static Iterable<Arguments> testData() {
+    private static Iterable<Arguments> testData() {
         return List.of(
                 Arguments.of(new Day1PuzzlePart1(), DAY1_PUZZLE_PART1),
                 Arguments.of(new Day1PuzzlePart2(), DAY1_PUZZLE_PART2)

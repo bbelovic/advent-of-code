@@ -20,13 +20,12 @@ class Day3PuzzleMainTest {
     void should_solve_puzzle(Puzzle<String, Integer> puzzle, int expectedResultPerPart) {
         InputReader reader = new InputReader();
         String input = reader.readFileIntoString("input3.txt");
-        Day3Puzzle day3Puzzle = new Day3Puzzle(puzzle);
-        int actualResultPerPart = day3Puzzle.solve(input);
+        int actualResultPerPart = puzzle.solve(input);
         assertEquals(expectedResultPerPart, actualResultPerPart);
 
     }
 
-    static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of(new Day3PuzzlePart1(), DAY3_PUZZLE_PART1),
                 Arguments.of(new Day3PuzzlePart2(), DAY3_PUZZLE_PART2)

@@ -19,7 +19,7 @@ class Day2PuzzlePart2Test {
         assertEquals(expectedRibbonUsage, actualRibbonUsage);
     }
 
-    public static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of("1x1x10", 14L),
                 Arguments.of("2x3x4", 34L)

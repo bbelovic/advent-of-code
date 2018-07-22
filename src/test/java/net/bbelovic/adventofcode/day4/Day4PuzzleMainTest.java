@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day4PuzzleMainTest {
+class Day4PuzzleMainTest {
 
     private static final String INPUT = "iwrupvqb";
     private static final int FIVE_ZEROS_PREFIX_RESULT = 346386;
@@ -26,7 +26,7 @@ public class Day4PuzzleMainTest {
 
     }
 
-    public static Stream<Arguments> testData() {
+    private static Stream<Arguments> testData() {
         return Stream.of(
                 Arguments.of(FIVE_ZEROS_PREFIX, FIVE_ZEROS_PREFIX_RESULT),
                 Arguments.of(SIX_ZEROS_PREFIX, SIX_ZEROS_PREFIX_RESULT)

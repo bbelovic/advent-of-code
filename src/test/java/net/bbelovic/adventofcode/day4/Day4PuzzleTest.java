@@ -28,7 +28,6 @@ public class Day4PuzzleTest {
         assertEquals(expectedOutput, actual);
     }
 
-    @Parameterized.Parameters
     public static Collection<Object[]> testData() {
         return List.of(new Object [][] {
                 {"abcdef", 609043},

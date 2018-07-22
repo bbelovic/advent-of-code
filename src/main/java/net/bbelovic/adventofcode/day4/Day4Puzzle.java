@@ -1,9 +1,11 @@
 package net.bbelovic.adventofcode.day4;
 
+import net.bbelovic.adventofcode.Puzzle;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-class Day4Puzzle {
+class Day4Puzzle implements Puzzle<String, Long> {
 
     private final String zeroPrefix;
 
@@ -11,7 +13,7 @@ class Day4Puzzle {
         this.zeroPrefix = zeroPrefix;
     }
 
-    long solve(String input) {
+    public Long solve(String input) {
         long result = -1L;
         String hexString = "";
         var md5 = getMD5();

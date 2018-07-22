@@ -1,41 +1,35 @@
 package net.bbelovic.adventofcode.day4;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(Parameterized.class)
 public class Day4PuzzleMainTest {
 
     private static final String INPUT = "iwrupvqb";
-    private final String zeroPrefix;
-    private final int expectedCount;
+    private static final int FIVE_ZEROS_PREFIX_RESULT = 346386;
+    private static final int SIX_ZEROS_PREFIX_RESULT = 9958218;
+    private static final String FIVE_ZEROS_PREFIX = "00000";
+    private static final String SIX_ZEROS_PREFIX = "000000";
 
-    public Day4PuzzleMainTest(String zeroPrefix, int expectedCount) {
-        this.zeroPrefix = zeroPrefix;
-        this.expectedCount = expectedCount;
-    }
-
-    @Test
-    public void
-    should_solve_puzzle() {
+    @ParameterizedTest
+    @MethodSource("testData")
+    void
+    should_solve_puzzle(String zeroPrefix, long expectedCount) {
         final Day4Puzzle puzzle = new Day4Puzzle(zeroPrefix);
-        final var actualCount = puzzle.solve(INPUT);
+        final long actualCount = puzzle.solve(INPUT);
         assertEquals(expectedCount, actualCount);
 
     }
 
-    @Parameters
-    public static Collection<Object[]> testData() {
-        return List.of(new Object[][]{
-                {"00000", 346386},
-                {"000000", 9958218}
-        });
+    public static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of(FIVE_ZEROS_PREFIX, FIVE_ZEROS_PREFIX_RESULT),
+                Arguments.of(SIX_ZEROS_PREFIX, SIX_ZEROS_PREFIX_RESULT)
+        );
     }
 }

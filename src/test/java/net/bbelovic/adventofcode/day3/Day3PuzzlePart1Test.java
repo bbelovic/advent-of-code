@@ -15,7 +15,7 @@ class Day3PuzzlePart1Test {
     void
     should_return_number_of_locations_visited_at_least_once(String input, int expectedLocationCount) {
         Day3PuzzlePart1 day3Part1 = new Day3PuzzlePart1();
-        var actualLocationCount = day3Part1.solve(input);
+        int actualLocationCount = day3Part1.solve(input);
         assertEquals(expectedLocationCount, actualLocationCount);
     }
 

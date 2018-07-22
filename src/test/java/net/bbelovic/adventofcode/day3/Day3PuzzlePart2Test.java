@@ -13,9 +13,9 @@ class Day3PuzzlePart2Test {
     @ParameterizedTest
     @MethodSource("testData")
     void
-    should_return_number_of_location_visited_at_least_once_with_2_santas_in_action(String input, long expectedLocationCount) {
+    should_return_number_of_location_visited_at_least_once_with_2_santas_in_action(String input, int expectedLocationCount) {
         Day3PuzzlePart2 day3Part2 = new Day3PuzzlePart2();
-        var actualLocationCount = day3Part2.solve(input);
+        int actualLocationCount = day3Part2.solve(input);
         assertEquals(expectedLocationCount, actualLocationCount);
     }
 

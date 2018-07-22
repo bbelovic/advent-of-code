@@ -1,20 +1,22 @@
 package net.bbelovic.adventofcode.day3;
 
+import net.bbelovic.adventofcode.Puzzle;
+
 import java.util.HashMap;
 import java.util.Map;
 
-class Day3PuzzlePart2 {
+class Day3PuzzlePart2 implements Puzzle<String, Integer> {
     private static final long VISITED_LOCATION = 1L;
 
-    long solve(String input) {
-        char[] chars = input.toCharArray();
+    public Integer solve(String input) {
+        var chars = input.toCharArray();
         int [] realSantaCoords = {0, 0};
         int [] robotSantaCoords = {0, 0};
 
-        Map<ArrayWrapper, Long> result = new HashMap<>();
+        var result = new HashMap<ArrayWrapper, Long>();
         result.merge(new ArrayWrapper(realSantaCoords), VISITED_LOCATION, (oldValue, value)-> oldValue + VISITED_LOCATION);
         result.merge(new ArrayWrapper(robotSantaCoords), VISITED_LOCATION, (oldValue, value)-> oldValue + VISITED_LOCATION);
-        for (int i = 0; i < chars.length; i = i + 2) {
+        for (var i = 0; i < chars.length; i = i + 2) {
             trackVisitedPositions(chars[i], realSantaCoords, result);
             trackVisitedPositions(chars[i + 1], robotSantaCoords, result);
         }

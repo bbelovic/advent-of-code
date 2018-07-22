@@ -1,12 +1,17 @@
 package net.bbelovic.adventofcode.day3;
 
-import net.bbelovic.adventofcode.InputReader;
+import net.bbelovic.adventofcode.Puzzle;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+public class Day3Puzzle implements Puzzle<String, Integer> {
 
-public class Day3Puzzle {
+    private final Puzzle<String, Integer> puzzle;
 
+    Day3Puzzle(Puzzle<String, Integer> puzzle) {
+        this.puzzle = puzzle;
+    }
 
+    @Override
+    public Integer solve(String input) {
+        return puzzle.solve(input);
+    }
 }

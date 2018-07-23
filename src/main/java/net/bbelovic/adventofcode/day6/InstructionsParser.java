@@ -1,13 +1,10 @@
 package net.bbelovic.adventofcode.day6;
 
-import java.util.function.Function;
+import static net.bbelovic.adventofcode.day6.LightOperation.*;
 
 final class InstructionsParser {
 
     private static final String COORDINATE_SEPARATOR = ",";
-    private final Function<Boolean, Boolean> TURN_ON = (b)-> true;
-    private final Function<Boolean, Boolean> TURN_OFF = (b)-> false;
-    private final Function<Boolean, Boolean> TOOGLE = (b)-> !b;
 
     Instructions parseInstructions(String line) {
         String[] parts = line.split(" ");
@@ -22,10 +19,10 @@ final class InstructionsParser {
         }
     }
 
-    private Instructions getInstructions(Function<Boolean, Boolean> f,  String firstCoordinates, String secondCoordinates) {
+    private Instructions getInstructions(LightOperation lightOperation,  String firstCoordinates, String secondCoordinates) {
         var coords1 = firstCoordinates.split(COORDINATE_SEPARATOR);
         var coords2 = secondCoordinates.split(COORDINATE_SEPARATOR);
-        return new Instructions(f,
+        return new Instructions(lightOperation,
                 Integer.parseInt(coords1[0]),
                 Integer.parseInt(coords1[1]),
                 Integer.parseInt(coords2[0]), Integer.parseInt(coords2[1]));

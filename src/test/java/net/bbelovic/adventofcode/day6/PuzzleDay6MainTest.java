@@ -15,9 +15,9 @@ class PuzzleDay6MainTest {
     void test_for_first_part_of_puzzle() {
         final var lines = INPUT_READER.readAllLines("input6.txt");
         PuzzleDay6 puzzle = new PuzzleDay6(INSTRUCTIONS_PARSER);
-        for (var eachLine: lines) {
-            puzzle.solve(eachLine);
-        }
-        assertEquals(EXPECTED_LIGHTS_LIT_COUNT, puzzle.countLights());
+        var result = lines.stream()
+                .mapToLong(puzzle::solve)
+                .sum();
+        assertEquals(EXPECTED_LIGHTS_LIT_COUNT, result);
     }
 }

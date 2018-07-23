@@ -5,22 +5,19 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.function.Function;
 
+import static net.bbelovic.adventofcode.day6.LightOperation.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class InstructionsParserTest {
-    private static final Function<Boolean, Boolean> TURN_ON = (b) -> true;
-    private static final Function<Boolean, Boolean> TURN_OFF = (b) -> false;
-    private static final Function<Boolean, Boolean> TOOGLE = (b) -> !b;
 
     @ParameterizedTest
     @MethodSource("testData")
     void
-    should_parse_instruction_from_string(String inputLine, Function<Boolean, Boolean> lightFunction, int x1, int y1, int x2, int y2) {
+    should_parse_instruction_from_string(String inputLine, LightOperation lightOperation, int x1, int y1, int x2, int y2) {
         var parser = new InstructionsParser();
-        var expected = new Instructions(lightFunction, x1, y1, x2, y2);
+        var expected = new Instructions(lightOperation, x1, y1, x2, y2);
         var actual = parser.parseInstructions(inputLine);
         assertEquals(expected, actual);
     }

@@ -15,8 +15,8 @@ class PuzzleDay6Test {
     @MethodSource("testData")
     void test(String line, int expectedLightsOnCount) {
         PuzzleDay6 puzzleDay6 = new PuzzleDay6(INSTRUCTIONS_PARSER);
-        puzzleDay6.solve(line);
-        assertEquals(expectedLightsOnCount, puzzleDay6.countLights());
+        long actualLightsOnCount = puzzleDay6.solve(line);
+        assertEquals(expectedLightsOnCount, actualLightsOnCount);
     }
 
     private static Stream<Arguments> testData() {

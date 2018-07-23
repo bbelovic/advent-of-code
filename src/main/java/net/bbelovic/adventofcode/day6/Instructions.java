@@ -1,19 +1,18 @@
 package net.bbelovic.adventofcode.day6;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import static java.lang.String.format;
 
 public final class Instructions {
-    private final Function<Boolean, Boolean> f;
+    private final LightOperation lightOperation;
     private final int x1;
     private final int y1;
     private final int x2;
     private final int y2;
 
-    Instructions(Function<Boolean, Boolean> f, int x1, int y1, int x2, int y2) {
-        this.f = f;
+    Instructions(LightOperation lightOperation, int x1, int y1, int x2, int y2) {
+        this.lightOperation = lightOperation;
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -28,17 +27,20 @@ public final class Instructions {
         return x1 == that.x1 &&
                 y1 == that.y1 &&
                 x2 == that.x2 &&
-                y2 == that.y2;
+                y2 == that.y2 &&
+                lightOperation == that.lightOperation;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x1, y1, x2, y2);
+
+        return Objects.hash(lightOperation, x1, y1, x2, y2);
     }
 
     @Override
     public String toString() {
-        return format("Instructions[x1=%d, y1=%d, x2=%d, y2=%d]", x1, y1, x2, y2);
+        return format("Instructions[lightOperation=%s, x1=%d, y1=%d, x2=%d, y2=%d]", lightOperation,
+                x1, y1, x2, y2);
     }
 
     int getX1() {
@@ -58,6 +60,22 @@ public final class Instructions {
     }
 
     boolean applyOnLight(boolean lightState) {
-        return f.apply(lightState);
+        return false;
+    }
+
+    long applyOnGrid(boolean[][] grid) {
+        var delta = 0L;
+        for (var i = y1; i <= y2; i++) {
+            for (var j = x1; j <= x2; j++) {
+                var result = lightOperation.apply(grid[i][j]);
+                if (result == 1) {
+                    grid[i][j] = true;
+                } else if (result == -1) {
+                    grid[i][j] = false;
+                }
+                delta += result;
+            }
+        }
+        return delta;
     }
 }

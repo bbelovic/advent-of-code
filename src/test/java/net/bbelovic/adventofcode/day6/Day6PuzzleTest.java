@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PuzzleDay6Test {
+class Day6PuzzleTest {
     private static final InstructionsParser INSTRUCTIONS_PARSER = new InstructionsParser();
 
     @ParameterizedTest
     @MethodSource("testData")
-    void test(String line, int expectedLightsOnCount) {
+    void should_compute_number_lights_on(String line, int expectedLightsOnCount) {
         PuzzleDay6 puzzleDay6 = new PuzzleDay6(INSTRUCTIONS_PARSER);
         long actualLightsOnCount = puzzleDay6.solve(line);
         assertEquals(expectedLightsOnCount, actualLightsOnCount);

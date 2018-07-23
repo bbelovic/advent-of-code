@@ -14,7 +14,7 @@ class Day6PuzzleMainTest {
     @Test
     void should_solve_puzzle() {
         final var lines = INPUT_READER.readAllLines("input6.txt");
-        PuzzleDay6 puzzle = new PuzzleDay6(INSTRUCTIONS_PARSER);
+        Day6Puzzle puzzle = new Day6Puzzle(INSTRUCTIONS_PARSER);
         var result = lines.stream()
                 .mapToLong(puzzle::solve)
                 .sum();

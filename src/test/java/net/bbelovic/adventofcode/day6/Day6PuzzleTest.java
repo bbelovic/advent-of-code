@@ -13,9 +13,9 @@ class Day6PuzzleTest {
 
     @ParameterizedTest
     @MethodSource("testData")
-    void should_compute_number_lights_on(String line, int expectedLightsOnCount) {
-        PuzzleDay6 puzzleDay6 = new PuzzleDay6(INSTRUCTIONS_PARSER);
-        long actualLightsOnCount = puzzleDay6.solve(line);
+    void should_compute_number_lights_on(String line, long expectedLightsOnCount) {
+        Day6Puzzle puzzle = new Day6Puzzle(INSTRUCTIONS_PARSER);
+        long actualLightsOnCount = puzzle.solve(line);
         assertEquals(expectedLightsOnCount, actualLightsOnCount);
     }
 

@@ -17,9 +17,9 @@ class InstructionsParserTest {
     void
     should_parse_instruction_from_string(String inputLine, LightOperation lightOperation, int x1, int y1, int x2, int y2) {
         var parser = new InstructionsParser();
-        var expected = new Instructions(lightOperation, x1, y1, x2, y2);
-        var actual = parser.parseInstructions(inputLine);
-        assertEquals(expected, actual);
+        var expectedInstructions = new Instructions(lightOperation, x1, y1, x2, y2);
+        var actualInstructions = parser.parseInstructions(inputLine);
+        assertEquals(expectedInstructions, actualInstructions);
     }
 
     private static Iterable<Arguments> testData() {

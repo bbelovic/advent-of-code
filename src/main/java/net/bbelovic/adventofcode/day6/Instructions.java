@@ -43,15 +43,15 @@ public final class Instructions {
                 x1, y1, x2, y2);
     }
 
-    long applyOnGrid(boolean[][] grid) {
+    long applyOnGrid(Grid grid) {
         var delta = 0L;
         for (var i = y1; i <= y2; i++) {
             for (var j = x1; j <= x2; j++) {
-                var result = lightOperation.apply(grid[i][j]);
+                var result = lightOperation.apply(grid.get(i, j));
                 if (result == 1) {
-                    grid[i][j] = true;
+                    grid.set(i, j, true);
                 } else if (result == -1) {
-                    grid[i][j] = false;
+                    grid.set(i, j, false);
                 }
                 delta += result;
             }

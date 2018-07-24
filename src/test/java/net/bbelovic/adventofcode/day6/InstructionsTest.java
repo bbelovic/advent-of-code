@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class InstructionsTest {
     @Test
     void should_apply_instructions_on_grid_and_return_number_of_changes() {
-        Grid grid = new MatrixGrid(10, 10);
+        final var grid = new MatrixGrid(10, 10);
+        final var instructions = new Instructions(TURN_ON, 0, 0, 1, 1);
         final long expected = 4L;
-        final Instructions instructions = new Instructions(TURN_ON, 0, 0, 1, 1);
         long actual = instructions.applyOnGrid(grid);
         assertEquals(expected, actual);
     }

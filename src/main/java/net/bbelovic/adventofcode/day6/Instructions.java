@@ -43,26 +43,6 @@ public final class Instructions {
                 x1, y1, x2, y2);
     }
 
-    int getX1() {
-        return x1;
-    }
-
-    int getY1() {
-        return y1;
-    }
-
-    int getX2() {
-        return x2;
-    }
-
-    int getY2() {
-        return y2;
-    }
-
-    boolean applyOnLight(boolean lightState) {
-        return false;
-    }
-
     long applyOnGrid(boolean[][] grid) {
         var delta = 0L;
         for (var i = y1; i <= y2; i++) {

@@ -43,7 +43,7 @@ public final class Instructions {
                 x1, y1, x2, y2);
     }
 
-    long applyOnGrid(Grid grid) {
+    long applyOnGrid(Grid<Boolean> grid) {
         var delta = 0L;
         for (var i = y1; i <= y2; i++) {
             for (var j = x1; j <= x2; j++) {

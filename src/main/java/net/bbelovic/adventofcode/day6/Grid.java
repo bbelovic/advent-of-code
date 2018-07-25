@@ -1,8 +1,8 @@
 package net.bbelovic.adventofcode.day6;
 
-public interface Grid {
+public interface Grid<T> {
 
-    boolean get(int x, int y);
+    T get(int x, int y);
 
-    void set(int x, int y, boolean newValue);
+    void set(int x, int y, T newValue);
 }

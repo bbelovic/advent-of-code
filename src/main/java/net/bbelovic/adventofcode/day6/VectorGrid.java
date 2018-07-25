@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.day6;
 
-public final class VectorGrid implements Grid {
+public final class VectorGrid implements Grid<Boolean> {
     private final boolean[] vector;
     private final int rowLength;
 
@@ -10,12 +10,12 @@ public final class VectorGrid implements Grid {
     }
 
     @Override
-    public boolean get(int x, int y) {
+    public Boolean get(int x, int y) {
         return vector[x * rowLength + y];
     }
 
     @Override
-    public void set(int x, int y, boolean newValue) {
+    public void set(int x, int y, Boolean newValue) {
         vector[x * rowLength + y] = newValue;
     }
 }

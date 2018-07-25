@@ -2,7 +2,7 @@ package net.bbelovic.adventofcode.day6;
 
 import java.util.BitSet;
 
-public final class BitGrid implements Grid {
+public final class BitGrid implements Grid<Boolean> {
 
     private final BitSet bitSet;
     private final int rowLength;
@@ -13,12 +13,12 @@ public final class BitGrid implements Grid {
     }
 
     @Override
-    public boolean get(int x, int y) {
+    public Boolean get(int x, int y) {
         return bitSet.get(x * rowLength + y);
     }
 
     @Override
-    public void set(int x, int y, boolean newValue) {
+    public void set(int x, int y, Boolean newValue) {
         bitSet.set(x * rowLength + y, newValue);
     }
 }

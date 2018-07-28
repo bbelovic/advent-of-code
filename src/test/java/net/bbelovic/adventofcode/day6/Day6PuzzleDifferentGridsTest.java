@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day6PuzzleDifferentGridsTest {
-    private static final InstructionsParser INSTRUCTIONS_PARSER = new InstructionsParser();
+    private static final InstructionsParser INSTRUCTIONS_PARSER = new DefaultInstructionsParser();
 
     @ParameterizedTest
     @MethodSource("testData")

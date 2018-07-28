@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Day6PuzzleTest {
-    private static final InstructionsParser INSTRUCTIONS_PARSER = new InstructionsParser();
+class Day6PuzzlePart1Test {
+    private static final InstructionsParser INSTRUCTIONS_PARSER = new DefaultInstructionsParser();
 
     @ParameterizedTest
     @MethodSource("testData")

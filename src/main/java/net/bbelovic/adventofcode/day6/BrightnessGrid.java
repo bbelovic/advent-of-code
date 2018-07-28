@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.day6;
 
-public class BrightnessGrid implements Grid<Boolean> {
+public class BrightnessGrid implements Grid<Integer> {
     private final int [][] grid;
 
     BrightnessGrid(int width, int height) {
@@ -8,12 +8,12 @@ public class BrightnessGrid implements Grid<Boolean> {
     }
 
     @Override
-    public Boolean get(int x, int y) {
-        return grid[x][y] > 0;
+    public Integer get(int x, int y) {
+        return grid[x][y];
     }
 
     @Override
-    public void set(int x, int y, Boolean newValue) {
+    public void set(int x, int y, Integer newValue) {
 
     }
 }

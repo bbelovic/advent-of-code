@@ -1,8 +1,6 @@
 package net.bbelovic.adventofcode.day6;
 
-import static net.bbelovic.adventofcode.day6.LightOperation.*;
-
-final class DefaultInstructionsParser implements InstructionsParser {
+final class DefaultInstructionsParser<T> {
 
     private static final String INSTRUCTIONS_SEPARATOR = " ";
     private static final String COORDINATES_SEPARATOR = ",";
@@ -13,26 +11,31 @@ final class DefaultInstructionsParser implements InstructionsParser {
     private static final String TURN_INSTRUCTION_KEYWORD = "on";
     private static final int TURN_ON_OFF_INSTRUCTION_INDEX = 5;
     private static final int TURN_INSTRUCTION_INDEX = 1;
+    private final OperationParser<T> operationParser;
 
-    @Override
-    public Instructions parseInstructions(String line) {
+    DefaultInstructionsParser(OperationParser<T> operationParser) {
+        this.operationParser = operationParser;
+    }
+
+    Instructions<T> parseInstructions(String line) {
         String[] parts = line.split(INSTRUCTIONS_SEPARATOR);
         if (parts.length == TURN_ON_OFF_INSTRUCTION_INDEX) {
             if (TURN_INSTRUCTION_KEYWORD.equals(parts[TURN_INSTRUCTION_INDEX])) {
-                return getInstructions(TURN_ON, parts[START_COORDINATES_INDEX], parts[END_COORDINATES_INDEX]);
+                return getInstructions("TURN_ON", parts[START_COORDINATES_INDEX], parts[END_COORDINATES_INDEX]);
             } else {
-                return getInstructions(TURN_OFF, parts[START_COORDINATES_INDEX], parts[END_COORDINATES_INDEX]);
+                return getInstructions("TURN_OFF", parts[START_COORDINATES_INDEX], parts[END_COORDINATES_INDEX]);
             }
         } else {
-            return getInstructions(TOOGLE, parts[START_COORDINATES_INDEX_2], parts[END_COORDINATES_INDEX_2]);
+            return getInstructions("TOOGLE", parts[START_COORDINATES_INDEX_2], parts[END_COORDINATES_INDEX_2]);
         }
     }
 
-    private Instructions getInstructions(LightOperation lightOperation,  String startCoordinates,
+    private Instructions<T> getInstructions(String operationAsString,  String startCoordinates,
                                          String endCoordinates) {
         var coords1 = startCoordinates.split(COORDINATES_SEPARATOR);
         var coords2 = endCoordinates.split(COORDINATES_SEPARATOR);
-        return new Instructions(lightOperation,
+        Operation<T> operation = operationParser.parse(operationAsString);
+        return new Instructions<>(operation,
                 Integer.parseInt(coords1[0]),
                 Integer.parseInt(coords1[1]),
                 Integer.parseInt(coords2[0]), Integer.parseInt(coords2[1]));

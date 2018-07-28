@@ -2,7 +2,7 @@ package net.bbelovic.adventofcode.day6;
 
 import java.util.function.Function;
 
-public enum LightOperation {
+public enum LightOperation implements Operation<Grid<Boolean>> {
     TURN_ON((lightState) -> lightState ? 0 : +1),
     TURN_OFF((lightState) -> lightState ? -1 : 0),
     TOOGLE((lightState) -> lightState ? -1 : +1);
@@ -13,6 +13,7 @@ public enum LightOperation {
         this.operation = operation;
     }
 
+    @Override
     public int apply(Grid<Boolean> grid, int x, int y) {
         var result = operation.apply(grid.get(x, y));
         if (result == 1) {

@@ -2,23 +2,17 @@ package net.bbelovic.adventofcode.day6;
 
 import net.bbelovic.adventofcode.Puzzle;
 
-class Day6Puzzle implements Puzzle<String, Long> {
-    private static final int DEFAULT_GRID_WIDTH = 1000;
-    private static final int DEFAULT_GRID_HEIGHT = 1000;
-    private final Grid grid;
-    private final InstructionsParser instructionsParser;
+class Day6Puzzle<T> implements Puzzle<String, Long> {
+    private final T grid;
+    private final DefaultInstructionsParser<T> instructionsParser;
 
-    Day6Puzzle(final InstructionsParser instructionsParser) {
-        this(new MatrixGrid(DEFAULT_GRID_WIDTH, DEFAULT_GRID_HEIGHT), instructionsParser);
-    }
-
-    Day6Puzzle(Grid grid, InstructionsParser instructionsParser) {
+    Day6Puzzle(T grid, DefaultInstructionsParser<T> instructionsParser) {
         this.grid = grid;
         this.instructionsParser = instructionsParser;
     }
 
     public Long solve(final String line) {
-        final var instructions = instructionsParser.parseInstructions(line);
+        final Instructions<T> instructions = instructionsParser.parseInstructions(line);
         return instructions.applyOnGrid(grid);
     }
 }

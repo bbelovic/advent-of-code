@@ -9,12 +9,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day6PuzzlePart1Test {
-    private static final InstructionsParser INSTRUCTIONS_PARSER = new DefaultInstructionsParser();
+    private static final DefaultInstructionsParser<Grid<Boolean>> INSTRUCTIONS_PARSER =
+            new DefaultInstructionsParser<>(LightOperation::valueOf);
 
     @ParameterizedTest
     @MethodSource("testData")
     void should_compute_number_lights_on(String line, long expectedLightsOnCount) {
-        Day6Puzzle puzzle = new Day6Puzzle(INSTRUCTIONS_PARSER);
+        Day6Puzzle<Grid<Boolean>> puzzle = new Day6Puzzle<>(new MatrixGrid(1000, 1000), INSTRUCTIONS_PARSER);
         long actualLightsOnCount = puzzle.solve(line);
         assertEquals(expectedLightsOnCount, actualLightsOnCount);
     }

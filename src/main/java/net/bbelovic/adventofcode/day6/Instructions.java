@@ -47,13 +47,7 @@ public final class Instructions {
         var delta = 0L;
         for (var i = y1; i <= y2; i++) {
             for (var j = x1; j <= x2; j++) {
-                var result = lightOperation.apply(grid.get(i, j));
-                if (result == 1) {
-                    grid.set(i, j, true);
-                } else if (result == -1) {
-                    grid.set(i, j, false);
-                }
-                delta += result;
+                delta += lightOperation.apply(grid, i, j);
             }
         }
         return delta;

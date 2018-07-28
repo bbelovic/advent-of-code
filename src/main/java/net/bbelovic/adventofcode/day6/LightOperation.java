@@ -13,7 +13,13 @@ public enum LightOperation {
         this.operation = operation;
     }
 
-    public int apply(boolean lightState) {
-        return operation.apply(lightState);
+    public int apply(Grid<Boolean> grid, int x, int y) {
+        var result = operation.apply(grid.get(x, y));
+        if (result == 1) {
+            grid.set(x, y, true);
+        } else if (result == -1) {
+            grid.set(x, y, false);
+        }
+        return result;
     }
 }

@@ -12,11 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day6PuzzlePart2Test {
     @ParameterizedTest
     @MethodSource("testData")
-    @Disabled
     void
     should_compute_total_brightness(String line, long expectedBrightness) {
         DefaultInstructionsParser<Grid<Integer>> parser = new DefaultInstructionsParser<>(BrightnessOperation::valueOf);
-        Day6Puzzle<Grid<Integer>> puzzle = new Day6Puzzle<>(new BrightnessGrid(0,0), parser);
+        Day6Puzzle<Grid<Integer>> puzzle = new Day6Puzzle<>(new BrightnessGrid(1000,1000), parser);
         long actualBrightness = puzzle.solve(line);
         assertEquals(expectedBrightness, actualBrightness);
     }

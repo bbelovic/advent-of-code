@@ -14,6 +14,6 @@ public class BrightnessGrid implements Grid<Integer> {
 
     @Override
     public void set(int x, int y, Integer newValue) {
-
+        grid[x][y] = newValue;
     }
 }

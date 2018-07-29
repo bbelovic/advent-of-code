@@ -2,7 +2,6 @@ package net.bbelovic.adventofcode.day6;
 
 import net.bbelovic.adventofcode.InputReader;
 import net.bbelovic.adventofcode.Puzzle;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,10 +28,10 @@ class Day6PuzzleMainTest {
 
     private static Stream<Arguments> testData() {
         return Stream.of(
-                Arguments.of(new Day6Puzzle<Grid<Boolean>>(new MatrixGrid(1000, 1000),
-                        new DefaultInstructionsParser<Grid<Boolean>>(LightOperation::valueOf)), EXPECTED_LIGHTS_LIT_COUNT),
+                Arguments.of(new Day6Puzzle<>(new MatrixGrid(1000, 1000),
+                        new DefaultInstructionsParser<>(LightOperation::valueOf)), EXPECTED_LIGHTS_LIT_COUNT),
 
-                Arguments.of(new Day6Puzzle<Grid<Integer>>(new BrightnessGrid(1000, 1000),
+                Arguments.of(new Day6Puzzle<>(new BrightnessGrid(1000, 1000),
                         new DefaultInstructionsParser<>(BrightnessOperation::valueOf)), EXPECTED_BRIGHTNESS)
         );
     }

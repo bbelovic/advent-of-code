@@ -15,6 +15,8 @@ class Day6PuzzleMainTest {
     private static final long EXPECTED_LIGHTS_LIT_COUNT = 543903L;
     private static final long EXPECTED_BRIGHTNESS = 14687245L;
     private static final InputReader INPUT_READER = new InputReader();
+    private static final int GRID_WIDTH = 1000;
+    private static final int GRID_HEIGHT = 1000;
 
     @ParameterizedTest
     @MethodSource("testData")
@@ -28,10 +30,10 @@ class Day6PuzzleMainTest {
 
     private static Stream<Arguments> testData() {
         return Stream.of(
-                Arguments.of(new Day6Puzzle<>(new MatrixGrid(1000, 1000),
+                Arguments.of(new Day6Puzzle<>(new MatrixGrid(GRID_WIDTH, GRID_HEIGHT),
                         new DefaultInstructionsParser<>(LightOperation::valueOf)), EXPECTED_LIGHTS_LIT_COUNT),
 
-                Arguments.of(new Day6Puzzle<>(new BrightnessGrid(1000, 1000),
+                Arguments.of(new Day6Puzzle<>(new BrightnessGrid(GRID_WIDTH, GRID_HEIGHT),
                         new DefaultInstructionsParser<>(BrightnessOperation::valueOf)), EXPECTED_BRIGHTNESS)
         );
     }

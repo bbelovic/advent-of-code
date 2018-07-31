@@ -9,15 +9,14 @@ import java.util.List;
 import static net.bbelovic.adventofcode.day6.LightOperation.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 class DefaultInstructionsParserTest {
 
     @ParameterizedTest
     @MethodSource("testData")
     void
-    should_parse_instruction_from_string(String inputLine, LightOperation lightOperation, int x1, int y1, int x2, int y2) {
-        var parser = new DefaultInstructionsParser<>(LightOperation::valueOf);
-        var expectedInstructions = new Instructions<>(lightOperation, x1, y1, x2, y2);
+    should_parse_instruction_from_string(String inputLine, OperationParser<?> operationParser, Operation<Grid<?>> operation, int x1, int y1, int x2, int y2) {
+        DefaultInstructionsParser<?> parser = new DefaultInstructionsParser<>(operationParser);
+        var expectedInstructions = new Instructions<>(operation, x1, y1, x2, y2);
         var actualInstructions = parser.parseInstructions(inputLine);
         assertEquals(expectedInstructions, actualInstructions);
     }
@@ -26,7 +25,10 @@ class DefaultInstructionsParserTest {
         return List.of(
                         Arguments.of("turn on 606,361 through 892,600", TURN_ON, 606, 361, 892, 600),
                         Arguments.of("turn off 448,208 through 645,684", TURN_OFF, 448, 208, 645, 684),
-                        Arguments.of("toggle 50,472 through 452,788", TOOGLE, 50, 472, 452, 788)
+                        Arguments.of("toggle 50,472 through 452,788", TOOGLE, 50, 472, 452, 788),
+                        Arguments.of("turn on 606,361 through 892,600", BrightnessOperation.TURN_ON, 606, 361, 892, 600),
+                        Arguments.of("turn off 448,208 through 645,684", BrightnessOperation.TURN_OFF, 448, 208, 645, 684),
+                        Arguments.of("toggle 50,472 through 452,788", BrightnessOperation.TOOGLE, 50, 472, 452, 788)
         );
     }
 }

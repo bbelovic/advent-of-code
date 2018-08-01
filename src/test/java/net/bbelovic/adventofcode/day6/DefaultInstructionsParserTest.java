@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DefaultInstructionsParserTest {
 
+    private static final OperationParser<Grid<Boolean>> LIGHT_OPERATION_PARSER = LightOperation::valueOf;
+    private static final OperationParser<Grid<Integer>> BRIGHTNESS_OPERATION_PARSER = BrightnessOperation::valueOf;
+
     @ParameterizedTest
     @MethodSource("testData")
     void
@@ -22,13 +25,14 @@ class DefaultInstructionsParserTest {
     }
 
     private static Iterable<Arguments> testData() {
+
         return List.of(
-                        Arguments.of("turn on 606,361 through 892,600", TURN_ON, 606, 361, 892, 600),
-                        Arguments.of("turn off 448,208 through 645,684", TURN_OFF, 448, 208, 645, 684),
-                        Arguments.of("toggle 50,472 through 452,788", TOOGLE, 50, 472, 452, 788),
-                        Arguments.of("turn on 606,361 through 892,600", BrightnessOperation.TURN_ON, 606, 361, 892, 600),
-                        Arguments.of("turn off 448,208 through 645,684", BrightnessOperation.TURN_OFF, 448, 208, 645, 684),
-                        Arguments.of("toggle 50,472 through 452,788", BrightnessOperation.TOOGLE, 50, 472, 452, 788)
+                        Arguments.of("turn on 606,361 through 892,600", LIGHT_OPERATION_PARSER, TURN_ON, 606, 361, 892, 600),
+                        Arguments.of("turn off 448,208 through 645,684", LIGHT_OPERATION_PARSER, TURN_OFF, 448, 208, 645, 684),
+                        Arguments.of("toggle 50,472 through 452,788", LIGHT_OPERATION_PARSER, TOOGLE, 50, 472, 452, 788),
+                        Arguments.of("turn on 606,361 through 892,600", BRIGHTNESS_OPERATION_PARSER, BrightnessOperation.TURN_ON, 606, 361, 892, 600),
+                        Arguments.of("turn off 448,208 through 645,684", BRIGHTNESS_OPERATION_PARSER, BrightnessOperation.TURN_OFF, 448, 208, 645, 684),
+                        Arguments.of("toggle 50,472 through 452,788", BRIGHTNESS_OPERATION_PARSER, BrightnessOperation.TOOGLE, 50, 472, 452, 788)
         );
     }
 }

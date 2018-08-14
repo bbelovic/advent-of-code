@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.day6;
 
-final class DefaultInstructionsParser<T> {
+public final class DefaultInstructionsParser<T> {
 
     private static final String INSTRUCTIONS_SEPARATOR = " ";
     private static final String COORDINATES_SEPARATOR = ",";
@@ -13,7 +13,7 @@ final class DefaultInstructionsParser<T> {
     private static final int TURN_INSTRUCTION_INDEX = 1;
     private final OperationParser<T> operationParser;
 
-    DefaultInstructionsParser(OperationParser<T> operationParser) {
+    public DefaultInstructionsParser(OperationParser<T> operationParser) {
         this.operationParser = operationParser;
     }
 

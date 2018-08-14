@@ -2,11 +2,11 @@ package net.bbelovic.adventofcode.day6;
 
 import net.bbelovic.adventofcode.Puzzle;
 
-class Day6Puzzle<T> implements Puzzle<String, Long> {
+public class Day6Puzzle<T> implements Puzzle<String, Long> {
     private final T grid;
     private final DefaultInstructionsParser<T> instructionsParser;
 
-    Day6Puzzle(T grid, DefaultInstructionsParser<T> instructionsParser) {
+    public Day6Puzzle(T grid, DefaultInstructionsParser<T> instructionsParser) {
         this.grid = grid;
         this.instructionsParser = instructionsParser;
     }

@@ -3,7 +3,7 @@ package net.bbelovic.adventofcode.day6;
 public final class MatrixGrid implements Grid<Boolean> {
     private final boolean[][] grid;
 
-    MatrixGrid(int width, int height) {
+    public MatrixGrid(int width, int height) {
         grid = new boolean[width][height];
     }
 

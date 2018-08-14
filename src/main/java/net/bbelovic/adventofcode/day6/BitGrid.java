@@ -7,7 +7,7 @@ public final class BitGrid implements Grid<Boolean> {
     private final BitSet bitSet;
     private final int rowLength;
 
-    BitGrid(int length, int rowLength) {
+    public BitGrid(int length, int rowLength) {
         bitSet = new BitSet(length);
         this.rowLength = rowLength;
     }

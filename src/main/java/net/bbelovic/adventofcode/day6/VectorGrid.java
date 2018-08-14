@@ -4,7 +4,7 @@ public final class VectorGrid implements Grid<Boolean> {
     private final boolean[] vector;
     private final int rowLength;
 
-    VectorGrid(int length, int rowLength) {
+    public VectorGrid(int length, int rowLength) {
         this.vector = new boolean[length];
         this.rowLength = rowLength;
     }

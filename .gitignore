@@ -2,5 +2,7 @@
 target/
 build/
 gradle/
+gradle.bat
+gradlew/
 .idea/
 .gradle/

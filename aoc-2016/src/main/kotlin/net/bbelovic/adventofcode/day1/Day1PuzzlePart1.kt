@@ -6,9 +6,9 @@ import kotlin.math.abs
 
 class Day1PuzzlePart1 : Puzzle<String, Long> {
     override fun solve(input: String): Long {
-        val list = input.split(",")
+        val list = input.split(", ")
 
-        var start = Position(Point(0, 1), Point(0, 0))
+        var start = Position(Point(0, 1))
 
         for (inp in list) {
             val directionCode = inp.first()

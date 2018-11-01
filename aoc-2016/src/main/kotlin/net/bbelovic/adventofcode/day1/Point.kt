@@ -1,14 +1,14 @@
 package net.bbelovic.adventofcode.day1
 
-import net.bbelovic.adventofcode.day1.DirectionVector.Direction.Left
-import net.bbelovic.adventofcode.day1.DirectionVector.Direction.Right
+import net.bbelovic.adventofcode.day1.Point.Direction.Left
+import net.bbelovic.adventofcode.day1.Point.Direction.Right
 
-data class DirectionVector(val x: Int, val y: Int) {
+data class Point(val x: Int, val y: Int) {
 
     fun turn(direction: Direction) =
             when (direction) {
-                Left -> DirectionVector(-y, x)
-                Right -> DirectionVector(y, -x)
+                Left -> Point(-y, x)
+                Right -> Point(y, -x)
             }
 
     enum class Direction { Left, Right }

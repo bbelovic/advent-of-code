@@ -1,7 +1,7 @@
 package net.bbelovic.adventofcode.day1
 
-import net.bbelovic.adventofcode.day1.Point.Direction.Left
-import net.bbelovic.adventofcode.day1.Point.Direction.Right
+import net.bbelovic.adventofcode.day1.Direction.Left
+import net.bbelovic.adventofcode.day1.Direction.Right
 
 data class Point(val x: Int, val y: Int) {
 
@@ -10,6 +10,4 @@ data class Point(val x: Int, val y: Int) {
                 Left -> Point(-y, x)
                 Right -> Point(y, -x)
             }
-
-    enum class Direction { Left, Right }
 }

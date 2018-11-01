@@ -1,7 +1,8 @@
 package net.bbelovic.adventofcode.day1
 
 import net.bbelovic.adventofcode.Puzzle
-import java.lang.IllegalArgumentException
+import net.bbelovic.adventofcode.day1.Direction.Left
+import net.bbelovic.adventofcode.day1.Direction.Right
 import kotlin.math.abs
 
 class Day1PuzzlePart1 : Puzzle<String, Long> {
@@ -12,9 +13,10 @@ class Day1PuzzlePart1 : Puzzle<String, Long> {
 
         for (inp in list) {
             val directionCode = inp.first()
+            val steps = inp.last().toString().toInt()
             start = when (directionCode) {
-                'L' -> start.turn(Point.Direction.Left).moveBy(inp.last().toString().toInt())
-                'R' -> start.turn(Point.Direction.Right).moveBy(inp.last().toString().toInt())
+                'L' -> start.turn(Left).moveBy(steps)
+                'R' -> start.turn(Right).moveBy(steps)
                 else -> throw IllegalArgumentException("Unknown input '$input'")
             }
         }

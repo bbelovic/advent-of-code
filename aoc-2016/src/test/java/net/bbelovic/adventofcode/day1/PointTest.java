@@ -2,8 +2,8 @@ package net.bbelovic.adventofcode.day1;
 
 import org.junit.jupiter.api.Test;
 
-import static net.bbelovic.adventofcode.day1.Point.Direction.Left;
-import static net.bbelovic.adventofcode.day1.Point.Direction.Right;
+import static net.bbelovic.adventofcode.day1.Direction.Left;
+import static net.bbelovic.adventofcode.day1.Direction.Right;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PointTest {

@@ -10,4 +10,8 @@ data class Point(val x: Int, val y: Int) {
                 Left -> Point(-y, x)
                 Right -> Point(y, -x)
             }
+
+    operator fun plus(other: Point) = Point(x + other.x, y + other.y)
+
+    operator fun times(scale: Int) = Point(scale * x, scale * y)
 }

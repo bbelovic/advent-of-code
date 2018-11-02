@@ -17,6 +17,7 @@ class Day1PuzzlePart1Test {
     }
 
     private static Stream<Arguments> testData() {
-        return Stream.of(Arguments.of("R2, L3", 5), Arguments.of("R2, R2, R2", 2), Arguments.of("R5, L5, R5, R3", 12));
+        return Stream.of(Arguments.of("R2, L3", 5),
+                Arguments.of("R2, R2, R2", 2), Arguments.of("R5, L5, R5, R3", 12));
     }
 }

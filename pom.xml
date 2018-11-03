@@ -78,6 +78,12 @@
               <version>1.2.0</version>
             </dependency>
           </dependencies>
+          <configuration>
+            <includes>
+              <include>**/*Test.kt</include>
+              <include>**/*Test.java</include>
+            </includes>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>

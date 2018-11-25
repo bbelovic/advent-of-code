@@ -1,19 +1,11 @@
 package net.bbelovic.adventofcode.day1
 
-import net.bbelovic.adventofcode.Puzzle
-import kotlin.math.abs
-
-class Day1PuzzlePart1 : Puzzle<String, Long> {
-    override fun solve(input: String): Long {
-        val list = input.split(", ")
-        var actualPosition = Position(Point(0, 1))
-        for (inp in list) {
-            actualPosition = InstructionProcessor.process(inp, actualPosition)
+class Day1PuzzlePart1 : AbstractDay1Puzzle() {
+    override fun processInstructions(list: List<String>): Position {
+        var actualPosition = Position(orientation = Point(0, 1))
+        for (instruction in list) {
+            actualPosition = InstructionProcessor.process(instruction, actualPosition)
         }
-        return distance(actualPosition.value)
-    }
-
-    private fun distance(p: Point): Long {
-        return abs(0L - p.x) + abs(0L - p.y)
+        return actualPosition
     }
 }

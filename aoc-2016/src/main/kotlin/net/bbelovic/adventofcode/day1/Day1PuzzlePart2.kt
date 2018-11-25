@@ -1,36 +1,21 @@
 package net.bbelovic.adventofcode.day1
 
-import net.bbelovic.adventofcode.Puzzle
-import kotlin.math.abs
+class Day1PuzzlePart2 : AbstractDay1Puzzle() {
 
-class Day1PuzzlePart2 : Puzzle<String, Long> {
-    override fun solve(input: String): Long {
-        val allVisitedPoints = hashSetOf<Point>()
-        val list = input.split(", ")
-        var actualPosition = Position(Point(0, 1))
-        allVisitedPoints.add(actualPosition.value)
-        for (inp in list) {
-            val directionCode = inp.first()
-            val steps = inp.substring(1).toInt()
-            actualPosition = when (directionCode) {
-                'L' -> actualPosition turn Direction.Left moveBy steps
-                'R' -> actualPosition turn Direction.Right moveBy steps
-                else -> throw IllegalArgumentException("Unknown input [$input]")
-            }
+    override fun processInstructions(list: List<String>): Point {
+        var actualPosition = Position(orientation = Point(0, 1))
+        val allVisitedPoints = hashSetOf(actualPosition.value)
+        for (instruction in list) {
+            actualPosition = InstructionProcessor.process(instruction, actualPosition)
             val visitedPoints = actualPosition.visitedPoints
             for (point in visitedPoints) {
                 if (point in allVisitedPoints) {
-                    return distance(point)
+                    return point
                 } else {
                     allVisitedPoints.add(point)
                 }
             }
         }
-        return distance(actualPosition.value)
-    }
-
-
-    private fun distance(p: Point): Long {
-        return abs(0L - p.x) + abs(0L - p.y)
+        throw IllegalStateException("Expected at least one position visited twice.")
     }
 }

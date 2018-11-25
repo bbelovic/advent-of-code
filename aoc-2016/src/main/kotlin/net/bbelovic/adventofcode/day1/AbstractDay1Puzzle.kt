@@ -6,17 +6,17 @@ import kotlin.math.abs
 abstract class AbstractDay1Puzzle : Puzzle<String, Long>{
     override fun solve(input: String): Long {
         val list = loadInstruction(input)
-        val position = processInstructions(list)
-        return distance(position)
+        val point = processInstructions(list)
+        return distance(point)
     }
 
     open fun loadInstruction(input: String): List<String> {
         return input.split(", ")
     }
 
-    abstract fun processInstructions(list: List<String>): Position
+    abstract fun processInstructions(list: List<String>): Point
 
-    open fun distance(position: Position): Long {
-        return abs(0L - position.value.x) + abs(0L - position.value.y)
+    open fun distance(point: Point): Long {
+        return abs(0L - point.x) + abs(0L - point.y)
     }
 }

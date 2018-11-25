@@ -3,7 +3,7 @@ package net.bbelovic.adventofcode.day1
 import net.bbelovic.adventofcode.Puzzle
 import kotlin.math.abs
 
-abstract class AbstractDay1Puzzle : Puzzle<String, Long>{
+abstract class Day1PuzzleTemplate : Puzzle<String, Long>{
     override fun solve(input: String): Long {
         val list = loadInstruction(input)
         val point = processInstructions(list)

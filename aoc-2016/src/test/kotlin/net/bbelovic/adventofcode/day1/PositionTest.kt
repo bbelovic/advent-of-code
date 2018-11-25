@@ -30,4 +30,10 @@ class PositionTest {
         val expected = listOf(Point(0, 1), Point(0, 2), Point(0, 3))
         Assertions.assertEquals(expected, visited)
     }
+
+    @Test
+    fun test() {
+        val s = "L3"
+        val split = s.split(Regex("[LR][0-9]{1,3}"))
+    }
 }

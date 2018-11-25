@@ -6,6 +6,6 @@ class Day1PuzzlePart1 : Day1PuzzleTemplate() {
         for (instruction in list) {
             actualPosition = InstructionProcessor.process(instruction, actualPosition)
         }
-        return actualPosition.value
+        return actualPosition.endPoint
     }
 }

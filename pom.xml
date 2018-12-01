@@ -11,6 +11,7 @@
   <modules>
     <module>aoc-2015</module>
     <module>aoc-2016</module>
+      <module>aoc-2018</module>
   </modules>
 
   <name>advent-of-code</name>

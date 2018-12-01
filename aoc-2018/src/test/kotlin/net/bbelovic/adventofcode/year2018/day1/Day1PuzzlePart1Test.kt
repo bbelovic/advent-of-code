@@ -2,15 +2,29 @@ package net.bbelovic.adventofcode.year2018.day1
 
 import net.bbelovic.adventofcode.Puzzle
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class Day1PuzzlePart1Test {
-    @Test
-    fun should_compute_final_frequency_from_frequency_changes() {
-        val input = "+1, -2, +3, +1"
+    @ParameterizedTest
+    @MethodSource("testData")
+    fun should_compute_final_frequency_from_frequency_changes(input: String, expectedFrequency: Long) {
         val puzzle: Puzzle<String, Long> = Day1PuzzlePart1()
         val actualFrequency = puzzle.solve(input)
-        val expectedFrequency = 3L
         Assertions.assertEquals(expectedFrequency, actualFrequency)
+    }
+
+    companion object {
+        @JvmStatic
+        fun testData(): Stream<Arguments> {
+            return Stream.of(
+                    Arguments.of("+1, -2, +3, +1", 3L),
+                    Arguments.of("+1, +1, +1", 3L),
+                    Arguments.of("+1, +1, -2", 0L),
+                    Arguments.of("-1, -2, -3", -6L)
+            )
+        }
     }
 }

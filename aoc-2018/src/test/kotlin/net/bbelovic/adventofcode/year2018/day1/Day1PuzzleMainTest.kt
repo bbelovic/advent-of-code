@@ -18,6 +18,10 @@ class Day1PuzzleMainTest {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(Arguments.of(Day1PuzzlePart1(), 430L))
+        fun testData() = listOf(
+                Arguments.of(Day1PuzzlePart1(), 430L),
+                Arguments.of(Day1PuzzlePart2(), 462L)
+
+        )
     }
 }

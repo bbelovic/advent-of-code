@@ -11,7 +11,7 @@ class Day1PuzzleMainTest {
     @ParameterizedTest
     @MethodSource("testData")
     fun should_solve_puzzle(puzzle: Puzzle<String, Long>, expectedResult: Long) {
-        val string = InputReader().readAllLines("input.txt").joinToString(", ")
+        val string = InputReader().readAllLines("input1.txt").joinToString(", ")
         val actualResult = puzzle.solve(string)
         assertEquals(expectedResult, actualResult)
     }

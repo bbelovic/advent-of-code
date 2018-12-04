@@ -5,17 +5,14 @@ import java.lang.IllegalStateException
 
 class Day2PuzzlePart1 : Puzzle<List<String>, Long> {
     override fun solve(input: List<String>): Long {
-
-        val checksum = BoxChecksum(0, 0)
         return input.asSequence()
                 .map { it -> listOfOccurrences(it) }
                 .map { it -> asBoxDescription(it) }
-                .fold(checksum) { acc, description ->
+                .fold(BoxChecksum(0, 0)) { acc, description ->
                     acc.couples += description.couple
                     acc.triplets += description.triplet
                     acc
                 }.computeChecksum().toLong()
-
     }
 
     private fun listOfOccurrences(s: String) = s.asSequence()
@@ -26,11 +23,11 @@ class Day2PuzzlePart1 : Puzzle<List<String>, Long> {
             .distinct()
             .toList()
 
-    private fun asBoxDescription(ocurrences: List<Int>) = when (ocurrences.size) {
+    private fun asBoxDescription(occurrences: List<Int>) = when (occurrences.size) {
          0 -> BoxDescription(0, 0)
-         1 -> processSingleOccurrence(ocurrences)
+         1 -> processSingleOccurrence(occurrences)
          2 -> BoxDescription(1, 1)
-         else -> throw IllegalStateException("Unexpected size of character occurrences list: [${ocurrences.size}]")
+         else -> throw IllegalStateException("Unexpected size of character occurrences list: [${occurrences.size}]")
     }
 
     private fun processSingleOccurrence(occurrences: List<Int>) = when (occurrences[0]) {

@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
+const val EXPECTED_RESULT_PART_1 = 8715L
+
 class Day2PuzzleMainTest {
     @ParameterizedTest
     @MethodSource("testData")
@@ -18,6 +20,6 @@ class Day2PuzzleMainTest {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(Arguments.of(Day2PuzzlePart1(), 8715L))
+        fun testData() = listOf(Arguments.of(Day2PuzzlePart1(), EXPECTED_RESULT_PART_1))
     }
 }

@@ -8,11 +8,12 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 const val EXPECTED_RESULT_PART_1 = 8715L
+const val EXPECTED_RESULT_PART_2 = "fvstwblgqkhpuixdrnevmaycd"
 
 class Day2PuzzleMainTest {
     @ParameterizedTest
     @MethodSource("testData")
-    fun `should solve puzzle`(puzzle: Puzzle<List<String>, Long>, expectedResult: Long) {
+    fun `should solve puzzle`(puzzle: Puzzle<List<String>, *>, expectedResult: Any) {
         val inputLines = InputReader().readAllLines("input2.txt")
         val actualChecksum = puzzle.solve(inputLines)
         assertEquals(expectedResult, actualChecksum)
@@ -20,6 +21,9 @@ class Day2PuzzleMainTest {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(Arguments.of(Day2PuzzlePart1(), EXPECTED_RESULT_PART_1))
+        fun testData() = listOf(
+                Arguments.of(Day2PuzzlePart1(), EXPECTED_RESULT_PART_1),
+                Arguments.of(Day2PuzzlePart2(), EXPECTED_RESULT_PART_2)
+        )
     }
 }

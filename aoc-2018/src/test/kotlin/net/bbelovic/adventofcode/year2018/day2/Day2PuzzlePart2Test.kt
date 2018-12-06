@@ -26,9 +26,13 @@ class Day2PuzzlePart2Test {
     private fun findCommonLetters(first: String, second: String): String {
         val result = StringBuilder()
         for (i in 0 until first.length) {
-            if (first[i] == second[i]) result.append(first[i])
+            if (first[i] == second[i]) result += first[i]
         }
         return result.toString()
+    }
+
+    operator fun StringBuilder.plusAssign(c: Char) {
+        this.append(c)
     }
 
     @Test
@@ -42,7 +46,7 @@ class Day2PuzzlePart2Test {
 
     private fun hasSingleDifference(first: String, second: String): Boolean {
         var diffs = 0
-        for (i in 0..(first.length - 1) ) {
+        for (i in 0 until first.length) {
             if (first[i] != second[i]) {
                 ++diffs
             }

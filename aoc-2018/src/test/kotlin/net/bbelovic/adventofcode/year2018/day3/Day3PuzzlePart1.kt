@@ -15,5 +15,8 @@ class Day3PuzzlePart1 {
     @Test
     fun `should parse rectangle from string`() {
         val input = "#1 @ 1,3: 4x4"
+        val expected: Rectangle = RectangleParser().parse(input)
+        val actual = Rectangle(1,3, 4, 4)
+        Assertions.assertEquals(expected, actual)
     }
 }

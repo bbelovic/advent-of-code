@@ -15,21 +15,26 @@ class Day3PuzzlePart1 {
 
     @Test
     fun `should parse rectangle from string`() {
-
-        var rgx = "#[0-9] @ [0-9],[0-9]: [0-9]x[0-9]"
-        var rgx2 = "#(\\d{1,}) @ (\\d{1,}),(\\d{1,}): (\\d{1,})x(\\d{1,})"
-        var rgx3 = "#\\d{1,} @ \\d{1,},\\d{1,}: \\d{1,}x\\d{1,}"
-
-        val pattern = Pattern.compile(rgx2)
-        val matcher = pattern.matcher("#415 @ 29,601: 13x12")
-        val result = matcher.matches()
-        println(result)
-        println(matcher.groupCount())
-        println(matcher.group(1))
-
         val input = "#1 @ 1,3: 4x4"
         val expected: Rectangle = RectangleParser().parse(input)
         val actual = Rectangle(1,3, 4, 4)
         Assertions.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `should parse fabric information the Kotlin way`() {
+        val input = "#1 @ 1,3: 4x4"
+        val regex = """#(\d{1,}) @ (\d{1,}),(\d{1,}): (\d{1,})x(\d{1,})""".toRegex()
+        val (id, x, y, width, height) = regex.matchEntire(input)!!.destructured
+        val groupValues = regex.matchEntire(input)!!.groupValues
+        println(groupValues)
+
+        Assertions.assertEquals(1, id.toInt())
+        Assertions.assertEquals(1, x.toInt())
+        Assertions.assertEquals(3, y.toInt())
+        Assertions.assertEquals(4, width.toInt())
+        Assertions.assertEquals(4, height.toInt())
+
+
     }
 }

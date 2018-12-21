@@ -2,6 +2,9 @@ package net.bbelovic.adventofcode.year2018.day3
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import java.util.regex.Pattern
 
 class Day3PuzzlePart1 {
@@ -21,7 +24,8 @@ class Day3PuzzlePart1 {
         Assertions.assertEquals(expected, actual)
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("testData")
     fun `should parse fabric information the Kotlin way`() {
         val input = "#1 @ 1,3: 4x4"
         val regex = """#(\d{1,}) @ (\d{1,}),(\d{1,}): (\d{1,})x(\d{1,})""".toRegex()
@@ -35,6 +39,21 @@ class Day3PuzzlePart1 {
         Assertions.assertEquals(4, width.toInt())
         Assertions.assertEquals(4, height.toInt())
 
+        /*
+        #99 @ 335,901: 28x17
+        #100 @ 52,312: 14x16
+        #101 @ 13,487: 21x13
+        #102 @ 937,624: 15x23
+        */
 
+    }
+
+    companion object {
+        @JvmStatic
+        private fun testData() = listOf(
+                Arguments.of("#1 @ 1,3: 4x4", listOf(1, 1, 3, 4, 4)),
+                Arguments.of("#99 @ 335,901: 28x17", listOf(99, 335, 901, 28, 17)),
+                Arguments.of("#1 @ 1,3: 4x4"), listOf(1, 1, 3, 4, 4)
+        )
     }
 }

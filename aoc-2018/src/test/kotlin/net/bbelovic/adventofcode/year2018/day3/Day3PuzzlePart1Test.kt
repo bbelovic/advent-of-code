@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-class Day3PuzzlePart1 {
+class Day3PuzzlePart1Test {
     @Test
     fun `should compute rectangle intersection`() {
         val first = Rectangle(1, 3, 4, 4)

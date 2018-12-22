@@ -15,12 +15,11 @@ class Day3PuzzlePart1 {
         assertEquals(4, area)
     }
 
-    @Test
-    fun `should parse rectangle from string`() {
-        val input = "#1 @ 1,3: 4x4"
-        val expected: Rectangle = RectangleParser().parse(input)
-        val actual = Rectangle(1,3, 4, 4)
-        assertEquals(expected, actual)
+    @ParameterizedTest
+    @MethodSource("testRectangles")
+    fun `should parse rectangle from string`(input: String, expectedRectangle: Rectangle) {
+        val actualRectangle: Rectangle = RectangleParser().parse(input)
+        assertEquals(expectedRectangle, actualRectangle)
     }
 
     @ParameterizedTest
@@ -33,6 +32,18 @@ class Day3PuzzlePart1 {
     }
 
     companion object {
+        @JvmStatic
+        private fun testRectangles() = listOf(
+                Arguments.of("#1 @ 1,3: 4x4", Rectangle(1, 3, 4,4)),
+                Arguments.of("#99 @ 335,901: 28x17", Rectangle(335, 901, 28, 17)),
+                Arguments.of("#100 @ 52,312: 14x16", Rectangle( 52, 312, 14, 16)),
+                Arguments.of("#101 @ 13,487: 21x13", Rectangle( 13, 487, 21, 13)),
+                Arguments.of("#403 @ 201,97: 6x9", Rectangle(201, 97, 6, 9)),
+                Arguments.of("#96 @ 8,593: 10x21", Rectangle(8, 593, 10, 21)),
+                Arguments.of("#102 @ 937,624: 15x23", Rectangle(937, 624, 15, 23))
+
+        )
+
         @JvmStatic
         private fun testData() = listOf(
                 Arguments.of("#1 @ 1,3: 4x4", listOf(1, 1, 3, 4, 4)),

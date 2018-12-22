@@ -39,6 +39,8 @@ class Day3PuzzlePart1 {
                 Arguments.of("#99 @ 335,901: 28x17", listOf(99, 335, 901, 28, 17)),
                 Arguments.of("#100 @ 52,312: 14x16", listOf(100, 52, 312, 14, 16)),
                 Arguments.of("#101 @ 13,487: 21x13", listOf(101, 13, 487, 21, 13)),
+                Arguments.of("#403 @ 201,97: 6x9", listOf(403, 201, 97, 6, 9)),
+                Arguments.of("#96 @ 8,593: 10x21", listOf(96, 8, 593, 10, 21)),
                 Arguments.of("#102 @ 937,624: 15x23", listOf(102, 937, 624, 15, 23))
         )
     }

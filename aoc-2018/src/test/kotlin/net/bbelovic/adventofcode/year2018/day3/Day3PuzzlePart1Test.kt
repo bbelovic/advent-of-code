@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.year2018.day3
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -20,6 +21,14 @@ class Day3PuzzlePart1Test {
     fun `should parse rectangle from string`(input: String, expectedRectangle: Rectangle) {
         val actualRectangle: Rectangle = RectangleParser().parse(input)
         assertEquals(expectedRectangle, actualRectangle)
+    }
+
+    @Test
+    fun `should throw exception for invalid input`() {
+        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("@ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("# @ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("#1 @ ,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("#1 @ 335,901: ") }
     }
 
     @ParameterizedTest

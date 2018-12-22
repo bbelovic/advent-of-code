@@ -7,7 +7,7 @@ class RectangleParser {
             val (id, x, y, width, height) = regex.matchEntire(input)!!.destructured
             Rectangle(x.toInt(), y.toInt(), width.toInt(), height.toInt())
         } catch (e: NullPointerException) {
-            throw  IllegalArgumentException("Unable to parse rectangle from input: [$input]")
+            throw IllegalArgumentException("Unable to parse rectangle from input: [$input]")
         }
     }
 }

@@ -25,43 +25,22 @@ class Day3PuzzlePart1Test {
 
     @Test
     fun `should throw exception for invalid input`() {
-        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("@ 335,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("# @ 335,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("#1 @ ,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) {RectangleParser().parse("#1 @ 335,901: ") }
-    }
-
-    @ParameterizedTest
-    @MethodSource("testData")
-    fun `should parse fabric information the Kotlin way`(input: String, expected: List<Int>) {
-        val regex = """#(\d{1,}) @ (\d{1,}),(\d{1,}): (\d{1,})x(\d{1,})""".toRegex()
-        val (id, x, y, width, height) = regex.matchEntire(input)!!.destructured
-        val actual = listOf(id.toInt(), x.toInt(), y.toInt(), width.toInt(), height.toInt())
-        assertEquals(expected, actual)
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("@ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("# @ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("#1 @ ,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("#1 @ 335,901: ") }
     }
 
     companion object {
         @JvmStatic
         private fun testRectangles() = listOf(
-                Arguments.of("#1 @ 1,3: 4x4", Rectangle(1, 3, 4,4)),
-                Arguments.of("#99 @ 335,901: 28x17", Rectangle(335, 901, 28, 17)),
-                Arguments.of("#100 @ 52,312: 14x16", Rectangle( 52, 312, 14, 16)),
-                Arguments.of("#101 @ 13,487: 21x13", Rectangle( 13, 487, 21, 13)),
-                Arguments.of("#403 @ 201,97: 6x9", Rectangle(201, 97, 6, 9)),
-                Arguments.of("#96 @ 8,593: 10x21", Rectangle(8, 593, 10, 21)),
-                Arguments.of("#102 @ 937,624: 15x23", Rectangle(937, 624, 15, 23))
-
-        )
-
-        @JvmStatic
-        private fun testData() = listOf(
-                Arguments.of("#1 @ 1,3: 4x4", listOf(1, 1, 3, 4, 4)),
-                Arguments.of("#99 @ 335,901: 28x17", listOf(99, 335, 901, 28, 17)),
-                Arguments.of("#100 @ 52,312: 14x16", listOf(100, 52, 312, 14, 16)),
-                Arguments.of("#101 @ 13,487: 21x13", listOf(101, 13, 487, 21, 13)),
-                Arguments.of("#403 @ 201,97: 6x9", listOf(403, 201, 97, 6, 9)),
-                Arguments.of("#96 @ 8,593: 10x21", listOf(96, 8, 593, 10, 21)),
-                Arguments.of("#102 @ 937,624: 15x23", listOf(102, 937, 624, 15, 23))
+                Arguments { arrayOf("#1 @ 1,3: 4x4", Rectangle(1, 3, 4,4)) },
+                Arguments { arrayOf("#99 @ 335,901: 28x17", Rectangle(335, 901, 28, 17)) },
+                Arguments { arrayOf("#100 @ 52,312: 14x16", Rectangle( 52, 312, 14, 16)) },
+                Arguments { arrayOf("#101 @ 13,487: 21x13", Rectangle( 13, 487, 21, 13)) },
+                Arguments { arrayOf("#403 @ 201,97: 6x9", Rectangle(201, 97, 6, 9)) },
+                Arguments { arrayOf("#96 @ 8,593: 10x21", Rectangle(8, 593, 10, 21)) },
+                Arguments { arrayOf("#102 @ 937,624: 15x23", Rectangle(937, 624, 15, 23)) }
         )
     }
 }

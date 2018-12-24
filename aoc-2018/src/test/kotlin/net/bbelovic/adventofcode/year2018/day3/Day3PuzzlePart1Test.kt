@@ -34,13 +34,13 @@ class Day3PuzzlePart1Test {
     companion object {
         @JvmStatic
         private fun testRectangles() = listOf(
-                Arguments { arrayOf("#1 @ 1,3: 4x4", Rectangle(1,1, 3, 4, 4)) },
-                Arguments { arrayOf("#99 @ 335,901: 28x17", Rectangle(99,335, 901, 28, 17)) },
-                Arguments { arrayOf("#100 @ 52,312: 14x16", Rectangle(100, 52, 312, 14, 16)) },
-                Arguments { arrayOf("#101 @ 13,487: 21x13", Rectangle(101, 13, 487, 21, 13)) },
-                Arguments { arrayOf("#403 @ 201,97: 6x9", Rectangle(403,201, 97, 6, 9)) },
-                Arguments { arrayOf("#96 @ 8,593: 10x21", Rectangle(96,8, 593, 10, 21)) },
-                Arguments { arrayOf("#102 @ 937,624: 15x23", Rectangle(102,937, 624, 15, 23)) }
+                Arguments { arrayOf("#1 @ 1,3: 4x4", Rectangle(1,2, 4, 4, 4)) },
+                Arguments { arrayOf("#99 @ 335,901: 28x17", Rectangle(99,336, 902, 28, 17)) },
+                Arguments { arrayOf("#100 @ 52,312: 14x16", Rectangle(100, 53, 313, 14, 16)) },
+                Arguments { arrayOf("#101 @ 13,487: 21x13", Rectangle(101, 14, 488, 21, 13)) },
+                Arguments { arrayOf("#403 @ 201,97: 6x9", Rectangle(403,202, 98, 6, 9)) },
+                Arguments { arrayOf("#96 @ 8,593: 10x21", Rectangle(96,9, 594, 10, 21)) },
+                Arguments { arrayOf("#102 @ 937,624: 15x23", Rectangle(102,938, 625, 15, 23)) }
         )
     }
 }

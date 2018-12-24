@@ -5,7 +5,7 @@ class RectangleParser {
         val regex = """#(\d+) @ (\d+),(\d+): (\d+)x(\d+)""".toRegex()
         return try {
             val (id, x, y, width, height) = regex.matchEntire(input)!!.destructured
-            Rectangle(id.toInt(), x.toInt(), y.toInt(), width.toInt(), height.toInt())
+            Rectangle(id.toInt(), x.toInt() + 1, y.toInt() + 1, width.toInt(), height.toInt())
         } catch (e: NullPointerException) {
             throw IllegalArgumentException("Unable to parse rectangle from input: [$input]")
         }

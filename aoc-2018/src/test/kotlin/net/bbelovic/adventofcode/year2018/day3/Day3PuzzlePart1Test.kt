@@ -1,5 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day3
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
@@ -8,6 +9,15 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day3PuzzlePart1Test {
+
+    @Test
+    fun `should compute rectangle area`() {
+        val r = Rectangle(1, 0,0, 5, 3)
+        val actualArea = r.area()
+        val expectedArea = 15
+        Assertions.assertEquals(expectedArea, actualArea)
+    }
+
     @Test
     fun `should compute rectangle intersection`() {
         val first = Rectangle(1,1, 3, 4, 4)

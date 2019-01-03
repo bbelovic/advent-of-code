@@ -10,4 +10,8 @@ data class Rectangle(val id: Int, val upperLeftX: Int, val upperLeftY: Int, val 
         if (intersectX.isEmpty() || intersectY.isEmpty()) return 0
         return (intersectX.size - 1) * (intersectY.size - 1)
     }
+
+    fun area(): Int {
+        return width * height
+    }
 }

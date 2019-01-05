@@ -22,7 +22,9 @@ class Day3PuzzlePart1Test {
     fun `should compute rectangle intersection`() {
         val first = Rectangle(1,1, 3, 4, 4)
         val second = Rectangle(2,3, 1, 4, 4)
-        val area = first.intersect(second)
+        var area = first.intersect(second)
+        assertEquals(4, area)
+        area = second.intersect(first)
         assertEquals(4, area)
     }
 

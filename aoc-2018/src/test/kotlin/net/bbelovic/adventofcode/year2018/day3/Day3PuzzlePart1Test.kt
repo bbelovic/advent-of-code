@@ -9,6 +9,22 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day3PuzzlePart1Test {
+    @Test
+    fun `should made claim on fabric`() {
+        val fabric = Fabric(3, 3)
+        val claim = Rectangle(1, 1, 1, 2, 2)
+
+        fabric.makeClaim(claim)
+
+        val expected = Array ( 3) { Array(3) {false} }
+        expected[1][1] = true
+        expected[1][2] = true
+        expected[2][1] = true
+        expected[2][2] = true
+
+        Assertions.assertTrue(expected.contentDeepEquals(fabric.fabric))
+
+    }
 
     @Test
     fun `should compute rectangle area`() {

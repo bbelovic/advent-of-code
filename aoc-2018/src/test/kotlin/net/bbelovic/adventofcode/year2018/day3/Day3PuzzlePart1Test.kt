@@ -8,40 +8,21 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day3PuzzlePart1Test {
-    @Test
-    fun `should made claim on fabric`() {
+    @ParameterizedTest
+    @MethodSource("testFabric")
+    fun `should made claim on fabric`(claim: Rectangle, expectedFabric: Array<Array<Boolean>>) {
         val fabric = Fabric(3, 3)
-        val claim1 = Rectangle(1, 1, 1, 2, 2)
+        fabric.makeClaim(claim)
+        assertTrue(expectedFabric.contentDeepEquals(fabric.claims()))
+    }
 
-        fabric.makeClaim(claim1)
-
-        val expected = Array ( 3) { Array(3) {false} }
-        expected[1][1] = true
-        expected[1][2] = true
-        expected[2][1] = true
-        expected[2][2] = true
-
-        assertTrue(expected.contentDeepEquals(fabric.fabric))
-
-        val claim2 = Rectangle(2, 0, 0, 3, 1)
-        fabric.makeClaim(claim2)
-        println(fabric.fabric.contentDeepToString())
-
-        expected[0][0] = true
-        expected[0][1] = true
-        expected[0][2] = true
-        assertTrue(expected.contentDeepEquals(fabric.fabric))
-
-        val f2 = Fabric(3, 3)
-        f2.makeClaim(Rectangle(1, 0, 0, 1, 3))
-
-        val expectedf2 = arrayOf(arrayOf(true, false, false),
-                arrayOf(true, false, false),
-                arrayOf(true, false, false))
-
-        println(f2.fabric.contentDeepToString())
-        assertTrue(f2.fabric.contentDeepEquals(expectedf2))
-
+    @ParameterizedTest
+    @MethodSource("testOverlaps")
+    fun `should compute fabric overlaps`(rectangles: List<Rectangle>, expectedOverlap: Long) {
+        val fabric = Fabric(3, 3)
+        rectangles.forEach { it -> fabric.makeClaim(it) }
+        val actualOverlap = fabric.overlap()
+        assertEquals(expectedOverlap, actualOverlap)
     }
 
     @Test
@@ -87,6 +68,35 @@ class Day3PuzzlePart1Test {
                 Arguments { arrayOf("#403 @ 201,97: 6x9", Rectangle(403,202, 98, 6, 9)) },
                 Arguments { arrayOf("#96 @ 8,593: 10x21", Rectangle(96,9, 594, 10, 21)) },
                 Arguments { arrayOf("#102 @ 937,624: 15x23", Rectangle(102,938, 625, 15, 23)) }
+        )
+
+        @JvmStatic
+        private fun testFabric() = listOf(
+                Arguments { arrayOf(Rectangle(1, 1, 1, 2, 2),
+                        arrayOf(arrayOf(false, false, false),
+                                arrayOf(false, true, true),
+                                arrayOf(false, true, true))
+                ) },
+                Arguments { arrayOf(Rectangle(2, 0, 0, 1, 3),
+                        arrayOf(arrayOf(true, false, false),
+                                arrayOf(true, false, false),
+                                arrayOf(true, false, false))
+                        ) },
+                Arguments { arrayOf(Rectangle(3, 0, 0, 3, 1),
+                        arrayOf(arrayOf(true, true, true),
+                                arrayOf(false, false, false),
+                                arrayOf(false, false, false))
+                        ) }
+        )
+
+        @JvmStatic
+        private fun testOverlaps() = listOf(
+                Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 1, 3),
+                        Rectangle(2, 0, 0, 3, 1)), 1L) },
+
+                Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 3, 1),
+                        Rectangle(2, 0, 2, 3, 1)), 0L) }
+
         )
     }
 }

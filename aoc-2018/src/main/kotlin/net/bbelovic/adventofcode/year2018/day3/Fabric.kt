@@ -4,14 +4,12 @@ class Fabric(width: Int, height: Int) {
     val fabric = Array(width) { Array(height) { false } }
 
     fun makeClaim(claim: Rectangle) {
-        for (i in claim.upperLeftX..claim.width) {
-            for (j in claim.upperLeftY..claim.height) {
-                fabric[i][j] = true
+        for (i in 0 until claim.height) {
+            for (j in 0 until claim.width) {
+                fabric[claim.upperLeftX + i][claim.upperLeftY + j] = true
             }
         }
 
     }
-
-    fun printFabric() = println(fabric.contentDeepToString())
 
 }

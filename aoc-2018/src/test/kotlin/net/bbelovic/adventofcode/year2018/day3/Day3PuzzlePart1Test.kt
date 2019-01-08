@@ -58,8 +58,10 @@ class Day3PuzzlePart1Test {
                         Rectangle(2, 0, 0, 3, 1)), 1L) },
 
                 Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 3, 1),
-                        Rectangle(2, 0, 2, 3, 1)), 0L) }
+                        Rectangle(2, 0, 2, 3, 1)), 0L) },
 
+                Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 2, 2),
+                        Rectangle(2, 1, 1, 2, 2)), 1L) }
         )
     }
 }

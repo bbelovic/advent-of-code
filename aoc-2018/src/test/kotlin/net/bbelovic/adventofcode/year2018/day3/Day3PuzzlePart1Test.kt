@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource
 class Day3PuzzlePart1Test {
     @ParameterizedTest
     @MethodSource("testFabric")
-    fun `should made claim on fabric`(claim: Rectangle, expectedFabric: Array<Array<Boolean>>) {
+    fun `should made claim on fabric`(claim: Rectangle, expectedFabric: Array<Array<String>>) {
         val fabric = Fabric(3, 3)
         fabric.makeClaim(claim)
         assertTrue(expectedFabric.contentDeepEquals(fabric.claims()))
@@ -36,19 +36,19 @@ class Day3PuzzlePart1Test {
         @JvmStatic
         private fun testFabric() = listOf(
                 Arguments { arrayOf(Rectangle(1, 1, 1, 2, 2),
-                        arrayOf(arrayOf(false, false, false),
-                                arrayOf(false, true, true),
-                                arrayOf(false, true, true))
+                        arrayOf(arrayOf(".", ".", "."),
+                                arrayOf(".", "1", "1"),
+                                arrayOf(".", "1", "1"))
                 ) },
                 Arguments { arrayOf(Rectangle(2, 0, 0, 1, 3),
-                        arrayOf(arrayOf(true, false, false),
-                                arrayOf(true, false, false),
-                                arrayOf(true, false, false))
+                        arrayOf(arrayOf("2", ".", "."),
+                                arrayOf("2", ".", "."),
+                                arrayOf("2", ".", "."))
                         ) },
                 Arguments { arrayOf(Rectangle(3, 0, 0, 3, 1),
-                        arrayOf(arrayOf(true, true, true),
-                                arrayOf(false, false, false),
-                                arrayOf(false, false, false))
+                        arrayOf(arrayOf("3", "3", "3"),
+                                arrayOf(".", ".", "."),
+                                arrayOf(".", ".", "."))
                         ) }
         )
 
@@ -61,7 +61,11 @@ class Day3PuzzlePart1Test {
                         Rectangle(2, 0, 2, 3, 1)), 0L) },
 
                 Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 2, 2),
-                        Rectangle(2, 1, 1, 2, 2)), 1L) }
+                        Rectangle(2, 1, 1, 2, 2)), 1L) },
+                Arguments { arrayOf(listOf(Rectangle(1, 0, 0, 1, 1),
+                        Rectangle(2, 0, 0, 1, 1),
+                        Rectangle(3, 0, 0, 1, 1)
+                        ), 1L) }
         )
     }
 }

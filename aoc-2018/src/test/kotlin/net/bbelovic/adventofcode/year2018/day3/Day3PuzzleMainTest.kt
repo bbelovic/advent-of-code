@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.year2018.day3
 
 import net.bbelovic.adventofcode.InputReader
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class Day3PuzzleMainTest {
@@ -8,10 +9,11 @@ class Day3PuzzleMainTest {
     fun `should solve puzzle`() {
         val fabric = Fabric(1000, 1000)
         val inputs = InputReader().readAllLines("input3.txt")
-        inputs.asSequence()
+        val actualOverlap = inputs.asSequence()
                 .map { it -> RectangleParser().parse(it) }
-                .forEach { it -> fabric.makeClaim(it) }
+                .map { it -> fabric.makeClaim(it) }
+                .sum()
 
-        print(fabric.overlap())
+        Assertions.assertEquals(111326, actualOverlap)
     }
 }

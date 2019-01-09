@@ -8,14 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource
 
 class Day3PuzzlePart1Test {
     @ParameterizedTest
-    @MethodSource("testFabric")
-    fun `should made claim on fabric`(claim: Rectangle, expectedFabric: Array<Array<String>>) {
-        val fabric = Fabric(3, 3)
-        fabric.makeClaim(claim)
-        assertTrue(expectedFabric.contentDeepEquals(fabric.claims()))
-    }
-
-    @ParameterizedTest
     @MethodSource("testOverlaps")
     fun `should compute fabric overlaps`(rectangles: List<Rectangle>, expectedOverlap: Long) {
         val fabric = Fabric(3, 3)

@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-class Fabric(width: Int, val height: Int) {
+class Fabric(width: Int, height: Int) {
+    private val overlapFlag = "#"
     private val fabric = Array(width) { Array(height) { "." } }
 
     fun makeClaim(claim: Rectangle): Long {
@@ -10,16 +11,14 @@ class Fabric(width: Int, val height: Int) {
                 val pos = fabric[claim.upperLeftY + i][claim.upperLeftX + j]
                 if (pos == ".") {
                     fabric[claim.upperLeftY + i][claim.upperLeftX + j] = claim.id.toString()
-                } else if (pos == "#") {
+                } else if (pos == overlapFlag) {
                     continue
                 } else {
-                    fabric[claim.upperLeftY + i][claim.upperLeftX + j] = "#"
+                    fabric[claim.upperLeftY + i][claim.upperLeftX + j] = overlapFlag
                     ++overlap
                 }
             }
         }
         return overlap
     }
-
-    fun claims() = fabric.copyOf()
 }

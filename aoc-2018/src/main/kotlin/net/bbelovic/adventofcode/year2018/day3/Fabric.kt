@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-class Fabric(width: Int, height: Int) {
+class Fabric(val width: Int, val height: Int) {
     private val fabric = Array(width) { Array(height) { false } }
     private var overlap = 0L
 
@@ -8,9 +8,10 @@ class Fabric(width: Int, height: Int) {
         for (i in 0 until claim.height) {
             for (j in 0 until claim.width) {
                 if (fabric[claim.upperLeftY + i][claim.upperLeftX + j]) {
-                    ++overlap
+//                    ++overlap
                 } else {
                     fabric[claim.upperLeftY + i][claim.upperLeftX + j] = true
+//                    ++overlap
                 }
             }
         }
@@ -19,6 +20,13 @@ class Fabric(width: Int, height: Int) {
     fun claims() = fabric.copyOf()
 
     fun overlap(): Long {
+        for (i in 0 until height) {
+            for (j in 0 until width) {
+                if (fabric[i][j]) {
+                    ++overlap
+                }
+            }
+        }
         return overlap
     }
 }

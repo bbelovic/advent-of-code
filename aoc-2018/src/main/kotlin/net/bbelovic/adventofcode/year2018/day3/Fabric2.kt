@@ -13,6 +13,7 @@ class Fabric2(width: Int, height: Int) : Fabric(width, height) {
                     continue
                 } else {
                     if (fabric[claim.upperLeftY + i][claim.upperLeftX + j].toInt() == candidateId) {
+                        println("${claim.id} overlaps with candidate $candidateId")
                         candidateId = 0
                     }
                     fabric[claim.upperLeftY + i][claim.upperLeftX + j] = overlapFlag
@@ -22,6 +23,7 @@ class Fabric2(width: Int, height: Int) : Fabric(width, height) {
         }
         if (overlap == 0L) {
             candidateId = claim.id
+            println("New candidate $candidateId")
         }
         return overlap
     }

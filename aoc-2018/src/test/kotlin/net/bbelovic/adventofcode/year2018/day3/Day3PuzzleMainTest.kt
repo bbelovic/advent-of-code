@@ -30,7 +30,8 @@ class Day3PuzzleMainTest {
                 .map { it -> RectangleParser().parse(it) }
                 .toCollection(ArrayList())
         val actual = puzzle.solve(rectangles)
-        print(actual)
+        println(actual)
+
 
     }
 }

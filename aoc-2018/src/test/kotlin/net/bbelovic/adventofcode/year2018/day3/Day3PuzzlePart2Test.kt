@@ -1,6 +1,5 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -43,14 +42,6 @@ class Day3PuzzlePart2Test {
                             Rectangle(1, 1, 0, 2, 2),
                             Rectangle(2, 2, 1, 2, 2),
                             Rectangle(3, 0, 2, 2, 2),
-                            Rectangle(5, 0, 0, 1, 2)
-                    ), 5)
-                },
-                Arguments {
-                    arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2),
                             Rectangle(5, 0, 0, 1, 2),
                             Rectangle(4, 0, 3, 4, 1)
                     ), 5)
@@ -74,6 +65,18 @@ class Day3PuzzlePart2Test {
                             Rectangle(4, 0, 3, 4, 1),
                             Rectangle(6, 0, 1, 1, 2),
                             Rectangle(7, 3, 0, 1, 1)
+                    ), 7)
+                },
+                Arguments {
+                    arrayOf(listOf(
+                            Rectangle(1, 1, 0, 2, 2),
+                            Rectangle(2, 2, 1, 2, 2),
+                            Rectangle(3, 0, 2, 2, 2),
+                            Rectangle(5, 0, 0, 1, 2),
+                            Rectangle(4, 0, 3, 4, 1),
+                            Rectangle(6, 0, 1, 1, 2),
+                            Rectangle(7, 3, 0, 1, 1),
+                            Rectangle(8, 0, 1, 1, 2)
                     ), 7)
 
                 }

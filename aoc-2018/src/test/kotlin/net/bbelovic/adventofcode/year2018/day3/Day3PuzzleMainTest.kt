@@ -8,6 +8,7 @@ import java.util.ArrayList
 const val WIDTH = 1000
 const val HEIGHT = 1000
 const val EXPECTED_OVERLAP_PART_1 = 111326L
+const val EXPECTED_NON_OVERLAPPING_ID = 1019
 
 class Day3PuzzleMainTest {
     @Test
@@ -30,8 +31,6 @@ class Day3PuzzleMainTest {
                 .map { it -> RectangleParser().parse(it) }
                 .toCollection(ArrayList())
         val actual = puzzle.solve(rectangles)
-        println(actual)
-
-
+        assertEquals(EXPECTED_NON_OVERLAPPING_ID, actual)
     }
 }

@@ -9,10 +9,10 @@ class Day3PuzzlePart2 : Puzzle<List<Rectangle>, Int> {
             fabric.makeClaim(each)
 
         }
-        if (fabric.candidates.isEmpty()) {
+        if (fabric.registeredClaims.isEmpty()) {
             return 0
         } else {
-            return fabric.candidates[0]
+            return fabric.registeredClaims[0]
         }
     }
 }

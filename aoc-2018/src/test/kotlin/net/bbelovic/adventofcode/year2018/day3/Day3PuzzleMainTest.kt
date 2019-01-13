@@ -13,13 +13,9 @@ const val EXPECTED_NON_OVERLAPPING_ID = 1019
 class Day3PuzzleMainTest {
     @Test
     fun `should solve puzzle`() {
-        val fabric = FabricPart1(WIDTH, HEIGHT)
+        val puzzle = Day3PuzzlePart1()
         val inputs = InputReader().readAllLines("input3.txt")
-        val actualOverlap = inputs.asSequence()
-                .map { it -> RectangleParser().parse(it) }
-                .map { it -> fabric.makeClaim(it) }
-                .sum()
-
+        val actualOverlap = puzzle.solve(inputs)
         assertEquals(EXPECTED_OVERLAP_PART_1, actualOverlap)
     }
 

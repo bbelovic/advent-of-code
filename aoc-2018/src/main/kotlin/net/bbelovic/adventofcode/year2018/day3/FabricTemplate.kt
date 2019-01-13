@@ -1,8 +1,8 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-abstract class FabricTemplate(width: Int, height: Int) {
+abstract class FabricTemplate {
     protected val overlapFlag = "#"
-    private val fabric = Array(width) { Array(height) { "." } }
+    private val fabric = Array(1000) { Array(1000) { "." } }
 
     fun makeClaim(claim: Rectangle): Long {
         var overlap = 0L

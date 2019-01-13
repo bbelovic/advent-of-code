@@ -10,7 +10,7 @@ class Day3PuzzlePart1Test {
     @ParameterizedTest
     @MethodSource("testOverlaps")
     fun `should compute fabric overlaps`(rectangles: List<Rectangle>, expectedOverlap: Long) {
-        val fabric = Fabric(3, 3)
+        val fabric = FabricPart1(3, 3)
         val actualOverlap = rectangles.map { it -> fabric.makeClaim(it) }
                 .sum()
         assertEquals(expectedOverlap, actualOverlap)

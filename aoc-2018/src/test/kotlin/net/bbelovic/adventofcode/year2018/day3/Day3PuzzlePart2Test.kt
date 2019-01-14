@@ -25,13 +25,6 @@ class Day3PuzzlePart2Test {
                 Arguments {
                     arrayOf(listOf(
                             Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2)
-                    ), 0)
-
-                },
-                Arguments {
-                    arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
                             Rectangle(2, 2, 1, 2, 2),
                             Rectangle(3, 0, 2, 2, 2)
                     ), 3)
@@ -45,16 +38,6 @@ class Day3PuzzlePart2Test {
                             Rectangle(5, 0, 0, 1, 2),
                             Rectangle(4, 0, 3, 4, 1)
                     ), 5)
-                },
-                Arguments {
-                    arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2),
-                            Rectangle(5, 0, 0, 1, 2),
-                            Rectangle(4, 0, 3, 4, 1),
-                            Rectangle(6, 0, 1, 1, 2)
-                    ), 0)
                 },
                 Arguments {
                     arrayOf(listOf(

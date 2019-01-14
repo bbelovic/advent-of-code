@@ -23,7 +23,6 @@ open class FabricTemplate(val onEmptyPosition0: FabricTemplate.(x: Int, y: Int, 
                 }
             }
         }
-
         if (shouldRegisterClaim0(claim, area)) {
             registerClaim0(claim)
         }
@@ -47,4 +46,10 @@ open class FabricTemplate(val onEmptyPosition0: FabricTemplate.(x: Int, y: Int, 
     }
 
     fun get(x: Int, y: Int) = fabric[x][y]
+
+    fun removeClaimIfPresent(claimId: Int) {
+        if (claimId in registeredClaims) {
+            registeredClaims.remove(claimId)
+        }
+    }
 }

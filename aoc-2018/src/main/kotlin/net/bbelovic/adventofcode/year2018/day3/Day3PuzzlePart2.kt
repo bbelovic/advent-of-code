@@ -7,8 +7,14 @@ class Day3PuzzlePart2 : Puzzle<List<Rectangle>, Int> {
         val sr: FabricTemplate.(claim: Rectangle, area: Int)-> Boolean = {
             claim, area -> claim.width * claim.height == area
         }
+
         val rc: FabricTemplate.(claim: Rectangle) -> Unit = {claim -> addClaim(claim) }
-        val ft = FabricTemplate(shouldRegisterClaim0 = sr, registerClaim0 = rc)
+
+        val onOverlap: FabricTemplate.(x: Int, y: Int) -> Int = {x,y ->
+            removeClaimIfPresent(get(x, y).toInt())
+            setClaim(x, y, overlapFlag);  1}
+
+        val ft = FabricTemplate(onOverlapPosition0 = onOverlap, shouldRegisterClaim0 = sr, registerClaim0 = rc)
 
         input.forEach { it -> ft.makeClaim(it) }
 

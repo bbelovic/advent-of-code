@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-class FabricPart2 : FabricTemplate() {
+class FabricPart2 /*: FabricTemplate() {
     val registeredClaims = mutableListOf<Int>()
     override fun onEmptyPosition(x: Int, y: Int, id: Int): Int {
         setClaim(x, y, id.toString())
@@ -23,4 +23,4 @@ class FabricPart2 : FabricTemplate() {
     override fun registerClaim(claim: Rectangle) {
         registeredClaims.add(claim.id)
     }
-}
+}*/

@@ -1,12 +1,12 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-open class FabricTemplate(val onEmptyPosition0: FabricTemplate.(x: Int, y: Int, id: Int) -> Int,
-                          val onOverlapPosition0: FabricTemplate.(x: Int, y: Int)-> Int,
+open class FabricTemplate(val onEmptyPosition0: FabricTemplate.(x: Int, y: Int, id: Int) -> Int = { x, y, id -> setClaim(x, y, id.toString());  1},
+                          val onOverlapPosition0: FabricTemplate.(x: Int, y: Int)-> Int = {x,y -> setClaim(x, y, overlapFlag);  1},
                           val shouldRegisterClaim0: FabricTemplate.(claim: Rectangle, area: Int) -> Boolean = { _:Rectangle, _: Int -> false},
                           val registerClaim0: FabricTemplate.(claim: Rectangle) -> Unit = {_:Rectangle -> {} }) {
     internal val overlapFlag = "#"
     private val fabric = Array(1000) { Array(1000) { "." } }
-    private val registeredClaims = mutableListOf<Int>()
+    val registeredClaims = mutableListOf<Int>()
 
     fun makeClaim(claim: Rectangle): Long {
         var overlap = 0L
@@ -15,12 +15,10 @@ open class FabricTemplate(val onEmptyPosition0: FabricTemplate.(x: Int, y: Int, 
             for (j in 0 until claim.width) {
                 val pos = fabric[claim.upperLeftY + i][claim.upperLeftX + j]
                 if (pos == ".") {
-//                    area += onEmptyPosition(claim.upperLeftY + i, claim.upperLeftX + j, claim.id)
                     area += onEmptyPosition0(claim.upperLeftY + i, claim.upperLeftX + j, claim.id)
                 } else if (pos == overlapFlag) {
                     continue
                 } else {
-//                    overlap += onOverlapPosition(claim.upperLeftY + i, claim.upperLeftX + j)
                     overlap += onOverlapPosition0(claim.upperLeftY + i, claim.upperLeftX + j)
                 }
             }

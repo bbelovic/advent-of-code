@@ -1,6 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day3
 
-class RectangleParser {
+object RectangleParser {
     fun parse(input: String): Rectangle {
         val regex = """#(\d+) @ (\d+),(\d+): (\d+)x(\d+)""".toRegex()
         return try {

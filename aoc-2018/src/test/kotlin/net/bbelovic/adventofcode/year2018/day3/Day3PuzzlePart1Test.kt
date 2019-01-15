@@ -18,10 +18,10 @@ class Day3PuzzlePart1Test {
 
     @Test
     fun `should throw exception for invalid input`() {
-        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("@ 335,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("# @ 335,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("#1 @ ,901: 28x17") }
-        assertThrows(IllegalArgumentException().javaClass) { RectangleParser().parse("#1 @ 335,901: ") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser.parse("@ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser.parse("# @ 335,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser.parse("#1 @ ,901: 28x17") }
+        assertThrows(IllegalArgumentException().javaClass) { RectangleParser.parse("#1 @ 335,901: ") }
     }
 
     companion object {

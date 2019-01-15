@@ -17,7 +17,7 @@ class Day3PuzzlePart2 : Puzzle<List<String>, Long> {
         val fabricTemplate = FabricTemplate(onOverlap = onOverlap, shouldRegisterClaim = shouldRegister, registerClaim = registerClaim)
 
         input.asSequence()
-                .map { it -> RectangleParser().parse(it) }
+                .map { it -> RectangleParser.parse(it) }
                 .forEach { it -> fabricTemplate.makeClaim(it) }
 
         return fabricTemplate.getNonOverlappingClaimId().toLong()

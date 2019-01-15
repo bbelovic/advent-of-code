@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource
 class Day3PuzzlePart2Test {
     @ParameterizedTest
     @MethodSource("rectangles")
-    fun `should identify claim that does not overlap`(rectangles: List<Rectangle>, expectedClaimId: Int) {
+    fun `should identify claim that does not overlap`(rectangles: List<String>, expectedClaimId: Long) {
         val puzzle = Day3PuzzlePart2()
         val actual = puzzle.solve(rectangles)
         assertEquals(expectedClaimId, actual)
@@ -18,52 +18,45 @@ class Day3PuzzlePart2Test {
         @JvmStatic
         private fun rectangles() = listOf(
                 Arguments {
-                    arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2)
-                    ), 1)
+                    arrayOf(listOf("#1 @ 1,0: 2x2"), 1L)
                 },
                 Arguments {
                     arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2)
-                    ), 3)
+                            "#1 @ 1,0: 2x2",
+                            "#2 @ 2,1: 2x2",
+                            "#3 @ 0,2: 2x2"), 3L)
 
                 },
                 Arguments {
                     arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2),
-                            Rectangle(5, 0, 0, 1, 2),
-                            Rectangle(4, 0, 3, 4, 1)
-                    ), 5)
+                            "#1 @ 1,0: 2x2",
+                            "#2 @ 2,1: 2x2",
+                            "#3 @ 0,2: 2x2",
+                            "#5 @ 0,0: 1x2",
+                            "#4 @ 0,3: 4x1"), 5L)
                 },
                 Arguments {
                     arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2),
-                            Rectangle(5, 0, 0, 1, 2),
-                            Rectangle(4, 0, 3, 4, 1),
-                            Rectangle(6, 0, 1, 1, 2),
-                            Rectangle(7, 3, 0, 1, 1)
-                    ), 7)
+                            "#1 @ 1,0: 2x2",
+                            "#2 @ 2,1: 2x2",
+                            "#3 @ 0,2: 2x2",
+                            "#5 @ 0,0: 1x2",
+                            "#4 @ 0,3: 4x1",
+                            "#6 @ 0,1: 1x2",
+                            "#7 @ 3,0: 1x1"), 7L)
                 },
                 Arguments {
                     arrayOf(listOf(
-                            Rectangle(1, 1, 0, 2, 2),
-                            Rectangle(2, 2, 1, 2, 2),
-                            Rectangle(3, 0, 2, 2, 2),
-                            Rectangle(5, 0, 0, 1, 2),
-                            Rectangle(4, 0, 3, 4, 1),
-                            Rectangle(6, 0, 1, 1, 2),
-                            Rectangle(7, 3, 0, 1, 1),
-                            Rectangle(8, 0, 1, 1, 2)
-                    ), 7)
+                            "#1 @ 1,0: 2x2",
+                            "#2 @ 2,1: 2x2",
+                            "#3 @ 0,2: 2x2",
+                            "#5 @ 0,0: 1x2",
+                            "#4 @ 0,3: 4x1",
+                            "#6 @ 0,1: 1x2",
+                            "#7 @ 3,0: 1x1",
+                            "#8 @ 0,1: 1x2"), 7L)
 
                 }
         )
-
     }
 }

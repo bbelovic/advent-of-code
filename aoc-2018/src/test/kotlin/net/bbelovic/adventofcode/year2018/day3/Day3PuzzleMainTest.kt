@@ -1,32 +1,28 @@
 package net.bbelovic.adventofcode.year2018.day3
 
 import net.bbelovic.adventofcode.InputReader
+import net.bbelovic.adventofcode.Puzzle
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
-import java.util.ArrayList
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
-const val WIDTH = 1000
-const val HEIGHT = 1000
 const val EXPECTED_OVERLAP_PART_1 = 111326L
-const val EXPECTED_NON_OVERLAPPING_ID = 1019
+const val EXPECTED_NON_OVERLAPPING_ID = 1019L
 
 class Day3PuzzleMainTest {
-    @Test
-    fun `should solve puzzle`() {
-        val puzzle = Day3PuzzlePart1()
+    @ParameterizedTest
+    @MethodSource("testData")
+    fun `should solve puzzle`(puzzle: Puzzle<List<String>, Long>, expectedResult: Long) {
         val inputs = InputReader().readAllLines("input3.txt")
-        val actualOverlap = puzzle.solve(inputs)
-        assertEquals(EXPECTED_OVERLAP_PART_1, actualOverlap)
+        val actualResult = puzzle.solve(inputs)
+        assertEquals(expectedResult, actualResult)
     }
 
-    @Test
-    fun `should solve puzzle part 2`() {
-        val inputs = InputReader().readAllLines("input3.txt")
-        val puzzle = Day3PuzzlePart2()
-        val rectangles = inputs.asSequence()
-                .map { it -> RectangleParser().parse(it) }
-                .toCollection(ArrayList())
-        val actual = puzzle.solve(rectangles)
-        assertEquals(EXPECTED_NON_OVERLAPPING_ID, actual)
+    companion object {
+        @JvmStatic
+        private fun testData() = listOf(
+                Arguments { arrayOf(Day3PuzzlePart1(), EXPECTED_OVERLAP_PART_1) },
+                Arguments { arrayOf(Day3PuzzlePart2(), EXPECTED_NON_OVERLAPPING_ID) })
     }
 }

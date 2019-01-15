@@ -14,7 +14,9 @@ class Day3PuzzlePart2 : Puzzle<List<String>, Long> {
             removeClaimIfPresent(get(x, y).toInt())
             setClaim(x, y, overlapFlag);  1}
 
-        val fabricTemplate = FabricTemplate(onOverlap = onOverlap, shouldRegisterClaim = shouldRegister, registerClaim = registerClaim)
+        val fabricTemplate = FabricTemplate(onOverlap = onOverlap,
+                shouldRegisterClaim = shouldRegister,
+                registerClaim = registerClaim)
 
         input.asSequence()
                 .map { it -> RectangleParser.parse(it) }

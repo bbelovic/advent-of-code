@@ -11,7 +11,7 @@ object InputLineComparator : Comparator<String> {
         return first.compareTo(second)
     }
 
-    fun parseDateAndTimeFromLine(line: String): LocalDateTime {
+    private fun parseDateAndTimeFromLine(line: String): LocalDateTime {
         val regex = """\[([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2})\] ([a-zA-Z0-9# ]+)""".toRegex()
         val (dateTimePart: String) = regex.matchEntire(line)!!.destructured
         val temporalAccessor = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").parse(dateTimePart)

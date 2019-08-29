@@ -2,6 +2,10 @@ package net.bbelovic.adventofcode.year2018.day4
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.time.Duration
+import java.time.LocalTime
+import java.time.Period
+import java.time.temporal.ChronoUnit
 
 internal class Day4PuzzlePart1Test {
     @Test
@@ -21,5 +25,15 @@ internal class Day4PuzzlePart1Test {
 
         val actual = input.sortedWith(InputLineComparator).toList()
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun test() {
+        val asleep = LocalTime.of(0, 24)
+        val awake = LocalTime.of(0, 37)
+        val between = Duration.between(asleep, awake)
+        println(between.dividedBy(Duration.of(60, ChronoUnit.SECONDS)))
+
+
     }
 }

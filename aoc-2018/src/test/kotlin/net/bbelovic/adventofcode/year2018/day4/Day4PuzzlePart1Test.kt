@@ -6,6 +6,8 @@ import java.time.Duration
 import java.time.LocalTime
 import java.time.Period
 import java.time.temporal.ChronoUnit
+import java.util.*
+import java.util.stream.Collectors
 
 internal class Day4PuzzlePart1Test {
     @Test
@@ -32,7 +34,19 @@ internal class Day4PuzzlePart1Test {
         val asleep = LocalTime.of(0, 24)
         val awake = LocalTime.of(0, 37)
         val between = Duration.between(asleep, awake)
-        println(between.dividedBy(Duration.of(60, ChronoUnit.SECONDS)))
+//        println(between.dividedBy(Duration.of(60, ChronoUnit.SECONDS)))
+
+        val bitSet = BitSet()
+        val bitSet2 = BitSet()
+        val bitSet3 = BitSet()
+        bitSet.set(5, 25)
+        bitSet2.set(30, 54)
+        bitSet3.set(24, 28)
+
+        bitSet.and(bitSet3)
+//        bitSet.and(bitSet3)
+
+        bitSet.stream().forEach { println(it) }
 
 
     }

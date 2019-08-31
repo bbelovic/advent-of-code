@@ -11,8 +11,7 @@ class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
         val writer = Files.newBufferedWriter(Paths.get("sorted-input4.txt"))
 
         writer.use { w ->
-            InputReader().readAllLines("input4.txt")
-                    .asSequence()
+                    input.asSequence()
                     .sortedWith(InputLineComparator)
                     .forEach {
                         w.write(it)

@@ -1,5 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day4
 
+import net.bbelovic.adventofcode.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.Duration
@@ -7,6 +8,14 @@ import java.time.LocalTime
 import java.util.*
 
 internal class Day4PuzzlePart1Test {
+
+    @Test
+    fun `should sort input file`() {
+        val puzzle = Day4PuzzlePart1()
+        val input = InputReader().readAllLines("input4.txt")
+        puzzle.solve(input)
+    }
+
     @Test
     fun testSortInput() {
         val input = """

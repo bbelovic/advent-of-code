@@ -3,7 +3,11 @@ package net.bbelovic.adventofcode.year2018.day4
 import net.bbelovic.adventofcode.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.io.BufferedReader
+import java.io.Reader
+import java.io.StringReader
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
@@ -14,6 +18,46 @@ internal class Day4PuzzlePart1Test {
         val puzzle = Day4PuzzlePart1()
         val input = InputReader().readAllLines("input4.txt")
         puzzle.solve(input)
+    }
+
+    @Test
+    fun `should parse input`() {
+        val input = """
+            [1518-02-10 23:56] Guard #1487 begins shift
+            [1518-02-11 00:14] falls asleep
+            [1518-02-11 00:40] wakes up
+            [1518-02-11 23:53] Guard #1493 begins shift
+            [1518-02-12 00:04] falls asleep
+            [1518-02-12 00:05] wakes up
+            [1518-02-12 00:22] falls asleep
+            [1518-02-12 00:43] wakes up
+            [1518-02-12 23:57] Guard #103 begins shift
+            [1518-02-13 00:25] falls asleep
+            [1518-02-13 00:47] wakes up
+            [1518-02-13 00:52] falls asleep
+            [1518-02-13 00:58] wakes up
+        """.trimIndent()
+        val r = StringReader(input)
+        val actual:List<GuardRecord> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
+
+        val bs1 = BitSet()
+        bs1.set(13, 40)
+
+        val bs2 = BitSet()
+        bs2.set(4, 5)
+        bs2.set(22, 43)
+
+        val bs3 = BitSet()
+        bs3.set(25, 47)
+        bs3.set(52, 58)
+
+        val gd1 = GuardRecord(1487, LocalDate.of(1518, 2, 11), bs1)
+        val gd2 = GuardRecord(1493, LocalDate.of(1518, 2, 12), bs2)
+        val gd3 = GuardRecord(103, LocalDate.of(1518, 2, 13), bs3)
+
+        val expected = listOf(gd1, gd2, gd3)
+        assertEquals(expected, actual)
+
     }
 
     @Test
@@ -53,6 +97,26 @@ internal class Day4PuzzlePart1Test {
 //        bitSet.and(bitSet3)
 
         bitSet.stream().forEach { println(it) }
+
+        val bs1 = BitSet()
+        bs1.set(3, 20)
+
+        val bs2 = BitSet()
+        bs2.set(4, 11)
+
+        val bs3 = BitSet()
+        bs3.set(1, 5)
+
+        val gd1 = GuardRecord(10, LocalDate.of(2020, 1, 12), bs1)
+        val gd2 = GuardRecord(11, LocalDate.of(2020, 1, 13), bs2)
+        val gd3 = GuardRecord(10, LocalDate.of(2020, 1, 14), bs3)
+
+        val records = sequenceOf(gd1, gd2, gd3)
+
+        val record = records.maxBy { guardRecord -> guardRecord.minutesAsleep.cardinality() }
+        val groupBy = records.groupBy({ r -> r.id }, { r2 -> r2.minutesAsleep })
+        val mapValues = groupBy.mapValues { e -> e.value.asSequence().map { bs -> bs.cardinality() }.sum() }
+        println(mapValues)
 
 
     }

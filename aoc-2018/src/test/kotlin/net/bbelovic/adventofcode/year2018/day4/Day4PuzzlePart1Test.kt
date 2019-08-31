@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.Duration
 import java.time.LocalTime
-import java.time.Period
-import java.time.temporal.ChronoUnit
 import java.util.*
-import java.util.stream.Collectors
 
 internal class Day4PuzzlePart1Test {
     @Test

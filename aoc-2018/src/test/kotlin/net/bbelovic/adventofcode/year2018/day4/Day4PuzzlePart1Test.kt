@@ -1,10 +1,10 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.InputReader
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
-import java.io.Reader
 import java.io.StringReader
 import java.time.Duration
 import java.time.LocalDate
@@ -119,5 +119,15 @@ internal class Day4PuzzlePart1Test {
         println(mapValues)
 
 
+    }
+
+    @Test
+    fun testRegex() {
+        val regex1 = """.*#([0-9]{1,4}).*""".toRegex()
+        val input = "[1518-02-14 00:01] Guard #2389 begins shift"
+        val matches = regex1.matches(input)
+        Assertions.assertTrue(matches)
+        val (id: String) = regex1.matchEntire(input)!!.destructured
+        assertEquals(2389, id.toInt())
     }
 }

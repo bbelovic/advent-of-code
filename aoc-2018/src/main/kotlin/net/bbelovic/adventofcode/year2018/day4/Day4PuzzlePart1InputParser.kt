@@ -7,7 +7,8 @@ object Day4PuzzlePart1InputParser {
         val result = mutableListOf<GuardRecord>()
         r.use {
             var s: String? = null
-            it.forEachLine {
+            it.forEachLine {line ->
+                val regex1 = """.*#([0-9]{1,4}).*"""
 
             }
         }

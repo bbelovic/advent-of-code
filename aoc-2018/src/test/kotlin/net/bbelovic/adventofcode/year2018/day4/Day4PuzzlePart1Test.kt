@@ -1,8 +1,8 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.InputReader
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.StringReader
@@ -125,9 +125,21 @@ internal class Day4PuzzlePart1Test {
     fun testRegex() {
         val regex1 = """.*#([0-9]{1,4}).*""".toRegex()
         val input = "[1518-02-14 00:01] Guard #2389 begins shift"
-        val matches = regex1.matches(input)
-        Assertions.assertTrue(matches)
+        val matches = input.matches(regex1)
+        assertTrue(matches)
         val (id: String) = regex1.matchEntire(input)!!.destructured
         assertEquals(2389, id.toInt())
+
+        val regex2 = """.*[0-9]{2}:([0-9]{2}).*falls asleep""".toRegex()
+        val input2 = "[1518-02-11 00:14] falls asleep"
+        assertTrue(input2.matches(regex2))
+        val (asleep: String) = regex2.matchEntire(input2)!!.destructured
+        assertEquals(14, asleep.toInt())
+
+        val regex3 = """.*[0-9]{2}:([0-9]{2}).* wakes up""".toRegex()
+        val input3 = "[1518-02-11 00:40] wakes up"
+        assertTrue(input3.matches(regex3))
+        val (awakes: String) = regex3.matchEntire(input3)!!.destructured
+        assertEquals(40, awakes.toInt())
     }
 }

@@ -130,16 +130,17 @@ internal class Day4PuzzlePart1Test {
         val (id: String) = regex1.matchEntire(input)!!.destructured
         assertEquals(2389, id.toInt())
 
-        val regex2 = """.*[0-9]{2}:([0-9]{2}).*falls asleep""".toRegex()
+        val regex2 = """\[([0-9]{4}-[0-9]{2}-[0-9]{2}).*:([0-9]{2}).*asleep""".toRegex()
         val input2 = "[1518-02-11 00:14] falls asleep"
         assertTrue(input2.matches(regex2))
-        val (asleep: String) = regex2.matchEntire(input2)!!.destructured
-        assertEquals(14, asleep.toInt())
+        val (date: String, minute: String) = regex2.matchEntire(input2)!!.destructured
+        assertEquals(14, minute.toInt())
+        assertEquals("1518-02-11", date)
 
-        val regex3 = """.*[0-9]{2}:([0-9]{2}).* wakes up""".toRegex()
+        val regex3 = """.*[0-9]{2}:([0-9]{2}).*up""".toRegex()
         val input3 = "[1518-02-11 00:40] wakes up"
         assertTrue(input3.matches(regex3))
-        val (awakes: String) = regex3.matchEntire(input3)!!.destructured
-        assertEquals(40, awakes.toInt())
+        val (minutes: String) = regex3.matchEntire(input3)!!.destructured
+        assertEquals(40, minutes.toInt())
     }
 }

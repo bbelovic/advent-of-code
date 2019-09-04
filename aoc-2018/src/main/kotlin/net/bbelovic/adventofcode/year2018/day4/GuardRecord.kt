@@ -1,6 +1,10 @@
 package net.bbelovic.adventofcode.year2018.day4
 
-import java.time.LocalDate
-import java.util.*
+data class GuardRecord(val id: Int) {
+    private var minuteAsleep: Int = 0
 
-data class GuardRecord(val id: Int, var date: LocalDate?, val minutesAsleep: BitSet)
+
+    fun asleep(minute: Int) {
+        this.minuteAsleep = minute
+    }
+}

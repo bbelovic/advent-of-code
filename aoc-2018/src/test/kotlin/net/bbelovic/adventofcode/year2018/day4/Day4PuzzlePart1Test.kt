@@ -38,7 +38,7 @@ internal class Day4PuzzlePart1Test {
             [1518-02-13 00:58] wakes up
         """.trimIndent()
         val r = StringReader(input)
-        val actual:List<GuardRecord> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
+        val actual:List<GuardRecord?> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
 
         val bs1 = BitSet()
         bs1.set(13, 40)

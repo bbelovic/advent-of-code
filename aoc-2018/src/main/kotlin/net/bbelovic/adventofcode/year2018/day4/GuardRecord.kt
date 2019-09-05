@@ -1,10 +1,12 @@
 package net.bbelovic.adventofcode.year2018.day4
 
+import java.util.*
+
 data class GuardRecord(val id: Int) {
-    private var minuteAsleep: Int = 0
+    private val minutes = BitSet()
+    var minuteAsleep: Int = 0
 
-
-    fun asleep(minute: Int) {
-        this.minuteAsleep = minute
+    fun wakeUp(minute: Int) {
+        minutes.set(minuteAsleep, minute)
     }
 }

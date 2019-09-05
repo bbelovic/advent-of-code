@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.StringReader
 import java.time.Duration
-import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
@@ -51,9 +50,9 @@ internal class Day4PuzzlePart1Test {
         bs3.set(25, 47)
         bs3.set(52, 58)
 
-        val gd1 = GuardRecord(1487, LocalDate.of(1518, 2, 11), bs1)
-        val gd2 = GuardRecord(1493, LocalDate.of(1518, 2, 12), bs2)
-        val gd3 = GuardRecord(103, LocalDate.of(1518, 2, 13), bs3)
+        val gd1 = GuardRecord(1487)
+        val gd2 = GuardRecord(1493)
+        val gd3 = GuardRecord(103)
 
         val expected = listOf(gd1, gd2, gd3)
         assertEquals(expected, actual)
@@ -107,16 +106,16 @@ internal class Day4PuzzlePart1Test {
         val bs3 = BitSet()
         bs3.set(1, 5)
 
-        val gd1 = GuardRecord(10, LocalDate.of(2020, 1, 12), bs1)
-        val gd2 = GuardRecord(11, LocalDate.of(2020, 1, 13), bs2)
-        val gd3 = GuardRecord(10, LocalDate.of(2020, 1, 14), bs3)
+        val gd1 = GuardRecord(10)
+        val gd2 = GuardRecord(11)
+        val gd3 = GuardRecord(10)
 
         val records = sequenceOf(gd1, gd2, gd3)
 
-        val record = records.maxBy { guardRecord -> guardRecord.minutesAsleep.cardinality() }
-        val groupBy = records.groupBy({ r -> r.id }, { r2 -> r2.minutesAsleep })
-        val mapValues = groupBy.mapValues { e -> e.value.asSequence().map { bs -> bs.cardinality() }.sum() }
-        println(mapValues)
+//        val record = records.maxBy { guardRecord -> guardRecord.minutesAsleep.cardinality() }
+//        val groupBy = records.groupBy({ r -> r.id }, { r2 -> r2.minutesAsleep })
+//        val mapValues = groupBy.mapValues { e -> e.value.asSequence().map { bs -> bs.cardinality() }.sum() }
+//        println(mapValues)
 
 
     }

@@ -60,7 +60,7 @@ internal class Day4PuzzlePart1Test {
     }
 
     @Test
-    fun testSortInput() {
+    fun `should sort test input`() {
         val input = """
                     [1518-08-06 00:13] falls asleep
                     [1518-06-10 00:37] wakes up

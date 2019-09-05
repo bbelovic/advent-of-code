@@ -1,6 +1,5 @@
 package net.bbelovic.adventofcode.year2018.day4
 
-import net.bbelovic.adventofcode.InputReader
 import net.bbelovic.adventofcode.Puzzle
 import java.nio.file.Files
 import java.nio.file.Paths

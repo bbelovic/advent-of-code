@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.StringReader
-import java.util.*
 
 internal class Day4PuzzlePart1Test {
 
@@ -42,20 +41,19 @@ internal class Day4PuzzlePart1Test {
         val r = StringReader(input)
         val actual:List<GuardRecord?> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
 
-        val bs1 = BitSet()
-        bs1.set(13, 40)
-
-        val bs2 = BitSet()
-        bs2.set(4, 5)
-        bs2.set(22, 43)
-
-        val bs3 = BitSet()
-        bs3.set(25, 47)
-        bs3.set(52, 58)
-
         val gd1 = GuardRecord(1487)
+        gd1.asleep(14)
+        gd1.wakeUp(40)
         val gd2 = GuardRecord(1493)
+        gd2.asleep(4)
+        gd2.wakeUp(5)
+        gd2.asleep(22)
+        gd2.wakeUp(43)
         val gd3 = GuardRecord(103)
+        gd3.asleep(25)
+        gd3.wakeUp(47)
+        gd3.asleep(52)
+        gd3.wakeUp(58)
 
         val expected = listOf(gd1, gd2, gd3)
         assertEquals(expected, actual)

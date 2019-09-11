@@ -15,6 +15,8 @@ class GuardRecord(val id: Int) {
         this.minuteAsleep = minuteAsleep
     }
 
+    fun minutesSlept() = minutes.cardinality()
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

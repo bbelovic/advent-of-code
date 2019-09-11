@@ -36,7 +36,8 @@ internal class Day4PuzzlePart1Test {
                 .trimIndent().lines().shuffled()
 
         val puzzle = Day4PuzzlePart1()
-        puzzle.solve(demoInput)
+        val actual = puzzle.solve(demoInput)
+        assertEquals(240, actual)
 
     }
 

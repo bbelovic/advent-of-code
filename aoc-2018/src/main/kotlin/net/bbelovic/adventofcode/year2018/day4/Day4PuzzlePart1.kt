@@ -2,12 +2,12 @@ package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.Puzzle
 import java.nio.file.Files
-import java.nio.file.Paths
 
 class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
     override fun solve(input: List<String>): Int {
 
-        val writer = Files.newBufferedWriter(Paths.get("sorted-input4.txt"))
+        val tempFile = Files.createTempFile("puzzle4-sorted-", ".txt")
+        val writer = Files.newBufferedWriter(tempFile)
 
         writer.use { w ->
                     input.asSequence()

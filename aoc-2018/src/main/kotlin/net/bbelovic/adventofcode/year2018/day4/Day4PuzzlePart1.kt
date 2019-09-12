@@ -24,6 +24,7 @@ class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
         val downStream = Collectors.summingInt(minutesSlept)
         val m: Map<Int, Int> = records.stream()
                 .collect(Collectors.groupingBy(GuardRecord::id, downStream))
+        println(m)
         return 0
     }
 }

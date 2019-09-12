@@ -13,7 +13,6 @@ import java.io.StringReader
 internal class Day4PuzzlePart1Test {
 
     @Test
-    @Disabled
     fun `should process demo input`() {
         val demoInput = """
             [1518-11-01 00:00] Guard #10 begins shift

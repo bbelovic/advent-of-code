@@ -21,9 +21,10 @@ class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
         val records = Day4PuzzlePart1InputParser.parse(Files.newBufferedReader(tempFile))
         val recordIdExtractor: (GuardRecord)->Int = GuardRecord::id
         val minutesSlept: (GuardRecord) -> Int = GuardRecord::minutesSlept
-        val downStream = Collectors.summingInt(minutesSlept)
-        val m: Map<Int, Int> = records.stream()
-                .collect(Collectors.groupingBy(GuardRecord::id, downStream))
+        val downStream = Collectors.summingInt { g: GuardRecord -> g.minutesSlept()}
+
+        val m: Map<Int?, Int> = records.stream()
+                .collect(Collectors.groupingBy({g:GuardRecord? -> g?.id}, downStream))
         println(m)
         return 0
     }

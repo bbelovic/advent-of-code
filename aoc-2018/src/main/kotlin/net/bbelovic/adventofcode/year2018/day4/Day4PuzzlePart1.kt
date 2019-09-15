@@ -2,6 +2,7 @@ package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.Puzzle
 import java.nio.file.Files
+import java.util.*
 import java.util.stream.Collectors
 
 class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
@@ -11,7 +12,7 @@ class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
         val writer = Files.newBufferedWriter(tempFile)
 
         writer.use { w ->
-                    input.asSequence()
+            input.asSequence()
                     .sortedWith(InputLineComparator)
                     .forEach {
                         w.write(it)
@@ -19,13 +20,17 @@ class Day4PuzzlePart1 : Puzzle<List<String>, Int> {
                     }
         }
         val records = Day4PuzzlePart1InputParser.parse(Files.newBufferedReader(tempFile))
-        val recordIdExtractor: (GuardRecord)->Int = GuardRecord::id
-        val minutesSlept: (GuardRecord) -> Int = GuardRecord::minutesSlept
-        val downStream = Collectors.summingInt { g: GuardRecord -> g.minutesSlept()}
+        val downStream = Collectors.summingInt { g: GuardRecord -> g.minutesSlept() }
 
-        val m: Map<Int?, Int> = records.stream()
-                .collect(Collectors.groupingBy({g:GuardRecord? -> g?.id}, downStream))
-        println(m)
+        val max = records.stream()
+                .collect(Collectors.groupingBy({ g: GuardRecord? -> g?.id }, downStream))
+                .asSequence()
+                .maxBy { entry -> entry.value }
+        val record = records.filter { guardRecord -> guardRecord?.id == max?.key }
+
+        val bs = BitSet()
+        bs.set(0, bs.size() - 1, true)
+        record.forEach { guardRecord: GuardRecord? -> bs.and(guardRecord?.minutes) }
         return 0
     }
 }

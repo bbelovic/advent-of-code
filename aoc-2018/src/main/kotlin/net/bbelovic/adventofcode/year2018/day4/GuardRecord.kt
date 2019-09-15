@@ -3,7 +3,7 @@ package net.bbelovic.adventofcode.year2018.day4
 import java.util.*
 
 class GuardRecord(val id: Int) {
-    private val minutes = BitSet()
+    val minutes = BitSet()
 
     private var minuteAsleep: Int = 0
 

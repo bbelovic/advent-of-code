@@ -33,7 +33,7 @@ internal class Day4PuzzlePart1Test {
             [1518-11-05 00:55] wakes up"""
                 .trimIndent().lines().shuffled()
 
-        val puzzle = Day4PuzzlePart1()
+        val puzzle = Day4PuzzlePart1(MostMinutesGuardAsleepSelector())
         val actual = puzzle.solve(demoInput)
         assertEquals(240, actual)
 
@@ -41,7 +41,7 @@ internal class Day4PuzzlePart1Test {
 
     @Test
     fun `should sort input file`() {
-        val puzzle = Day4PuzzlePart1()
+        val puzzle = Day4PuzzlePart1(MostMinutesGuardAsleepSelector())
         val input = InputReader().readAllLines("input4.txt")
         val actual = puzzle.solve(input)
         assertEquals(4716, actual)
@@ -133,7 +133,7 @@ internal class Day4PuzzlePart1Test {
             return listOf(gd1, gd2, gd3)
         }
         @JvmStatic
-        fun testData(): List<Arguments> {
+        private fun testData(): List<Arguments> {
             return listOf(
                     Arguments {arrayOf(actual1, expected1())},
                     Arguments {arrayOf(actual2, expected2())})

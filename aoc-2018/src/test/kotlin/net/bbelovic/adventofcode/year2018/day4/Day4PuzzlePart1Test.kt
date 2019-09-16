@@ -41,11 +41,11 @@ internal class Day4PuzzlePart1Test {
     }
 
     @Test
-    @Disabled
     fun `should sort input file`() {
         val puzzle = Day4PuzzlePart1()
         val input = InputReader().readAllLines("input4.txt")
-        puzzle.solve(input)
+        val actual = puzzle.solve(input)
+        assertEquals(4716, actual)
     }
 
     @Test

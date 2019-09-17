@@ -11,17 +11,21 @@ object Day4PuzzlePart1InputParser {
         r.use {
             var record = GuardRecord()
             it.forEachLine {line ->
-                if (line matches regex1) {
-                    val (id: String) = regex1.matchEntire(line)!!.destructured
-                    record = GuardRecord()
-                    record.id = id.toInt()
-                    result.add(record)
-                } else if (line matches regex2) {
-                    val (minuteAsleep: String) = regex2.matchEntire(line)!!.destructured
-                    record.asleep(minuteAsleep.toInt())
-                } else if (line matches regex3) {
-                    val (minuteAwake: String) = regex3.matchEntire(line)!!.destructured
-                    record.wakeUp(minuteAwake.toInt())
+                when {
+                    line matches regex1 -> {
+                        val (id: String) = regex1.matchEntire(line)!!.destructured
+                        record = GuardRecord()
+                        record.id = id.toInt()
+                        result.add(record)
+                    }
+                    line matches regex2 -> {
+                        val (minuteAsleep: String) = regex2.matchEntire(line)!!.destructured
+                        record.asleep(minuteAsleep.toInt())
+                    }
+                    line matches regex3 -> {
+                        val (minuteAwake: String) = regex3.matchEntire(line)!!.destructured
+                        record.wakeUp(minuteAwake.toInt())
+                    }
                 }
             }
         }

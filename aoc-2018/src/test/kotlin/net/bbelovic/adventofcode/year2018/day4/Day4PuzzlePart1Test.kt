@@ -70,7 +70,7 @@ internal class Day4PuzzlePart1Test {
     @MethodSource("testData")
     fun `should parse input`(input: String, expected: List<GuardRecord>) {
         val r = StringReader(input)
-        val actual: List<GuardRecord?> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
+        val actual: List<GuardRecord> = Day4PuzzlePart1InputParser.parse(BufferedReader(r))
         assertEquals(expected, actual)
     }
 
@@ -104,15 +104,18 @@ internal class Day4PuzzlePart1Test {
         """.trimIndent()
 
         private fun expected1(): List<GuardRecord> {
-            val gd1 = GuardRecord(1487)
+            val gd1 = GuardRecord()
+            gd1.id = 1487
             gd1.asleep(14)
             gd1.wakeUp(40)
-            val gd2 = GuardRecord(1493)
+            val gd2 = GuardRecord()
+            gd2.id = 1493
             gd2.asleep(4)
             gd2.wakeUp(5)
             gd2.asleep(22)
             gd2.wakeUp(43)
-            val gd3 = GuardRecord(103)
+            val gd3 = GuardRecord()
+            gd3.id = 103
             gd3.asleep(25)
             gd3.wakeUp(47)
             gd3.asleep(52)
@@ -121,11 +124,14 @@ internal class Day4PuzzlePart1Test {
         }
 
         private fun expected2(): List<GuardRecord> {
-            val gd1 = GuardRecord(1487)
+            val gd1 = GuardRecord()
+            gd1.id = 1487
             gd1.asleep(14)
             gd1.wakeUp(40)
-            val gd2 = GuardRecord(1493)
-            val gd3 = GuardRecord(103)
+            val gd2 = GuardRecord()
+            gd2.id = 1493
+            val gd3 = GuardRecord()
+            gd3.id = 103
             gd3.asleep(25)
             gd3.wakeUp(47)
             gd3.asleep(52)

@@ -2,7 +2,8 @@ package net.bbelovic.adventofcode.year2018.day4
 
 import java.util.*
 
-class GuardRecord(val id: Int) {
+class GuardRecord {
+    var id: Int = 0
     val minutes = BitSet()
 
     private var minuteAsleep: Int = 0
@@ -36,7 +37,7 @@ class GuardRecord(val id: Int) {
     }
 
     override fun toString(): String {
-        return "GuardRecord(id=$id, minutes=$minutes, minuteAsleep=$minuteAsleep)"
+        return "GuardRecord[id=$id, minutes=$minutes, minuteAsleep=$minuteAsleep]"
     }
 
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class Day4PuzzlePart2Test {
-    @Test @Disabled
+    @Test //@Disabled
     fun `should process demo input`() {
         val demoInput = """
             [1518-11-01 00:00] Guard #10 begins shift
@@ -26,7 +26,7 @@ internal class Day4PuzzlePart2Test {
             [1518-11-05 00:45] falls asleep
             [1518-11-05 00:55] wakes up"""
                 .trimIndent().lines().shuffled()
-        val puzzle = Day4PuzzlePart1(MostMinutesGuardAsleepSelector())
+        val puzzle = Day4PuzzlePart1(SameMinuteGuardAsleepSelector())
         val actual = puzzle.solve(demoInput)
         assertEquals(4455, actual)
 

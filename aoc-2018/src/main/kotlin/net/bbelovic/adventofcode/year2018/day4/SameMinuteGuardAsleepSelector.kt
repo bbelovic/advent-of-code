@@ -1,6 +1,5 @@
 package net.bbelovic.adventofcode.year2018.day4
 
-import java.util.function.Function
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
@@ -16,6 +15,24 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
                 Collectors.groupingBy({g: GuardRecord -> g.id}, Collectors.flatMapping(y, Collectors.toList<Int>())))
 
         println(m)
+
+        val identity = { v: Int -> v }
+
+        val keyMapper = {entry: Map.Entry<Int, List<Int>> -> entry.key}
+        val valueMapper =
+                {entry: Map.Entry<Int, List<Int>> -> entry.value.stream()
+                        .collect(Collectors.groupingBy(identity, Collectors.counting()))
+                        .values.stream().mapToInt {value -> value.toInt() }.max().orElse(-1) }
+
+
+        val round2 = m.entries.stream().collect(Collectors.toMap(keyMapper, valueMapper))
+
+        val ints = listOf(1, 1, 11, 2, 3, 1, 2, 4, 1)
+                .stream()
+                .collect(Collectors.groupingBy(identity, Collectors.counting()))
+
+
+        println("res=$round2")
 
         val firstRound = records.asSequence().groupingBy { it.id }
                 .aggregate { _, accumulator: MutableList<Int>?, element, first ->

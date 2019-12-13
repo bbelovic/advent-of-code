@@ -17,12 +17,18 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
         println(m)
 
         val identity = { v: Int -> v }
+        val toPairMapper = {e: Map.Entry<Int, Int> -> Pair(e.key, e.value) }
 
         val keyMapper = {entry: Map.Entry<Int, List<Int>> -> entry.key}
         val valueMapper =
-                {entry: Map.Entry<Int, List<Int>> -> entry.value.stream()
-                        .collect(Collectors.groupingBy(identity, Collectors.counting()))
-                        .values.stream().mapToInt {value -> value.toInt() }.max().orElse(-1) }
+                { entry: Map.Entry<Int, List<Int>> ->
+                    entry.value.stream()
+                            .collect(Collectors.groupingBy(identity, Collectors.counting()))
+                            .entries.stream().map { t: MutableMap.MutableEntry<Int, Long>? -> Pair(t!!.key, t!!.value) }
+                            .collect(Collectors.toList())
+                }
+                        //.values.stream().mapToInt {value -> value.toInt() }.max().orElse(-1) }
+
 
 
         val round2 = m.entries.stream().collect(Collectors.toMap(keyMapper, valueMapper))

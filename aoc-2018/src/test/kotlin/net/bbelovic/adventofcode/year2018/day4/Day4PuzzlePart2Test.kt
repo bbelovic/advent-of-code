@@ -1,11 +1,10 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class Day4PuzzlePart2Test {
-    @Test //@Disabled
+    @Test
     fun `should process demo input`() {
         val demoInput = """
             [1518-11-01 00:00] Guard #10 begins shift
@@ -30,22 +29,5 @@ internal class Day4PuzzlePart2Test {
         val actual = puzzle.solve(demoInput)
         assertEquals(4455, actual)
 
-    }
-
-    @Test
-    fun testGrouping() {
-
-        val m = mapOf(1 to listOf(1, 2, 1, 1, 3, 3, 5), 2 to emptyList(), 3 to listOf(1, 9, 9, 5, 0, 1, 5))
-        m.asSequence().groupingBy {  }
-
-
-
-        val eachCount = listOf(1, 0, 40, 1, 4, 4, 5, 7, 0, 9, 1)
-                .asSequence()
-                .groupingBy { it }.eachCount()
-        println(eachCount)
-
-        val maxBy = eachCount.asSequence().maxBy { entry -> entry.value }
-        assertEquals(maxBy?.value, 3)
     }
 }

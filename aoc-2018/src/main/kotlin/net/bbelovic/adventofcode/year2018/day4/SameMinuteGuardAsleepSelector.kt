@@ -1,9 +1,8 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import java.util.stream.Collectors
-import java.util.stream.Stream
 
-data class IdAndMinutes(val id: Int, val minutes: Stream<Int>)
+data class IdAndMinutes(val id: Int, val minutesPair: Pair<Int, Long>)
 
 class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
     override fun process(records: List<GuardRecord>): Int {
@@ -17,7 +16,6 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
         println(m)
 
         val identity = { v: Int -> v }
-        val toPairMapper = {e: Map.Entry<Int, Int> -> Pair(e.key, e.value) }
 
         val keyMapper = {entry: Map.Entry<Int, List<Int>> -> entry.key}
         val valueMapper =
@@ -33,12 +31,19 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
 
         val round2 = m.entries.stream().collect(Collectors.toMap(keyMapper, valueMapper))
 
-        val ints = listOf(1, 1, 11, 2, 3, 1, 2, 4, 1)
-                .stream()
-                .collect(Collectors.groupingBy(identity, Collectors.counting()))
+
+        val keyFunction = {e: Map.Entry<Int, List<Pair<Int, Long>>> -> e.key}
+        val valueFunction =
+                {e: Map.Entry<Int, List<Pair<Int, Long>>> -> e.value
+                        .asSequence().maxBy { pair -> pair.second }}
+
+        val round3 = round2.entries
+                .stream().collect(Collectors.toMap(keyFunction, valueFunction))
 
 
-        println("res=$round2")
+
+        println("round2=$round2")
+        println("round3=$round3")
 
         val firstRound = records.asSequence().groupingBy { it.id }
                 .aggregate { _, accumulator: MutableList<Int>?, element, first ->

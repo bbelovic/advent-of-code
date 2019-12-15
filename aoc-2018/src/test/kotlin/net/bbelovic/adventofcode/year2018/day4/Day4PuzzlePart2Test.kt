@@ -1,5 +1,6 @@
 package net.bbelovic.adventofcode.year2018.day4
 
+import net.bbelovic.adventofcode.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -28,6 +29,14 @@ internal class Day4PuzzlePart2Test {
         val puzzle = Day4PuzzlePart1(SameMinuteGuardAsleepSelector())
         val actual = puzzle.solve(demoInput)
         assertEquals(4455, actual)
+    }
 
+    @Test
+    fun `should process puzzle input`() {
+        val puzzle = Day4PuzzlePart1(SameMinuteGuardAsleepSelector())
+        val input = InputReader().readAllLines("input4.txt")
+        val actual = puzzle.solve(input)
+
+        print(actual)
     }
 }

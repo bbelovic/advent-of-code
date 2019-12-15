@@ -27,8 +27,10 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
         val round2 = m.entries.stream().collect(Collectors.toMap(keyMapper, valueMapper))
         val keyFunction = {e: Map.Entry<Int, List<Pair<Int, Long>>> -> e.key}
         val valueFunction =
-                {e: Map.Entry<Int, List<Pair<Int, Long>>> -> e.value
-                        .asSequence().maxBy { pair -> pair.second }}
+                {e: Map.Entry<Int, List<Pair<Int, Long>>> ->
+                    val r = e.value.asSequence().maxBy { pair -> pair.second }
+                    r ?: Pair(-1, -1L)
+                }
 
         val round3 = round2.entries
                 .stream().collect(Collectors.toMap(keyFunction, valueFunction))

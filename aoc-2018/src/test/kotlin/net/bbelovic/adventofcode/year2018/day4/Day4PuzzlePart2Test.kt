@@ -27,16 +27,17 @@ internal class Day4PuzzlePart2Test {
             [1518-11-05 00:55] wakes up"""
                 .trimIndent().lines().shuffled()
         val puzzle = Day4PuzzlePart1(SameMinuteGuardAsleepSelector())
+        val expected = 4455
         val actual = puzzle.solve(demoInput)
-        assertEquals(4455, actual)
+        assertEquals(expected, actual)
     }
 
     @Test
     fun `should process puzzle input`() {
         val puzzle = Day4PuzzlePart1(SameMinuteGuardAsleepSelector())
         val input = InputReader().readAllLines("input4.txt")
+        val expected = 117061
         val actual = puzzle.solve(input)
-
-        print(actual)
+        assertEquals(expected, actual)
     }
 }

@@ -40,4 +40,12 @@ internal class Day4PuzzlePart2Test {
         val actual = puzzle.solve(input)
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `should understand grouping`() {
+        val groupingBy = listOf<Int>(1, 1, 2, 9, 0, 2, 4, 5).asSequence().groupingBy { each -> each }
+        println(groupingBy.eachCount())
+
+        groupingBy.eachCount().maxBy { entry -> entry.value ?: Map.Entry() }
+    }
 }

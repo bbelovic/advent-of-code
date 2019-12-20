@@ -18,9 +18,13 @@ class SameMinuteGuardAsleepGroupingSelector : GuardAsleepSelector {
                     }
                 }
                 .mapValues { entry -> entry.value!!.groupingBy { minutesAsleep -> minutesAsleep }.eachCount() }
-                .mapValues { entry -> entry.value.entries.map { e -> e.toPair() } }
+                .mapValues { entry -> entry.value.entries.map(this::convertToPair) }
                 .mapValues { entry -> entry.value.asSequence().maxBy { pair -> pair.second } ?: Pair(0, 0)}
                 .entries.asSequence().maxBy { entry -> entry.value.second }!!
         return id * pair.first
-}
+    }
+
+    private fun convertToPair(mapEntry: Map.Entry<Int, Int>): Pair<Int, Int> {
+        return mapEntry.toPair()
+    }
 }

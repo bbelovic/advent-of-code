@@ -8,18 +8,12 @@ class Day2PuzzlePart1 {
             when (input[pos]) {
                 // add two values, write on 3rd position, move forward
                 "1" -> {
-                    val first = input[pos + 1].toInt()
-                    val second = input[pos + 2].toInt()
-                    val resultPos = input[pos + 3].toInt()
-                    input[resultPos] = (input[first].toInt() + input[second].toInt()).toString()
-                    pos += 4; res = "add"
+                    pos = processOpCode(pos, input) {first: Int, second: Int -> first + second}
+                    res = "add"
                 }
                 "2" -> {
-                    val first = input[pos + 1].toInt()
-                    val second = input[pos + 2].toInt()
-                    val resultPos = input[pos + 3].toInt()
-                    input[resultPos] = (input[first].toInt() * input[second].toInt()).toString()
-                    pos += 4; res = "add"
+                    pos = processOpCode(pos, input) {first: Int, second: Int -> first * second}
+                    res = "add"
                 }
                 "99" -> res = "halt"
                 else -> res = "err"
@@ -28,4 +22,11 @@ class Day2PuzzlePart1 {
         return input.joinToString(separator = ",")
     }
 
+    private fun processOpCode(pos: Int, input: MutableList<String>, operation: (Int, Int) -> Int): Int {
+        val first = input[pos + 1].toInt()
+        val second = input[pos + 2].toInt()
+        val resultPos = input[pos + 3].toInt()
+        input[resultPos] = ( operation(input[first].toInt(), input[second].toInt()) ).toString()
+        return pos + 4
+    }
 }

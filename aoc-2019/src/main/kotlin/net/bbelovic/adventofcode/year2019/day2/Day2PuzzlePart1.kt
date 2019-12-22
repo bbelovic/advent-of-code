@@ -1,31 +1,34 @@
 package net.bbelovic.adventofcode.year2019.day2
 
+private const val ADDITION_OPCODE = 1
+private const val MULTIPLICATION_OPCODE = 2
+private const val HALT_OPCODE = 99
+
 class Day2PuzzlePart1 {
-    fun solve(input: MutableList<String>): String {
+    fun solve(input: MutableList<Int>): String {
         var pos = 0
-        var res = ""
-        while (res != "halt") {
-            when (input[pos]) {
-                "1" -> {
-                    pos = processOpCode(pos, input) {first: Int, second: Int -> first + second}
-                    res = "add"
+        var instructions = 0
+        do {
+            pos += instructions
+            instructions = when (input[pos]) {
+                ADDITION_OPCODE -> {
+                    processOpCode(pos, input) {first: Int, second: Int -> first + second}
                 }
-                "2" -> {
-                    pos = processOpCode(pos, input) {first: Int, second: Int -> first * second}
-                    res = "add"
+                MULTIPLICATION_OPCODE -> {
+                    processOpCode(pos, input) {first: Int, second: Int -> first * second}
                 }
-                "99" -> res = "halt"
-                else -> res = "err"
+                HALT_OPCODE -> 0
+                else -> throw IllegalArgumentException("Unsupported opcode: [${input[pos]}]")
             }
-        }
+        } while (instructions > 0)
         return input.joinToString(separator = ",")
     }
 
-    private fun processOpCode(pos: Int, input: MutableList<String>, operation: (Int, Int) -> Int): Int {
-        val first = input[pos + 1].toInt()
-        val second = input[pos + 2].toInt()
-        val resultPos = input[pos + 3].toInt()
-        input[resultPos] = ( operation(input[first].toInt(), input[second].toInt()) ).toString()
-        return pos + 4
+    private fun processOpCode(pos: Int, input: MutableList<Int>, operation: (Int, Int) -> Int): Int {
+        val firstParamPos = input[pos + 1]
+        val secondParamPos = input[pos + 2]
+        val resultPosition = input[pos + 3]
+        input[resultPosition] = operation(input[firstParamPos], input[secondParamPos])
+        return 4
     }
 }

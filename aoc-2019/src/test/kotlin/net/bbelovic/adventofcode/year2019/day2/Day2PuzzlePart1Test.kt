@@ -7,11 +7,17 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
+private const val PUZZLE_PART1_RESULT = "11590668"
+
 class Day2PuzzlePart1Test {
+    private  val delimiter = ""","""
+
     @ParameterizedTest
     @MethodSource("testData")
     fun `should process input line with both opcodes`(input: String, expectedOutput: String) {
-        val parsedInput = input.split(""",""").toMutableList()
+        val parsedInput = input.split(delimiter)
+                .map { opCode -> opCode.toInt() }
+                .toMutableList()
         val actualOutput = Day2PuzzlePart1().solve(parsedInput)
         assertThat(actualOutput).isEqualTo(expectedOutput)
     }
@@ -19,12 +25,13 @@ class Day2PuzzlePart1Test {
     @Test
     fun `should run on puzzle input`() {
         val parsedInput = InputReader().readFileIntoString("input2.txt")
-                .split(""",""")
+                .split(delimiter)
+                .map { opCode -> opCode.toInt() }
                 .toMutableList()
-        parsedInput[1] = "12"
-        parsedInput[2] = "2"
+        parsedInput[1] = 12
+        parsedInput[2] = 2
         val actualOutput = Day2PuzzlePart1().solve(parsedInput)
-        assertThat(actualOutput).startsWith("11590668")
+        assertThat(actualOutput).startsWith(PUZZLE_PART1_RESULT)
     }
 
     companion object {

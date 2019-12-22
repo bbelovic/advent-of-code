@@ -6,7 +6,6 @@ class Day2PuzzlePart1 {
         var res = ""
         while (res != "halt") {
             when (input[pos]) {
-                // add two values, write on 3rd position, move forward
                 "1" -> {
                     pos = processOpCode(pos, input) {first: Int, second: Int -> first + second}
                     res = "add"

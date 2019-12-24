@@ -29,12 +29,19 @@ class Space {
         var y = 0
         for (direction in directions) {
             val c = direction[0]
-            val steps = direction[1]
+            val steps = direction[1].toString()
             when (c) {
                 'R' -> {
                     for (i in 0 until steps.toInt()) {
                         x += right.first
                         y += right.second
+                        coordinates.add(CoordinateRecord("wire1", x, y))
+                    }
+                }
+                'U' -> {
+                    for (i in 0 until steps.toInt()) {
+                        x += up.first
+                        y += up.second
                         coordinates.add(CoordinateRecord("wire1", x, y))
                     }
                 }
@@ -46,5 +53,6 @@ class Space {
 
     val coordinates = mutableSetOf<CoordinateRecord>()
     private val right = Pair(1, 0)
+    private val up = Pair(0, 1)
 
 }

@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.year2019.day3
 
 import java.lang.IllegalArgumentException
+import java.util.concurrent.atomic.AtomicLong
 
 data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
 
@@ -23,27 +24,37 @@ data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
     }
 }
 
+// TODO - improve direction parsing
+
 class Space {
     fun move(directions: List<String>) {
         var x = 0
         var y = 0
+        val wireId = "wire-${idGenerator.incrementAndGet()}"
         for (direction in directions) {
             val c = direction[0]
             val steps = direction[1].toString()
             when (c) {
                 'R' -> {
-                    for (i in 0 until steps.toInt()) {
-                        x += right.first
-                        y += right.second
-                        coordinates.add(CoordinateRecord("wire1", x, y))
-                    }
+                    val pair = recordPosition(steps, x, y, right, wireId)
+                    x = pair.first
+                    y = pair.second
                 }
                 'U' -> {
-                    for (i in 0 until steps.toInt()) {
-                        x += up.first
-                        y += up.second
-                        coordinates.add(CoordinateRecord("wire1", x, y))
-                    }
+                    val pair = recordPosition(steps, x, y, up, wireId)
+                    x = pair.first
+                    y = pair.second
+                }
+                'L' -> {
+                    val pair = recordPosition(steps, x, y, left, wireId)
+                    x = pair.first
+                    y = pair.second
+
+                }
+                'D' -> {
+                    val pair = recordPosition(steps, x, y, down, wireId)
+                    x = pair.first
+                    y = pair.second
                 }
                 else -> throw IllegalArgumentException("Unknown direction: [$c]")
             }
@@ -51,8 +62,22 @@ class Space {
 
     }
 
+    private fun recordPosition(steps: String, x: Int, y: Int, dir: Pair<Int, Int>, wireId: String): Pair<Int, Int> {
+        var x1 = x
+        var y1 = y
+        for (i in 0 until steps.toInt()) {
+            x1 += dir.first
+            y1 += dir.second
+            coordinates.add(CoordinateRecord(wireId, x1, y1))
+        }
+        return Pair(x1, y1)
+    }
+
     val coordinates = mutableSetOf<CoordinateRecord>()
     private val right = Pair(1, 0)
+    private val left = Pair(-1, 0)
     private val up = Pair(0, 1)
+    private val down = Pair(0, -1)
+    private val idGenerator = AtomicLong(0)
 
 }

@@ -3,26 +3,7 @@ package net.bbelovic.adventofcode.year2019.day3
 import java.lang.IllegalArgumentException
 import java.util.concurrent.atomic.AtomicLong
 
-data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as CoordinateRecord
-
-        if (x != other.x) return false
-        if (y != other.y) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = x
-        result = 31 * result + y
-        return result
-    }
-}
+data class CoordinateRecord(val id: String, val x: Int, val y: Int)
 
 // TODO - improve direction parsing
 // TODO - polish Space class (properties should be defined at top)
@@ -30,7 +11,7 @@ data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
 
 class Space {
     val coordinates = mutableListOf<CoordinateRecord>()
-    val collisions = mutableListOf<CoordinateRecord>()
+    val collisions = mutableSetOf<CoordinateRecord>()
 
 
     fun move(directions: List<String>) {
@@ -76,10 +57,8 @@ class Space {
             y1 += dir.second
             val coordinateRecord = CoordinateRecord(wireId, x1, y1)
 
-
-
             collisions.addAll(coordinates.asSequence()
-                    .filter { record -> coordinateRecord == record }
+                    .filter { record -> coordinateRecord.x == record.x && coordinateRecord.y == record.y }
                     .filter { record -> coordinateRecord.id != record.id }
                     .toList())
             coordinates.add(coordinateRecord)

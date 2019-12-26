@@ -3,7 +3,7 @@ package net.bbelovic.adventofcode.year2019.day3
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-private const val WIRE_ID1 = "wire1"
+private const val WIRE_ID1 = "wire-1"
 
 internal class SpaceTest {
     @Test
@@ -11,7 +11,8 @@ internal class SpaceTest {
         val space = Space()
         space.move(listOf("R8", "U5", "L5", "D3"))
         space.move(listOf("U7", "R6", "D4", "L4"))
-        assertThat(space.collisions.size).isEqualTo(2)
+        assertThat(space.collisions)
+                .isEqualTo(mutableSetOf(CoordinateRecord(WIRE_ID1, 6, 5), CoordinateRecord(WIRE_ID1, 3, 3)))
 
     }
     @Test

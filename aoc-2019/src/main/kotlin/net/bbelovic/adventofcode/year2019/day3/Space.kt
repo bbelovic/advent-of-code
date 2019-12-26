@@ -30,6 +30,7 @@ data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
 
 class Space {
     val coordinates = mutableListOf<CoordinateRecord>()
+    val collisions = mutableListOf<CoordinateRecord>()
 
 
     fun move(directions: List<String>) {
@@ -77,10 +78,10 @@ class Space {
 
 
 
-            val collisions = coordinates.asSequence()
+            collisions.addAll(coordinates.asSequence()
                     .filter { record -> coordinateRecord == record }
                     .filter { record -> coordinateRecord.id != record.id }
-                    .toList()
+                    .toList())
             coordinates.add(coordinateRecord)
         }
         return Pair(x1, y1)

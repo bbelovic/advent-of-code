@@ -25,8 +25,13 @@ data class CoordinateRecord(val id: String, val x: Int, val y: Int) {
 }
 
 // TODO - improve direction parsing
+// TODO - polish Space class (properties should be defined at top)
+// TODO - coordinates should be a list, not set
 
 class Space {
+    val coordinates = mutableListOf<CoordinateRecord>()
+
+
     fun move(directions: List<String>) {
         var x = 0
         var y = 0
@@ -68,12 +73,18 @@ class Space {
         for (i in 0 until steps.toInt()) {
             x1 += dir.first
             y1 += dir.second
-            coordinates.add(CoordinateRecord(wireId, x1, y1))
+            val coordinateRecord = CoordinateRecord(wireId, x1, y1)
+
+
+
+            val collisions = coordinates.asSequence()
+                    .filter { record -> coordinateRecord == record }
+                    .filter { record -> coordinateRecord.id != record.id }
+                    .toList()
+            coordinates.add(coordinateRecord)
         }
         return Pair(x1, y1)
     }
-
-    val coordinates = mutableSetOf<CoordinateRecord>()
     private val right = Pair(1, 0)
     private val left = Pair(-1, 0)
     private val up = Pair(0, 1)

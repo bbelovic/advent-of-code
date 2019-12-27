@@ -17,28 +17,28 @@ class Space {
     fun move(directions: List<String>) {
         var x = 0
         var y = 0
+        val regex = """([R,L,D,U])([0-9]+)""".toRegex()
         val wireId = "wire-${idGenerator.incrementAndGet()}"
         for (direction in directions) {
-            val c = direction[0]
-            val steps = direction[1].toString()
+            val (c, steps) = regex.matchEntire(direction)!!.destructured
             when (c) {
-                'R' -> {
+                "R" -> {
                     val pair = recordPosition(steps, x, y, right, wireId)
                     x = pair.first
                     y = pair.second
                 }
-                'U' -> {
+                "U" -> {
                     val pair = recordPosition(steps, x, y, up, wireId)
                     x = pair.first
                     y = pair.second
                 }
-                'L' -> {
+                "L" -> {
                     val pair = recordPosition(steps, x, y, left, wireId)
                     x = pair.first
                     y = pair.second
 
                 }
-                'D' -> {
+                "D" -> {
                     val pair = recordPosition(steps, x, y, down, wireId)
                     x = pair.first
                     y = pair.second

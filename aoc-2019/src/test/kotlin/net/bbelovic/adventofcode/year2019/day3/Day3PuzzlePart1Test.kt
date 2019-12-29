@@ -1,11 +1,22 @@
 package net.bbelovic.adventofcode.year2019.day3
 
+import net.bbelovic.adventofcode.InputReader
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day3PuzzlePart1Test {
+
+    @Test
+    fun `should compute Manhattan distance from central port for puzzle part1 input`() {
+        val input = InputReader().readAllLines("input3.txt")
+        val toList = input.asSequence().map { each -> each.split(",") }.toList()
+        val actualDistance = Day3PuzzlePart1(Space()).solve(toList)
+        print(actualDistance)
+    }
+
     @ParameterizedTest
     @MethodSource("testData")
     fun `should compute Manhattan distance from central port to closest intersection`(first: List<String>,

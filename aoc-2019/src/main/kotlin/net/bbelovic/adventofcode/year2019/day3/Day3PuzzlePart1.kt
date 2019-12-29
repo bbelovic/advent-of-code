@@ -4,9 +4,12 @@ import kotlin.math.abs
 
 class Day3PuzzlePart1(private val space: Space) {
     fun solve(input: List<List<String>>): Int {
-        space.move(input[0])
-        space.move(input[1])
-        return space.collisions
+        val wire1Coordinates = space.move(input[0])
+        val wire2coordinates = space.move(input[1])
+
+        val mutableSet = wire1Coordinates.toMutableSet()
+        mutableSet.retainAll(wire2coordinates)
+        return mutableSet
                 .asSequence()
                 .map { coordinateRecord -> computeDistance(coordinateRecord) }
                 .min() ?: Int.MIN_VALUE

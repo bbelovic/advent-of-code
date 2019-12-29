@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
+private const val DAY3_PART1_EXPECTED_RESULT = 258
+
 class Day3PuzzlePart1Test {
 
     @Test
@@ -14,7 +16,7 @@ class Day3PuzzlePart1Test {
         val input = InputReader().readAllLines("input3.txt")
         val toList = input.asSequence().map { each -> each.split(",") }.toList()
         val actualDistance = Day3PuzzlePart1(Space()).solve(toList)
-        print(actualDistance)
+        assertThat(actualDistance).isEqualTo(DAY3_PART1_EXPECTED_RESULT)
     }
 
     @ParameterizedTest

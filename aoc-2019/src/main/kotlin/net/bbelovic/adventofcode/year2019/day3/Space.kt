@@ -1,9 +1,28 @@
 package net.bbelovic.adventofcode.year2019.day3
 
+sealed class Direction(val steps: Int, val vector: Pair<Int, Int>) {
+    fun move(startPosition: Pair<Int, Int>, coordinates: MutableSet<CoordinateRecord>): Pair<Int, Int> {
+        var (x, y) = startPosition
+        for (i in 0 until steps) {
+            x += vector.first
+            y += vector.second
+            val coordinateRecord = CoordinateRecord(x, y)
+            coordinates.add(coordinateRecord)
+        }
+        return Pair(x, y)
+    }
+
+    class LEFT(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
+    class RIGHT(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
+    class UP(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
+    class DOWN(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
+
+}
 
 data class CoordinateRecord(val x: Int, val y: Int)
 
 // TODO - improve direction parsing
+// TODO - remove CoordinateRecord
 
 class Space {
 
@@ -12,36 +31,50 @@ class Space {
     private val up = Pair(0, 1)
     private val down = Pair(0, -1)
 
+    fun parseDirection(directionString: String): Direction {
+        val regex = """([R,L,D,U])([0-9]+)""".toRegex()
+        val (code, steps) = regex.matchEntire(directionString)!!.destructured
+        return when (code) {
+            "R" -> {
+                Direction.RIGHT(steps.toInt(), Pair(1, 0))
+            }
+            "U" -> {
+                Direction.UP(steps.toInt(), Pair(0, 1))
+            }
+            "L" -> {
+                Direction.LEFT(steps.toInt(), Pair(-1, 0))
+
+            }
+            "D" -> {
+                Direction.DOWN(steps.toInt(), Pair(0, -1))
+            }
+            else -> throw IllegalArgumentException("Unknown direction: [$code]")
+        }
+
+    }
+
     fun move(directions: List<String>): MutableSet<CoordinateRecord> {
         val coordinates = mutableSetOf<CoordinateRecord>()
         var x = 0
         var y = 0
-        val regex = """([R,L,D,U])([0-9]+)""".toRegex()
+//        val regex = """([R,L,D,U])([0-9]+)""".toRegex()
         for (direction in directions) {
-            val (c, steps) = regex.matchEntire(direction)!!.destructured
-            when (c) {
-                "R" -> {
-                    val pair = recordPosition(steps, x, y, right, coordinates)
-                    x = pair.first
-                    y = pair.second
+//            val (c, steps) = regex.matchEntire(direction)!!.destructured
+            val parsedDirection = parseDirection(direction)
+            when (parsedDirection) {
+                is Direction.RIGHT -> {
+                    val pair = parsedDirection.move(Pair(x, y), coordinates)
                 }
-                "U" -> {
-                    val pair = recordPosition(steps, x, y, up, coordinates)
-                    x = pair.first
-                    y = pair.second
+                is Direction.UP -> {
+                    val pair = parsedDirection.move(Pair(x, y), coordinates)
                 }
-                "L" -> {
-                    val pair = recordPosition(steps, x, y, left, coordinates)
-                    x = pair.first
-                    y = pair.second
+                is Direction.LEFT -> {
+                    val pair = parsedDirection.move(Pair(x, y), coordinates)
 
                 }
-                "D" -> {
-                    val pair = recordPosition(steps, x, y, down, coordinates)
-                    x = pair.first
-                    y = pair.second
+                is Direction.DOWN -> {
+                    val pair = parsedDirection.move(Pair(x, y), coordinates)
                 }
-                else -> throw IllegalArgumentException("Unknown direction: [$c]")
             }
         }
         return coordinates

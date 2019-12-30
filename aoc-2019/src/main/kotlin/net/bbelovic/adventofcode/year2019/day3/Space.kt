@@ -1,21 +1,19 @@
 package net.bbelovic.adventofcode.year2019.day3
 
-import java.lang.IllegalArgumentException
-import java.util.concurrent.atomic.AtomicLong
 
-data class CoordinateRecord(/*val id: String,*/ val x: Int, val y: Int)
+data class CoordinateRecord(val x: Int, val y: Int)
 
 // TODO - improve direction parsing
-// TODO - polish Space class (properties should be defined at top)
-// TODO - coordinates should be a list, not set
 
 class Space {
-    val coordinates = mutableListOf<CoordinateRecord>()
-    val collisions = mutableSetOf<CoordinateRecord>()
 
+    private val right = Pair(1, 0)
+    private val left = Pair(-1, 0)
+    private val up = Pair(0, 1)
+    private val down = Pair(0, -1)
 
     fun move(directions: List<String>): MutableSet<CoordinateRecord> {
-        val coords = mutableSetOf<CoordinateRecord>()
+        val coordinates = mutableSetOf<CoordinateRecord>()
         var x = 0
         var y = 0
         val regex = """([R,L,D,U])([0-9]+)""".toRegex()
@@ -23,30 +21,30 @@ class Space {
             val (c, steps) = regex.matchEntire(direction)!!.destructured
             when (c) {
                 "R" -> {
-                    val pair = recordPosition(steps, x, y, right, coords)
+                    val pair = recordPosition(steps, x, y, right, coordinates)
                     x = pair.first
                     y = pair.second
                 }
                 "U" -> {
-                    val pair = recordPosition(steps, x, y, up, coords)
+                    val pair = recordPosition(steps, x, y, up, coordinates)
                     x = pair.first
                     y = pair.second
                 }
                 "L" -> {
-                    val pair = recordPosition(steps, x, y, left, coords)
+                    val pair = recordPosition(steps, x, y, left, coordinates)
                     x = pair.first
                     y = pair.second
 
                 }
                 "D" -> {
-                    val pair = recordPosition(steps, x, y, down, coords)
+                    val pair = recordPosition(steps, x, y, down, coordinates)
                     x = pair.first
                     y = pair.second
                 }
                 else -> throw IllegalArgumentException("Unknown direction: [$c]")
             }
         }
-        return coords
+        return coordinates
     }
 
     private fun recordPosition(steps: String, x: Int, y: Int, dir: Pair<Int, Int>, coords: MutableSet<CoordinateRecord>): Pair<Int, Int> {
@@ -56,19 +54,8 @@ class Space {
             x1 += dir.first
             y1 += dir.second
             val coordinateRecord = CoordinateRecord(x1, y1)
-
-//            collisions.addAll(coordinates.asSequence()
-//                    .filter { record -> coordinateRecord.x == record.x && coordinateRecord.y == record.y }
-//                    .filter { record -> coordinateRecord.id != record.id }
-//                    .toList())
             coords.add(coordinateRecord)
         }
         return Pair(x1, y1)
     }
-    private val right = Pair(1, 0)
-    private val left = Pair(-1, 0)
-    private val up = Pair(0, 1)
-    private val down = Pair(0, -1)
-    private val idGenerator = AtomicLong(0)
-
 }

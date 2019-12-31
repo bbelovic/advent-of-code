@@ -1,6 +1,7 @@
 package net.bbelovic.adventofcode.year2019.day3
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatNullPointerException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -16,16 +17,8 @@ internal class SpaceTest {
         val mutableSet = wire1Coordinates.toMutableSet()
         mutableSet.retainAll(wire2coordinates)
         assertThat(mutableSet)
-                .isEqualTo(mutableSetOf(CoordinateRecord(6, 5), CoordinateRecord(3, 3)))
+                .isEqualTo(mutableSetOf(Coordinates(6, 5), Coordinates(3, 3)))
 
-    }
-
-    @Test
-    fun testRegex() {
-        val regex = """([R,L,D,U])([0-9]+)"""
-        val (direction, steps) = regex.toRegex().matchEntire("D780")!!.destructured
-        assertThat(direction).isEqualTo("D")
-        assertThat(steps).isEqualTo("780")
     }
 
     @ParameterizedTest
@@ -36,6 +29,14 @@ internal class SpaceTest {
         assertThat(coordinates.size).isEqualTo(expectedSize)
     }
 
+    @Test
+    fun `should throw exception for unsupported direction format`() {
+        val space = Space()
+        assertThatNullPointerException().isThrownBy {
+            space.move(listOf("W1234"))
+        }
+    }
+
     companion object {
         @JvmStatic
         fun testData() = listOf(
@@ -44,28 +45,28 @@ internal class SpaceTest {
         )
     }
 
-    private fun expectedCoordinateRecords(): MutableList<CoordinateRecord> {
-        return mutableListOf(CoordinateRecord(1, 0),
-                CoordinateRecord(2, 0),
-                CoordinateRecord(3, 0),
-                CoordinateRecord(4, 0),
-                CoordinateRecord(5, 0),
-                CoordinateRecord(6, 0),
-                CoordinateRecord(7, 0),
-                CoordinateRecord(8, 0),
-                CoordinateRecord(8, 1),
-                CoordinateRecord(8, 2),
-                CoordinateRecord(8, 3),
-                CoordinateRecord(8, 4),
-                CoordinateRecord(8, 5),
-                CoordinateRecord(7, 5),
-                CoordinateRecord(6, 5),
-                CoordinateRecord(5, 5),
-                CoordinateRecord(4, 5),
-                CoordinateRecord(3, 5),
-                CoordinateRecord(3, 4),
-                CoordinateRecord(3, 3),
-                CoordinateRecord(3, 2)
+    private fun expectedCoordinateRecords(): MutableList<Coordinates> {
+        return mutableListOf(Coordinates(1, 0),
+                Coordinates(2, 0),
+                Coordinates(3, 0),
+                Coordinates(4, 0),
+                Coordinates(5, 0),
+                Coordinates(6, 0),
+                Coordinates(7, 0),
+                Coordinates(8, 0),
+                Coordinates(8, 1),
+                Coordinates(8, 2),
+                Coordinates(8, 3),
+                Coordinates(8, 4),
+                Coordinates(8, 5),
+                Coordinates(7, 5),
+                Coordinates(6, 5),
+                Coordinates(5, 5),
+                Coordinates(4, 5),
+                Coordinates(3, 5),
+                Coordinates(3, 4),
+                Coordinates(3, 3),
+                Coordinates(3, 2)
         )
     }
 

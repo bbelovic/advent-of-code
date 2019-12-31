@@ -1,58 +1,51 @@
 package net.bbelovic.adventofcode.year2019.day3
 
-sealed class Direction(private val steps: Int, private val vector: Pair<Int, Int>) {
-    fun move(startPosition: Pair<Int, Int>, coordinates: MutableSet<CoordinateRecord>): Pair<Int, Int> {
+private const val UP_CODE = "U"
+private const val DOWN_CODE = "D"
+private const val LEFT_CODE = "L"
+private const val RIGHT_CODE = "R"
+
+data class Coordinates(val x: Int, val y: Int)
+
+sealed class Direction(private val steps: Int, private val vector: Coordinates) {
+
+    class LEFT(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    class RIGHT(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    class UP(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    class DOWN(steps: Int, vector: Coordinates) : Direction(steps, vector)
+
+    fun move(startPosition: Coordinates, coordinates: MutableSet<Coordinates>): Coordinates {
         var (x, y) = startPosition
         for (i in 0 until steps) {
-            x += vector.first
-            y += vector.second
-            val coordinateRecord = CoordinateRecord(x, y)
+            x += vector.x
+            y += vector.y
+            val coordinateRecord = Coordinates(x, y)
             coordinates.add(coordinateRecord)
         }
-        return Pair(x, y)
+        return Coordinates(x, y)
     }
-
-    class LEFT(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
-    class RIGHT(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
-    class UP(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
-    class DOWN(steps: Int, vector: Pair<Int, Int>) : Direction(steps, vector)
-
 }
-
-data class CoordinateRecord(val x: Int, val y: Int)
-
-// TODO - improve direction parsing
-// TODO - remove CoordinateRecord
 
 class Space {
 
-    fun move(directions: List<String>): MutableSet<CoordinateRecord> {
-        val coordinates = mutableSetOf<CoordinateRecord>()
-        var actualPosition = Pair(0, 0)
+    fun move(directions: List<String>): MutableSet<Coordinates> {
+        val coordinates = mutableSetOf<Coordinates>()
+        var actualPosition = Coordinates(0, 0)
         for (direction in directions) {
-            val parseDirection = parseDirection(direction);
-            actualPosition = parseDirection.move(actualPosition, coordinates)
+            val parsedDirection = parseDirection(direction)
+            actualPosition = parsedDirection.move(actualPosition, coordinates)
         }
         return coordinates
     }
 
     private fun parseDirection(directionString: String): Direction {
-        val regex = """([R,L,D,U])([0-9]+)""".toRegex()
+        val regex = """([RLDU])([0-9]+)""".toRegex()
         val (code, steps) = regex.matchEntire(directionString)!!.destructured
         return when (code) {
-            "R" -> {
-                Direction.RIGHT(steps.toInt(), Pair(1, 0))
-            }
-            "U" -> {
-                Direction.UP(steps.toInt(), Pair(0, 1))
-            }
-            "L" -> {
-                Direction.LEFT(steps.toInt(), Pair(-1, 0))
-
-            }
-            "D" -> {
-                Direction.DOWN(steps.toInt(), Pair(0, -1))
-            }
+            RIGHT_CODE -> Direction.RIGHT(steps.toInt(), Coordinates(1, 0))
+            UP_CODE -> Direction.UP(steps.toInt(), Coordinates(0, 1))
+            LEFT_CODE -> Direction.LEFT(steps.toInt(), Coordinates(-1, 0))
+            DOWN_CODE -> Direction.DOWN(steps.toInt(), Coordinates(0, -1))
             else -> throw IllegalArgumentException("Unknown direction: [$code]")
         }
     }

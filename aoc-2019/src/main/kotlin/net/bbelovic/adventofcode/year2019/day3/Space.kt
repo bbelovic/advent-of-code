@@ -7,12 +7,12 @@ private const val RIGHT_CODE = "R"
 
 data class Coordinates(val x: Int, val y: Int)
 
-sealed class Direction(private val steps: Int, private val vector: Coordinates) {
+internal sealed class Direction(private val steps: Int, private val vector: Coordinates) {
 
-    class LEFT(steps: Int, vector: Coordinates) : Direction(steps, vector)
-    class RIGHT(steps: Int, vector: Coordinates) : Direction(steps, vector)
-    class UP(steps: Int, vector: Coordinates) : Direction(steps, vector)
-    class DOWN(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    internal class LEFT(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    internal class RIGHT(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    internal class UP(steps: Int, vector: Coordinates) : Direction(steps, vector)
+    internal class DOWN(steps: Int, vector: Coordinates) : Direction(steps, vector)
 
     fun move(startPosition: Coordinates, coordinates: MutableSet<Coordinates>): Coordinates {
         var (x, y) = startPosition
@@ -28,9 +28,12 @@ sealed class Direction(private val steps: Int, private val vector: Coordinates) 
 
 class Space {
 
+    val startX = 0
+    val startY = 0
+
     fun move(directions: List<String>): MutableSet<Coordinates> {
         val coordinates = mutableSetOf<Coordinates>()
-        var actualPosition = Coordinates(0, 0)
+        var actualPosition = Coordinates(startX, startY)
         for (direction in directions) {
             val parsedDirection = parseDirection(direction)
             actualPosition = parsedDirection.move(actualPosition, coordinates)

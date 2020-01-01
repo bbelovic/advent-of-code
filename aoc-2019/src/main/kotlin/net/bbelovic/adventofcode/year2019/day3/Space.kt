@@ -41,6 +41,21 @@ class Space {
         return coordinates
     }
 
+
+    fun move(directions: List<String>, intersection: Coordinates): Int {
+        val coordinates = mutableSetOf<Coordinates>()
+        var actualPosition = Coordinates(startX, startY)
+        for (direction in directions) {
+            val parsedDirection = parseDirection(direction)
+            actualPosition = parsedDirection.move(actualPosition, coordinates)
+            if (actualPosition == intersection) {
+                return coordinates.size
+            }
+        }
+        return -1
+    }
+
+
     private fun parseDirection(directionString: String): Direction {
         val regex = """([RLDU])([0-9]+)""".toRegex()
         val (code, steps) = regex.matchEntire(directionString)!!.destructured

@@ -10,8 +10,6 @@ class Day3PuzzlePart2(val space: Space) : AbstractDay3Puzzle(space) {
             var steps1 = 0
             var steps2 = 0
             steps1 = wire1Coordinates.indexOf(intersection) + 1
-
-
             steps2 = wire2Coordinates.indexOf(intersection) + 1
 
             val sum = steps1 + steps2

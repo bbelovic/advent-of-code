@@ -1,18 +1,31 @@
 package net.bbelovic.adventofcode.year2019.day3
 
-import org.assertj.core.api.Assertions
+import net.bbelovic.adventofcode.InputReader
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
+private const val DAY3_PART2_EXPECTED_RESULT = 12304
+
 internal class Day3PuzzlePart2Test {
+
+    @Test
+    fun `should compute fewest combined steps to intersection`() {
+        val input = InputReader().readAllLines("input3.txt")
+        val toList = input.asSequence().map { each -> each.split(",") }.toList()
+        val steps = Day3PuzzlePart2(Space()).solve(toList)
+        assertThat(steps).isEqualTo(DAY3_PART2_EXPECTED_RESULT)
+    }
+    
     @ParameterizedTest
     @MethodSource("testData")
     fun `should compute minimal number of steps to intersection`(first: List<String>, second: List<String>,
                                                                  expectedSteps: Int) {
         val puzzle = Day3PuzzlePart2(Space())
         val actualSteps = puzzle.solve(listOf(first, second))
-        Assertions.assertThat(actualSteps).isEqualTo(expectedSteps)
+        assertThat(actualSteps).isEqualTo(expectedSteps)
 
     }
 

@@ -12,4 +12,9 @@ abstract class AbstractDay3Puzzle(private val space: Space) : Puzzle<List<List<S
     protected abstract fun puzzleSpecific(wire1Coordinates: MutableCollection<Coordinates>,
                                           wire2Coordinates: MutableCollection<Coordinates>): Int
 
+    protected fun findIntersections(wire1Coordinates: MutableCollection<Coordinates>, wire2Coordinates: MutableCollection<Coordinates>): Set<Coordinates> {
+        val wire1set = wire1Coordinates.toSet()
+        return wire1set intersect wire2Coordinates.toSet()
+    }
+
 }

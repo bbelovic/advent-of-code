@@ -5,8 +5,7 @@ import kotlin.math.abs
 class Day3PuzzlePart1(private val space: Space): AbstractDay3Puzzle(space) {
 
     override fun puzzleSpecific(wire1Coordinates: MutableCollection<Coordinates>, wire2Coordinates: MutableCollection<Coordinates>): Int {
-        val wire1set = wire1Coordinates.toSet()
-        val intersections = wire1set intersect wire2Coordinates.toSet()
+        val intersections = findIntersections(wire1Coordinates, wire2Coordinates)
         return intersections
                 .asSequence()
                 .map { coordinateRecord -> computeDistance(coordinateRecord) }

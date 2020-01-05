@@ -14,7 +14,7 @@ internal sealed class Direction(private val steps: Int, private val vector: Coor
     internal class UP(steps: Int, vector: Coordinates) : Direction(steps, vector)
     internal class DOWN(steps: Int, vector: Coordinates) : Direction(steps, vector)
 
-    fun move(startPosition: Coordinates, coordinates: MutableSet<Coordinates>): Coordinates {
+    fun move(startPosition: Coordinates, coordinates: MutableCollection<Coordinates>): Coordinates {
         var (x, y) = startPosition
         for (i in 0 until steps) {
             x += vector.x
@@ -31,8 +31,8 @@ class Space {
     val startX = 0
     val startY = 0
 
-    fun move(directions: List<String>): MutableSet<Coordinates> {
-        val coordinates = mutableSetOf<Coordinates>()
+    fun move(directions: List<String>): MutableCollection<Coordinates> {
+        val coordinates = mutableListOf<Coordinates>()
         var actualPosition = Coordinates(startX, startY)
         for (direction in directions) {
             val parsedDirection = parseDirection(direction)

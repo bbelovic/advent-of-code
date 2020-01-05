@@ -3,12 +3,10 @@ package net.bbelovic.adventofcode.year2019.day3
 import kotlin.math.abs
 
 class Day3PuzzlePart1(private val space: Space): AbstractDay3Puzzle(space) {
-    override fun solve(input: List<List<String>>): Int {
-        val intersections = findIntersections(input)
-        return closestIntersection(intersections)
-    }
 
-    private fun closestIntersection(intersections: MutableSet<Coordinates>): Int {
+    override fun puzzleSpecific(wire1Coordinates: MutableCollection<Coordinates>, wire2Coordinates: MutableCollection<Coordinates>): Int {
+        val wire1set = wire1Coordinates.toSet()
+        val intersections = wire1set intersect wire2Coordinates.toSet()
         return intersections
                 .asSequence()
                 .map { coordinateRecord -> computeDistance(coordinateRecord) }

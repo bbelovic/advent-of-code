@@ -2,9 +2,9 @@ package net.bbelovic.adventofcode.year2019.day4
 
 import net.bbelovic.adventofcode.Puzzle
 
-class Day4PuzzlePart1 : Puzzle<String, Int>{
-    override fun solve(input: String): Int {
-        return if (checkNumber(input.toInt())) 1 else 0
+class Day4PuzzlePart1 : Puzzle<Int, Int>{
+    override fun solve(input: Int): Int {
+        return if (checkNumber(input)) 1 else 0
     }
 
     private fun checkNumber(input: Int): Boolean {

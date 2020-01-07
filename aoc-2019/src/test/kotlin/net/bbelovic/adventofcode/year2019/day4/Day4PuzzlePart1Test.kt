@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 private const val PART1_EXPECTED_RESULT = 895
+private const val LOW_BOUND = 284639
+private const val UP_BOUND = 748759
 
 internal class Day4PuzzlePart1Test {
     @ParameterizedTest
@@ -20,10 +22,10 @@ internal class Day4PuzzlePart1Test {
     @Test
     fun `should compute how many passwords from input range meet criteria`() {
         val puzzle = Day4PuzzlePart1()
-        val sum = generateSequence(284639) { if (it < 748759) it + 1 else null }
+        val result = generateSequence(LOW_BOUND) { if (it < UP_BOUND) it + 1 else null }
                 .map { element -> puzzle.solve(element) }
                 .sum()
-        assertThat(sum).isEqualTo(PART1_EXPECTED_RESULT)
+        assertThat(result).isEqualTo(PART1_EXPECTED_RESULT)
     }
 
     companion object {

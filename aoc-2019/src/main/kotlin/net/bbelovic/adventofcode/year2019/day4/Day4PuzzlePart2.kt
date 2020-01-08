@@ -2,7 +2,7 @@ package net.bbelovic.adventofcode.year2019.day4
 
 import net.bbelovic.adventofcode.Puzzle
 
-class Day4PuzzlePart1 : Puzzle<Int, Int>{
+class Day4PuzzlePart2 : Puzzle<Int, Int> {
     override fun solve(input: Int): Int {
         return if (checkNumber(input)) 1 else 0
     }
@@ -16,8 +16,13 @@ class Day4PuzzlePart1 : Puzzle<Int, Int>{
         do {
             act = inputCopy % 10
             descending = descending && (act <= init)
-            if (!hasDouble) {
-                hasDouble = (act == init)
+            if (act == init ) {
+                if (!hasDouble) {
+                    hasDouble = true
+                } else {
+                    hasDouble = false
+                    break
+                }
             }
             inputCopy /= 10
             init = act

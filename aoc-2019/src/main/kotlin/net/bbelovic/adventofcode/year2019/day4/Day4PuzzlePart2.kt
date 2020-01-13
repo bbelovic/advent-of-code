@@ -9,25 +9,27 @@ class Day4PuzzlePart2 : Puzzle<Int, Int> {
 
     private fun checkNumber(input: Int): Boolean {
         var inputCopy = input
-        var init = 10
+        var candidate = -1
+        var count = 0
         var act: Int
         var descending = true
         var hasDouble = false
         do {
             act = inputCopy % 10
-            descending = descending && (act <= init)
-            if (act == init ) {
-                if (!hasDouble) {
+            if (act != candidate ) {
+                if (count == 2) {
                     hasDouble = true
-                } else {
-                    hasDouble = false
-                    break
                 }
+                candidate = act
+                count = 1
+            } else {
+                candidate = act
+                count += 1
             }
+            descending = descending && (act <= candidate)
             inputCopy /= 10
-            init = act
         } while (inputCopy != 0)
-        return hasDouble && descending
+        return (hasDouble || count == 2) && descending
     }
 
 }

@@ -3,6 +3,9 @@ package net.bbelovic.adventofcode.year2019.day4
 import net.bbelovic.adventofcode.Puzzle
 
 class Day4PuzzlePart2 : Puzzle<Int, Int> {
+    private val requiredDigitCount = 2
+    private val decimalDivisor = 10
+
     override fun solve(input: Int): Int {
         return if (checkNumber(input)) 1 else 0
     }
@@ -15,22 +18,20 @@ class Day4PuzzlePart2 : Puzzle<Int, Int> {
         var descending = true
         var hasDouble = false
         do {
-            act = inputCopy % 10
+            act = inputCopy % decimalDivisor
             descending = descending && (act <= candidate)
-            if (act != candidate ) {
-                if (count == 2) {
+            if (!hasDouble && (act != candidate)) {
+                if (count == requiredDigitCount) {
                     hasDouble = true
                 }
-                candidate = act
                 count = 1
             } else {
-                candidate = act
                 count += 1
             }
-            inputCopy /= 10
+            candidate = act
+            inputCopy /= decimalDivisor
         } while (inputCopy != 0)
-//        println("$input => ${(hasDouble || count == 2) && descending}")
-        return (hasDouble || count == 2) && descending
+        return (hasDouble || count == requiredDigitCount) && descending
     }
 
 }

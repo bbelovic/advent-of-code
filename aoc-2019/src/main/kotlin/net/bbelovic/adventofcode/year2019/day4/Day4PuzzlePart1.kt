@@ -9,18 +9,18 @@ class Day4PuzzlePart1 : Puzzle<Int, Int>{
 
     private fun checkNumber(input: Int): Boolean {
         var inputCopy = input
-        var init = 10
+        var candidate = 10
         var act: Int
         var descending = true
         var hasDouble = false
         do {
             act = inputCopy % 10
-            descending = descending && (act <= init)
+            descending = descending && (act <= candidate)
             if (!hasDouble) {
-                hasDouble = (act == init)
+                hasDouble = (act == candidate)
             }
             inputCopy /= 10
-            init = act
+            candidate = act
         } while (inputCopy != 0)
         return hasDouble && descending
     }

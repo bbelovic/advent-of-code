@@ -18,12 +18,17 @@ public class ArgumentsBuilder {
     }
 
     public ArgumentsBuilder withValues(Object... values) {
-        arguments.add(values);
+        for (var each: values) {
+            arguments.add(each);
+        }
         return this;
     }
 
     public Arguments build() {
-//        return Arguments.of(arguments.toArray(new Object[0]));
-        return () -> arguments.toArray();
+//        var result = new Object[arguments.size()];
+//        for (int i = 0; i < result.length; i++) {
+//            result[i] = arguments.get(i);
+//        }
+        return () -> arguments.toArray(new Object[0]);
     }
 }

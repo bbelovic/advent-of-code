@@ -22,7 +22,7 @@ internal class Day3PuzzlePart2Test {
     }
     
     @ParameterizedTest
-    @MethodSource("testData2")
+    @MethodSource("testData")
     fun `should compute minimal number of steps to intersection`(first: List<String>, second: List<String>,
                                                                  expectedSteps: Int) {
         val puzzle = Day3PuzzlePart2(Space())
@@ -33,6 +33,23 @@ internal class Day3PuzzlePart2Test {
 
     companion object {
 //        @JvmStatic
+//        fun testDataDsl-draft0 = testData {
+//            arguments {
+//                values ("x,y,z", true)
+//            },
+//            arguments {
+//                values ("a", "b", "c", false)
+//            }
+//        }
+
+//        @JvmStatic
+//        fun testDataDsl-draft1 = testData {
+//            arguments ("x,y,z", true),
+//            arguments (listOf("a", "b", "c"), false)
+//        }
+
+
+//        @JvmStatic
 //        fun testData() = listOf(
 //                Arguments { arrayOf(listOf("R8", "U5", "L5", "D3"), listOf("U7", "R6", "D4", "L4"), 30) },
 //                Arguments { arrayOf(listOf("R98","U47","R26","D63","R33","U87","L62","D20","R33","U53","R51"),
@@ -41,10 +58,17 @@ internal class Day3PuzzlePart2Test {
 //                        listOf("U62","R66","U55", "R34","D71","R55","D58","R83"), 610) }
 //        )
         @JvmStatic
-        fun testData2() = TestDataBuilder()
+        fun testData() = TestDataBuilder()
                 .withArguments(ArgumentsBuilder()
-                        .withValues(listOf("R8", "U5", "L5", "D3"), listOf("R8", "U5", "L5", "D3"), 30)
+                        .withValues(listOf("R8", "U5", "L5", "D3"), listOf("U7", "R6", "D4", "L4"), 30)
                         .build()).arguments
+        @JvmStatic
+        fun testDataX() {
+
+
+            listOf(Arguments.of(
+            listOf("R8", "U5", "L5", "D3"), listOf("R8", "U5", "L5", "D3"), 30))
+        }
     }
 
 }

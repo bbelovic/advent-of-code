@@ -27,9 +27,9 @@ internal class SpaceTest {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(
-                Arguments { arrayOf(listOf("R8", "U5", "L5", "D3"), 21) },
-                Arguments { arrayOf(listOf("R75"), 75) }
-        )
+        fun testData() = testDataDsl {
+            testArguments (listOf("R8", "U5", "L5", "D3"), 21)
+            testArguments (listOf("R75"), 75)
+        }
     }
 }

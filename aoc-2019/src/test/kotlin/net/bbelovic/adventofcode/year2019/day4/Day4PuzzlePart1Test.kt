@@ -1,9 +1,9 @@
 package net.bbelovic.adventofcode.year2019.day4
 
+import net.bbelovic.adventofcode.year2019.day3.testDataDsl
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 private const val PART1_EXPECTED_RESULT = 895
@@ -30,10 +30,10 @@ internal class Day4PuzzlePart1Test {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(
-                Arguments { arrayOf(111111, 1) },
-                Arguments { arrayOf(223450, 0) },
-                Arguments { arrayOf(123789, 0) }
-        )
+        fun testData() = testDataDsl {
+            testArguments (111111, 1)
+            testArguments (223450, 0)
+            testArguments (123789, 0)
+        }
     }
 }

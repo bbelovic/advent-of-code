@@ -13,6 +13,10 @@ public class TestDataBuilder {
         return this;
     }
 
+    public void testArguments(Object... args) {
+        this.arguments.add(Arguments.of(args));
+    }
+
     public List<Arguments> getArguments() {
         return arguments;
     }

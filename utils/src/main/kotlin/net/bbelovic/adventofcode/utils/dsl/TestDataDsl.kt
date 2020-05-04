@@ -1,4 +1,4 @@
-package net.bbelovic.adventofcode.year2019.day3
+package net.bbelovic.adventofcode.utils.dsl
 
 import net.bbelovic.adventofcode.TestDataBuilder
 import org.junit.jupiter.params.provider.Arguments

@@ -1,5 +1,6 @@
 package net.bbelovic.adventofcode.year2019.day3
 
+import net.bbelovic.adventofcode.utils.dsl.testDataDsl
 import net.bbelovic.adventofcode.InputReader
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

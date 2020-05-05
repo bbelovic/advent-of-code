@@ -1,10 +1,9 @@
 package net.bbelovic.adventofcode.year2018.day1
 
 import net.bbelovic.adventofcode.Puzzle
+import net.bbelovic.adventofcode.utils.dsl.testDataDsl
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day1PuzzlePart2Test {
@@ -18,11 +17,11 @@ class Day1PuzzlePart2Test {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf<Arguments>(
-                Arguments.of("+3, +3, +4, -2, -4" , 10L),
-                Arguments.of("+1, -1" , 0L),
-                Arguments.of("-6, +3, +8, +5, -6" , 5L),
-                Arguments.of("+7, +7, -2, -7, -4" , 14L)
-        )
+        fun testData() = testDataDsl {
+            testArguments ("+3, +3, +4, -2, -4" , 10L)
+            testArguments ("+1, -1" , 0L)
+            testArguments ("-6, +3, +8, +5, -6" , 5L)
+            testArguments ("+7, +7, -2, -7, -4" , 14L)
+        }
     }
 }

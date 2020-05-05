@@ -2,9 +2,9 @@ package net.bbelovic.adventofcode.year2018.day1
 
 import net.bbelovic.adventofcode.InputReader
 import net.bbelovic.adventofcode.Puzzle
+import net.bbelovic.adventofcode.utils.dsl.testDataDsl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class Day1PuzzleMainTest {
@@ -18,10 +18,9 @@ class Day1PuzzleMainTest {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(
-                Arguments.of(Day1PuzzlePart1(), 430L),
-                Arguments.of(Day1PuzzlePart2(), 462L)
-
-        )
+        fun testData() = testDataDsl {
+            testArguments (Day1PuzzlePart1(), 430L)
+            testArguments (Day1PuzzlePart2(), 462L)
+        }
     }
 }

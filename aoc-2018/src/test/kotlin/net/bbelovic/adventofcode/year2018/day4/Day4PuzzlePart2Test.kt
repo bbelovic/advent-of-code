@@ -1,10 +1,10 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.InputReader
+import net.bbelovic.adventofcode.utils.dsl.testDataDsl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 const val EXPECTED_RESULT_DEMO_INPUT = 4455
@@ -48,13 +48,9 @@ internal class Day4PuzzlePart2Test {
 
     companion object {
         @JvmStatic
-        fun testData() = listOf(
-                Arguments {
-                    arrayOf(SameMinuteGuardAsleepGroupingSelector())
-                },
-                Arguments {
-                    arrayOf(SameMinuteGuardAsleepSelector())
-                }
-        )
+        fun testData() = testDataDsl {
+            testArguments (SameMinuteGuardAsleepGroupingSelector())
+            testArguments (SameMinuteGuardAsleepSelector())
+        }
     }
 }

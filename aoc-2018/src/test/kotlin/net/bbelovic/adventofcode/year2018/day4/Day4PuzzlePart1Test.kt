@@ -1,10 +1,10 @@
 package net.bbelovic.adventofcode.year2018.day4
 
 import net.bbelovic.adventofcode.InputReader
+import net.bbelovic.adventofcode.utils.dsl.testDataDsl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.io.BufferedReader
 import java.io.StringReader
@@ -139,10 +139,9 @@ internal class Day4PuzzlePart1Test {
             return listOf(gd1, gd2, gd3)
         }
         @JvmStatic
-        private fun testData(): List<Arguments> {
-            return listOf(
-                    Arguments {arrayOf(actual1, expected1())},
-                    Arguments {arrayOf(actual2, expected2())})
+        private fun testData() = testDataDsl {
+            testArguments (actual1, expected1())
+            testArguments (actual2, expected2())
         }
 
     }

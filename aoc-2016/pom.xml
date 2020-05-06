@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>net.bbelovic.adventofcode</groupId>
-            <artifactId>aoc-2015</artifactId>
+            <artifactId>utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -12,7 +12,7 @@ class Day1PuzzlePart1Test {
     fun `should compute product of two entries that make 2020 - example data`() {
         val inputEntries = listOf("1721", "979", "366", "299", "675", "1456")
         val expectedResult = 514579L
-        val actualResult = Day1PuzzlePart1Recursion().solve(inputEntries)
+        val actualResult = Day1PuzzlePart1Recursion(2).solve(inputEntries)
         assertThat(actualResult).isEqualTo(expectedResult)
     }
 

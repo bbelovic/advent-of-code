@@ -1,7 +1,10 @@
 package net.bbelovic.adventofcode.year2020.day3
 
+import net.bbelovic.adventofcode.InputReader
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+
+const val PART1_EXPECTED_RESULT = 195
 
 class Day3PuzzlePart1Test {
     @Test
@@ -19,19 +22,14 @@ class Day3PuzzlePart1Test {
             "#...##....#",
             ".#..#...#.#"
         )
-        var treeCount = 0
-        var idx = exampleInput[0].indexOf('.')
-        for (line in exampleInput) {
-            var copiedLine = line
-            if (idx > line.length) {
-                val mult = idx / line.length
-                copiedLine = line.repeat(mult + 1)
-            }
-            if (copiedLine[idx] == '#') {
-                ++treeCount
-            }
-            idx += 3
-        }
+        val treeCount = Day3PuzzlePart1().solve(exampleInput)
         assertThat(treeCount).isEqualTo(7)
+    }
+
+    @Test
+    fun `should count trees`() {
+        val input = InputReader().readAllLines("input3.txt")
+        val actualTreeCount = Day3PuzzlePart1().solve(input)
+        assertThat(actualTreeCount).isEqualTo(PART1_EXPECTED_RESULT)
     }
 }

@@ -4,7 +4,7 @@ import net.bbelovic.adventofcode.InputReader
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-const val PART1_EXPECTED_RESULT = 195
+const val PART1_EXPECTED_RESULT = 195L
 
 class Day3PuzzlePart1Test {
     @Test
@@ -22,23 +22,14 @@ class Day3PuzzlePart1Test {
             "#...##....#",
             ".#..#...#.#"
         )
-        val treeCount = Day3PuzzlePart1().solve(exampleInput)
-        assertThat(treeCount).isEqualTo(7)
+        val treeCount = Day3PuzzlePart1(listOf(Pair(3, 1))).solve(exampleInput)
+        assertThat(treeCount).isEqualTo(7L)
     }
 
     @Test
     fun `should count trees`() {
         val input = InputReader().readAllLines("input3.txt")
-        val actualTreeCount = Day3PuzzlePart1().solve(input)
+        val actualTreeCount = Day3PuzzlePart1(listOf(Pair(3, 1))).solve(input)
         assertThat(actualTreeCount).isEqualTo(PART1_EXPECTED_RESULT)
-    }
-
-    @Test
-    fun `test`() {
-        val list = listOf(1, 2, 3, 4, 5, 6)
-
-        for (i in list.indices step 2) {
-            println(list[i])
-        }
     }
 }

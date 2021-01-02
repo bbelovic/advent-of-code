@@ -2,8 +2,8 @@ package net.bbelovic.adventofcode.year2020.day3
 
 class TobogganRacer(private val slopes: List<Pair<Int, Int>>) {
 
-    fun solve(input: List<String>): Int {
-        var result = 1
+    fun solve(input: List<String>): Long {
+        var result = 1L
         for (slope in slopes) {
             val increment = slope.first
             val step = slope.second
@@ -28,7 +28,7 @@ class TobogganRacer(private val slopes: List<Pair<Int, Int>>) {
     }
 
     private fun repeatIfNeeded(idx: Int, line: String): String {
-        if (idx > line.length) {
+        if (idx >= line.length) {
             return line.repeat((idx / line.length) + 1)
         }
         return line

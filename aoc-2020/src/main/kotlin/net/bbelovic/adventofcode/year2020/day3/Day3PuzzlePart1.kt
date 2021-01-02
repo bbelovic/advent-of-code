@@ -1,7 +1,7 @@
 package net.bbelovic.adventofcode.year2020.day3
 
 class Day3PuzzlePart1 {
-    fun solve(input: List<String>): Int {
+    fun solve(input: List<String>): Long {
         val tobogganRacer = TobogganRacer(listOf(Pair(3, 1)))
         return tobogganRacer.solve(input)
 

@@ -32,4 +32,13 @@ class Day3PuzzlePart1Test {
         val actualTreeCount = Day3PuzzlePart1().solve(input)
         assertThat(actualTreeCount).isEqualTo(PART1_EXPECTED_RESULT)
     }
+
+    @Test
+    fun `test`() {
+        val list = listOf(1, 2, 3, 4, 5, 6)
+
+        for (i in list.indices step 2) {
+            println(list[i])
+        }
+    }
 }

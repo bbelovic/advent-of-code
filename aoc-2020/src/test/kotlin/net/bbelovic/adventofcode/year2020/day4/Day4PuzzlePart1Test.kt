@@ -1,6 +1,8 @@
 package net.bbelovic.adventofcode.year2020.day4
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.io.StringReader
 
 class Day4PuzzlePart1Test {
     @Test
@@ -18,6 +20,29 @@ hgt:179cm
 
 hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in"""
-        val c = exampleInput.split("\n")
+
+        val bufferedReader = StringReader(exampleInput).buffered()
+
+        val use = bufferedReader.use { reader ->
+            val line = reader.readLine()
+            var cnt = 0
+            val collectedKeys = mutableSetOf<String>()
+            if (line != "") {
+                line.splitToSequence(" ")
+                    .map { each -> """([a-z]{3}):.*""".toRegex().matchEntire(each)!!.destructured.component1() }
+                    .toCollection(collectedKeys)
+            } else {
+                cnt += if (collectedKeys == setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")) +1 else 0
+                collectedKeys.clear()
+            }
+            cnt
+
+        }
+
+
+
+        assertThat(use).isEqualTo(2)
+
     }
+
 }

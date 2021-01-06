@@ -22,26 +22,8 @@ hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in"""
 
         val bufferedReader = StringReader(exampleInput).buffered()
-
-        var cnt = 0
-        val collectedKeys = mutableSetOf<String>()
-        bufferedReader.forEachLine { eachLine ->
-            if (eachLine != "") {
-                eachLine.splitToSequence(" ")
-                    .map { each -> """([a-z]{3}):.*""".toRegex().matchEntire(each)!!.destructured.component1() }
-                    .toCollection(collectedKeys)
-            } else {
-
-                cnt += if (collectedKeys.containsAll(setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"))) +1 else 0
-                collectedKeys.clear()
-            }
-        }
-
-
-
-
-        assertThat(cnt).isEqualTo(2)
-
+        val actual = Day4PuzzlePart1().solve(bufferedReader.readLines());
+        assertThat(actual).isEqualTo(2)
     }
 
 }

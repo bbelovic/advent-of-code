@@ -23,25 +23,24 @@ iyr:2011 ecl:brn hgt:59in"""
 
         val bufferedReader = StringReader(exampleInput).buffered()
 
-        val use = bufferedReader.use { reader ->
-            val line = reader.readLine()
-            var cnt = 0
-            val collectedKeys = mutableSetOf<String>()
-            if (line != "") {
-                line.splitToSequence(" ")
+        var cnt = 0
+        val collectedKeys = mutableSetOf<String>()
+        bufferedReader.forEachLine { eachLine ->
+            if (eachLine != "") {
+                eachLine.splitToSequence(" ")
                     .map { each -> """([a-z]{3}):.*""".toRegex().matchEntire(each)!!.destructured.component1() }
                     .toCollection(collectedKeys)
             } else {
-                cnt += if (collectedKeys == setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")) +1 else 0
+
+                cnt += if (collectedKeys.containsAll(setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"))) +1 else 0
                 collectedKeys.clear()
             }
-            cnt
-
         }
 
 
 
-        assertThat(use).isEqualTo(2)
+
+        assertThat(cnt).isEqualTo(2)
 
     }
 

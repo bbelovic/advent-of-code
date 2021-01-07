@@ -14,6 +14,9 @@ class Day4PuzzlePart1 {
                 collectedKeys.clear()
             }
         }
+        if (collectedKeys.isNotEmpty()) {
+            cnt += if (collectedKeys.containsAll(setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"))) +1 else 0
+        }
         return cnt
 
     }

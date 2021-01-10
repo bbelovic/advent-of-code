@@ -1,35 +1,8 @@
 package net.bbelovic.adventofcode.year2020.day4
 
-import java.lang.StringBuilder
+class Day4PuzzlePart2 : AbstractDay4Puzzle() {
 
-class Day4PuzzlePart2 {
-    fun solve(lines: List<String>): Long {
-        var cnt = 0L
-        val collectedKeys = mutableSetOf<String>()
-        val sb = StringBuilder()
-        for (line in lines) {
-            if (line != "") {
-                sb.append("$line ")
-                line.splitToSequence(" ")
-                    .map { each -> processElement(each) }
-                    .toCollection(collectedKeys)
-            } else {
-                cnt += if (collectedKeys.containsAll(setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"))) {+1} else {
-                    println("Invalid passport: $sb")
-                    0
-                }
-                sb.clear()
-                collectedKeys.clear()
-            }
-        }
-        if (collectedKeys.isNotEmpty()) {
-            cnt += if (collectedKeys.containsAll(setOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"))) +1 else 0
-        }
-        return cnt
-
-    }
-
-    private fun processElement(element: String): String {
+    override fun processElement(line: String): String {
         val rules = mapOf(
             "byr" to """19[2-9][0-9]|200[0-2]""".toRegex(),
             "iyr" to """201[0-9]|2020""".toRegex(),
@@ -41,10 +14,7 @@ class Day4PuzzlePart2 {
             "cid" to """.*""".toRegex()
         )
 
-        val (key, value) = """([a-z]{3}):(.*)""".toRegex().matchEntire(element)!!.destructured
-        return if (value.matches(rules[key]!!)) key else {
-            println("invalid value [$value] for key [$key]")
-            "invalid value [$value] for key [$key]"
-        }
+        val (key, value) = """([a-z]{3}):(.*)""".toRegex().matchEntire(line)!!.destructured
+        return if (value.matches(rules[key]!!)) key else "invalid value [$value] for key [$key]"
     }
 }

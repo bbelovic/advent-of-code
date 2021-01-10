@@ -1,7 +1,7 @@
 package net.bbelovic.adventofcode.year2020.day4
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class Day4PuzzlePart2Test {
@@ -20,10 +20,8 @@ eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"""
 
-        val collectedKeys = mutableSetOf<String>()
-        "eyr:2029 ecl:blu cid:129 byr:1989".splitToSequence(" ")
-            .map { each -> processElement(each) }
-            .toCollection(collectedKeys)
+        val actual = Day4PuzzlePart2().solve(onlyValid.lines())
+        assertThat(actual).isEqualTo(4)
     }
 
 
@@ -41,13 +39,26 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"""
     private fun processElement(element: String): String {
         val rules = mapOf(
             "byr" to """19[2-9][0-9]|200[0-2]""".toRegex(),
-            "hgt" to """1[5-9][0-3]cm|[5-7][9|0-6]in""".toRegex(),
+            "iyr" to """201[0-9]|2020""".toRegex(),
+            "eyr" to """202[0-9]|2030""".toRegex(),
+            "hgt" to """1[5-8][0-9]cm|19[0-3]cm|[5-7][9|0-6]in""".toRegex(),
+            "hcl" to """#[0-9a-f]{6}""".toRegex(),
+            "ecl" to """amb|blu|brn|gry|grn|hzl|oth""".toRegex(),
             "pid" to """[0-9]{9}""".toRegex(),
+            "cid" to """.*""".toRegex()
 
             )
 
         val (key, value) = """([a-z]{3}):(.*)""".toRegex().matchEntire(element)!!.destructured
-        return if (value.matches(rules[key]!!)) key else "invalid [$value] for [$key]"
+        return if (value.matches(rules[key]!!)) key else "invalid value [$value] for key [$key]"
+    }
+
+    @Test
+    fun `test regex`(): Unit {
+        val actual = processElement("iyr:2015")
+        assertEquals("iyr", actual)
+
+        assertTrue("cid".matches(""".*""".toRegex()))
     }
 
     @Test

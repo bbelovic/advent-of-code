@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test
 class Day5PuzzlePart1Test {
     @Test
     fun `should find highest seat id on a boarding pass - example data`() {
-        val expectedSeatId = 357
-        val actualSeatId = Day5PuzzlePart1().solve(listOf("FBFBBFFRLR"))
-        assertThat(actualSeatId).isEqualTo(expectedSeatId)
-
+        val actualSeatId = Day5PuzzlePart1().solve(listOf("BBFFBBFRLL", "BFFFBBFRRR", "FFFBBBFRRR", "FBFBBFFRLR"))
+        assertThat(actualSeatId).isEqualTo(820L)
     }
 }

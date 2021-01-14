@@ -5,11 +5,11 @@ import java.util.Comparator
 class Day5PuzzlePart1 {
 
     fun solve(input: List<String>): Long {
-        return input.asSequence().map { each -> map(each) }
-            .maxWithOrNull(Comparator.naturalOrder()).let { -1 }
+        return input.asSequence().map { each -> computeRowAndCols(each) }
+            .maxWithOrNull(Comparator.naturalOrder()) ?: -1
     }
 
-    private fun map(input: String): Long {
+    private fun computeRowAndCols(input: String): Long {
         val row = computePosition(input.substring(0, 7), 0, 127, 'F')
         val col = computePosition(input.substring(7), 0, 7, 'L')
         return row * 8L + col

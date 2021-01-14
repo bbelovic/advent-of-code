@@ -15,18 +15,18 @@ class Day5PuzzlePart1 {
         return row * 8L + col
 
     }
-    private fun computePosition(input: String, l: Int, u: Int, c: Char): Int {
+    private fun computePosition(input: String, lBound: Int, uBound: Int, c: Char): Int {
         var result = 0
-        var uu = u
-        var ll = l
+        var u = uBound
+        var l = lBound
         for (i in input.toList()) {
-            val m = (ll + uu) / 2
+            val m = (l + u) / 2
             if (i == c) {
-                uu = m
-                result = uu
+                u = m
+                result = u
             } else {
-                ll = m + 1
-                result = ll
+                l = m + 1
+                result = l
             }
         }
         return result

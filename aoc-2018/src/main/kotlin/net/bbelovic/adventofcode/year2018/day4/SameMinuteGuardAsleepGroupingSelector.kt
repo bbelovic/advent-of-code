@@ -4,7 +4,7 @@ import kotlin.streams.toList
 
 class SameMinuteGuardAsleepGroupingSelector : GuardAsleepSelector {
     override fun process(records: List<GuardRecord>): Int {
-        val (id, pair) = records.asSequence()
+        val (id, pair) = records
                 .groupingBy { record -> record.id }
                 .aggregate { _: Int, accumulator: MutableList<Int>?, el: GuardRecord, first: Boolean ->
                     val boxedMinutesStream = el.minutes.stream().boxed().toList()
@@ -17,10 +17,10 @@ class SameMinuteGuardAsleepGroupingSelector : GuardAsleepSelector {
                         accumulator
                     }
                 }
-                .mapValues { entry -> entry.value!!.groupingBy { minutesAsleep -> minutesAsleep }.eachCount() }
+                .mapValues { entry -> entry.value.groupingBy { minutesAsleep -> minutesAsleep }.eachCount() }
                 .mapValues { entry -> entry.value.entries.map(this::convertToPair) }
-                .mapValues { entry -> entry.value.asSequence().maxBy { pair -> pair.second } ?: Pair(0, 0)}
-                .entries.asSequence().maxBy { entry -> entry.value.second }!!
+                .mapValues { entry -> entry.value.maxByOrNull { pair -> pair.second } ?: Pair(0, 0)}
+                .entries.maxByOrNull { entry -> entry.value.second }!!
         return id * pair.first
     }
 

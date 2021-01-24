@@ -8,7 +8,7 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
     override fun process(records: List<GuardRecord>): Int {
 
         val y = {record: GuardRecord -> record.minutes.stream().boxed()}
-        records.asSequence().groupBy (GuardRecord::id , GuardRecord::minutes)
+        records.groupBy (GuardRecord::id , GuardRecord::minutes)
 
         val m: Map<Int, List<Int>> = records.stream().collect(
                 Collectors.groupingBy({g: GuardRecord -> g.id}, Collectors.flatMapping(y, Collectors.toList<Int>())))
@@ -28,7 +28,7 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
         val keyFunction = {e: Map.Entry<Int, List<Pair<Int, Long>>> -> e.key}
         val valueFunction =
                 {e: Map.Entry<Int, List<Pair<Int, Long>>> ->
-                    val r = e.value.asSequence().maxBy { pair -> pair.second }
+                    val r = e.value.maxByOrNull { pair -> pair.second }
                     r ?: Pair(-1, -1L)
                 }
 
@@ -39,7 +39,7 @@ class SameMinuteGuardAsleepSelector : GuardAsleepSelector {
                 .map { e -> IdMinuteAndFrequency(e.key, e.value!!.first, e.value!!.second) }
                 .toList()
 
-        val maxBy = round4.asSequence().maxBy { idMinuteAndFrequency -> idMinuteAndFrequency.freq }
+        val maxBy = round4.maxByOrNull { idMinuteAndFrequency -> idMinuteAndFrequency.freq }
 
         return maxBy!!.id * maxBy.minute
     }

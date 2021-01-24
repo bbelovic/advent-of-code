@@ -9,7 +9,7 @@ class Day3PuzzlePart1(private val space: Space): AbstractDay3Puzzle(space) {
         return intersections
                 .asSequence()
                 .map { coordinateRecord -> computeDistance(coordinateRecord) }
-                .min() ?: Int.MIN_VALUE
+                .minOrNull() ?: Int.MIN_VALUE
     }
 
     private fun computeDistance(coordinate: Coordinates): Int {

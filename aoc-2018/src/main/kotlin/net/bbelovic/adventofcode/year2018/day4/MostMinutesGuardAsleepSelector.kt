@@ -9,15 +9,15 @@ class MostMinutesGuardAsleepSelector : GuardAsleepSelector {
         val max = records.stream()
                 .collect(Collectors.groupingBy({ g: GuardRecord? -> g?.id }, downStream))
                 .asSequence()
-                .maxBy { entry -> entry.value }
+                .maxByOrNull { entry -> entry.value }
         val record = records
                 .asSequence()
                 .filter { guardRecord -> guardRecord.id == max?.key }
                 .flatMap { guardRecord -> guardRecord.minutes.stream().asSequence() }
                 .groupingBy { it }.eachCount()
-                .asSequence().maxBy { entry -> entry.value }
+                .asSequence().maxByOrNull { entry -> entry.value }
 
-        val id = max?.key ?:0
+        val id = max?.key ?: 0
         val minute = record?.key ?: 0
         return minute * id
     }

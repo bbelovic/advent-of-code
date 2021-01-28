@@ -24,6 +24,8 @@ a
 b"""
         val actual = Day6PuzzlePart1().solve(input.lines())
         assertThat(actual).isEqualTo(11)
+
+        println(input.split("\n\n"))
     }
 
     @Test

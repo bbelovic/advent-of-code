@@ -4,14 +4,18 @@ import net.bbelovic.adventofcode.Puzzle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Day6PuzzlePart1Reductive implements Puzzle<String, Long> {
     @Override
     public Long solve(String input) {
-        Arrays.stream(input.split("\n\n"))
-                .map(this::toList);
-        return null;
+        return Arrays.stream(input.split("\n\n"))
+                .map(this::toList)
+                .mapToLong(list -> new HashSet<>(list).size())
+                .sum();
+
+//        return null;
     }
 
     private List<String> toList(String input) {

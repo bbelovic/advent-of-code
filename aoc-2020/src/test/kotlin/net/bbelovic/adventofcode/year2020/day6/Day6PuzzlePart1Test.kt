@@ -3,6 +3,7 @@ package net.bbelovic.adventofcode.year2020.day6
 import net.bbelovic.adventofcode.InputReader
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.io.File
 
 class Day6PuzzlePart1Test {
     @Test
@@ -34,4 +35,13 @@ b"""
         val actual = Day6PuzzlePart1().solve(lines)
         assertThat(actual).isEqualTo(6530L)
     }
+
+    @Test
+    fun `should count yes answers - reduction version`() {
+        val input = readFileIntoString2("input6.txt")
+        val actual = Day6PuzzlePart1Reductive().solve(input)
+        assertThat(actual).isEqualTo(6530L)
+    }
 }
+
+fun readFileIntoString2(path: String) = File("./src/main/resources/$path").readText()

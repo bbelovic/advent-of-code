@@ -38,10 +38,10 @@ b"""
 
     @Test
     fun `should count yes answers - reduction version`() {
-        val input = readFileIntoString2("input6.txt")
+        val input = readFileIntoString("input6.txt")
         val actual = Day6PuzzlePart1Reductive().solve(input)
         assertThat(actual).isEqualTo(6530L)
     }
 }
 
-fun readFileIntoString2(path: String) = File("./src/main/resources/$path").readText()
+fun readFileIntoString(path: String) = File("./src/main/resources/$path").readText()

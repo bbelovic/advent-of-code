@@ -1,0 +1,16 @@
+{
+  "name": "aoc-2025",
+  "version": "1.0.0",
+  "main": "index.js",
+  "run": "echo \"implement me\" && exit 1",
+  "scripts": {
+    "compile": "tsc",
+    "run-node": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "bbelovic",
+  "devDependencies": {
+    "typescript": "5.0.2"
+  }
+
+}

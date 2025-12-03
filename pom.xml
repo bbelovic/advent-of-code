@@ -15,7 +15,8 @@
     <module>aoc-2019</module>
     <module>aoc-2020</module>
     <module>utils</module>
-      <module>aoc-2022</module>
+    <module>aoc-2022</module>
+    <module>aoc-2025</module>
   </modules>
 
   <name>advent-of-code</name>

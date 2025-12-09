@@ -13,7 +13,8 @@ class Day1PuzzlePart1 {
             int dialValue = 50;
         }
 
-        Gatherer.Integrator<PuzzleState, Rotation, Integer> integrator = (state, element, result) ->
+        Gatherer.Integrator<PuzzleState, Rotation, Integer> integratorPart1 =
+                (state, element, result) ->
         {
             if (Objects.equals(element.direction, "L")) {
                 state.dialValue = (state.dialValue - element.distance) % 100;
@@ -27,12 +28,33 @@ class Day1PuzzlePart1 {
             return true;
         };
 
+        Gatherer.Integrator<PuzzleState, Rotation, Integer> integratorPart2 =
+                (state, element, result) ->
+                {
+                    if (Objects.equals(element.direction, "L")) {
+                        int newValue = (state.dialValue - element.distance) % 100;
+                        if (newValue > state.dialValue)
+                            result.push(1);
+                        state.dialValue = newValue;
+                    } else {
+                        int newValue = (state.dialValue + element.distance) % 100;
+                        if (newValue < state.dialValue) {
+                            result.push(1);
+                        }
+                        state.dialValue = newValue;
+                    }
+
+                    if (state.dialValue < 0)
+                        state.dialValue = state.dialValue + 100;
+                    if (state.dialValue == 0)
+                        result.push(1);
+                    return true;
+                };
+
         return inputs.stream()
                 .map(s -> new Rotation(s.substring(0, 1),
                 Integer.parseInt(s.substring(1))))
-                .gather(Gatherer.ofSequential(PuzzleState::new, integrator))
+                .gather(Gatherer.ofSequential(PuzzleState::new, integratorPart2))
                 .count();
-
-
     }
 }

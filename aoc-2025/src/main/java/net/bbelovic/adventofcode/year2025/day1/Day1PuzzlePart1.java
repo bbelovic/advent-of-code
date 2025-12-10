@@ -33,21 +33,18 @@ class Day1PuzzlePart1 {
                 {
                     if (Objects.equals(element.direction, "L")) {
                         int newValue = (state.dialValue - element.distance) % 100;
-                        if (newValue > state.dialValue)
+                        if (newValue < 0)
+                            newValue += 100;
+                        if (newValue > state.dialValue || newValue == 0)
                             result.push(1);
                         state.dialValue = newValue;
                     } else {
                         int newValue = (state.dialValue + element.distance) % 100;
-                        if (newValue < state.dialValue) {
+                        if (newValue < state.dialValue || newValue == 0) {
                             result.push(1);
                         }
                         state.dialValue = newValue;
                     }
-
-                    if (state.dialValue < 0)
-                        state.dialValue = state.dialValue + 100;
-                    if (state.dialValue == 0)
-                        result.push(1);
                     return true;
                 };
 

@@ -1,10 +1,8 @@
 FROM node:18-slim
 
-WORKDIR /src/main/ts
-
-COPY package.json ./
+COPY package.json .
+COPY tsconfig.json .
 
 RUN npm install
 
-COPY . .
 

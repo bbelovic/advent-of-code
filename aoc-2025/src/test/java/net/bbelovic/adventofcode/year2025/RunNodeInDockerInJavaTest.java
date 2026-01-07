@@ -12,7 +12,11 @@ public class RunNodeInDockerInJavaTest {
     @Container
     GenericContainer container = new GenericContainer(
             new ImageFromDockerfile()
-                    .withFileFromClasspath("Dockerfile", ""));
+                    .withFileFromClasspath("Dockerfile", "Dockerfile")
+                    .withFileFromClasspath("package.json", "ts/package.json")
+                    .withFileFromClasspath("tsconfig.json", "ts/tsconfig.json")
+
+    );
 
     @Test
     void testBuildFromDockerFile() {

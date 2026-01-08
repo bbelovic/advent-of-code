@@ -5,4 +5,6 @@ COPY tsconfig.json .
 
 RUN npm install
 
+CMD ["npm", "run", "run-hello"]
+
 

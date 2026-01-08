@@ -2,10 +2,10 @@
   "name": "aoc-2025",
   "version": "1.0.0",
   "main": "index.js",
-  "run": "echo \"implement me\" && exit 1",
   "scripts": {
     "compile": "tsc",
-    "run-node": "node dist/index.js"
+    "run-node": "node dist/index.js",
+    "run-hello": "echo \"implement me\" && exit 0"
   },
   "keywords": [],
   "author": "bbelovic",

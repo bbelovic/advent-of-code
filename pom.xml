@@ -27,7 +27,7 @@
     <kotlin.jvm.target>24</kotlin.jvm.target>
     <junit.bom.version>5.11.0</junit.bom.version>
     <testcontainers.bom.version>2.0.2</testcontainers.bom.version>
-    <assertj.version>3.27.6</assertj.version>
+    <assertj.version>3.27.7</assertj.version>
     <kotlin.version>2.2.21</kotlin.version>
   </properties>
 
